@@ -1,0 +1,783 @@
+{
+  "common": {
+    "back": "Back",
+    "continue": "Continue",
+    "save": "Save",
+    "saveAndExit": "Save & Exit",
+    "help": "Help",
+    "exit": "Exit",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "yes": "Yes",
+    "no": "No",
+    "optional": "Optional",
+    "required": "Required",
+    "loading": "Loading",
+    "error": "Error",
+    "success": "Success"
+  },
+  "brand": {
+    "name": "uSign"
+  },
+  "header": {
+    "backToHome": "Back to Home",
+    "dashboard": "Dashboard"
+  },
+  "nav": {
+    "howItWorks": "How It Works",
+    "benefits": "Benefits"
+  },
+  "footer": {
+    "copyright": "© 2025 uSign. All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "compliance": "Compliance"
+  },
+  "home": {
+    "hero": {
+      "title": "Get Pre-Qualified for Your",
+      "titleHighlight": "Dream Home",
+      "subtitle": "Know exactly how much you can afford in minutes. No credit impact, no obligations, and completely secure."
+    },
+    "cta": {
+      "fullPrequalification": {
+        "title": "Full Prequalification",
+        "description": "Get an accurate loan estimate based on your complete financial profile",
+        "button": "Start Application",
+        "duration": "Takes 5-7 minutes"
+      },
+      "quickCalculator": {
+        "title": "Quick Calculator",
+        "description": "Get a rough estimate of your buying power with basic information",
+        "button": "Quick Estimate",
+        "duration": "Takes 1 minute"
+      }
+    },
+    "benefits": {
+      "title": "Why Choose uSign?",
+      "secure": {
+        "title": "Secure & Private",
+        "description": "Bank-level encryption protects your information. Your data is never shared without permission."
+      },
+      "noCreditImpact": {
+        "title": "No Credit Impact",
+        "description": "Soft credit checks won't affect your score. Shop confidently without worry."
+      },
+      "instantResults": {
+        "title": "Instant Results",
+        "description": "Get your prequalification letter immediately. No waiting, no surprises."
+      }
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "step1": {
+        "title": "Share Your Information",
+        "description": "Tell us about your income, assets, and monthly debts. We'll guide you through each step."
+      },
+      "step2": {
+        "title": "We Calculate Your Options",
+        "description": "Our system analyzes your profile and determines your maximum loan amount and monthly payment."
+      },
+      "step3": {
+        "title": "Get Your Letter",
+        "description": "Receive your prequalification letter instantly. Use it to make offers with confidence."
+      }
+    }
+  },
+  "dashboard": {
+    "title": "Your Dashboard",
+    "applicationInProgress": {
+      "title": "Application in Progress",
+      "description": "Continue where you left off",
+      "applicant": "Applicant",
+      "lastSaved": "Last saved",
+      "recently": "Recently",
+      "resumeButton": "Resume Application",
+      "startOverButton": "Start Over",
+      "confirmStartOver": "Are you sure you want to start over? This will delete your current progress."
+    },
+    "quickCalculator": {
+      "title": "Quick Calculator",
+      "description": "Estimate your buying power",
+      "text": "Get a quick estimate of how much you might be able to borrow based on basic information.",
+      "button": "Open Calculator"
+    },
+    "getStarted": {
+      "title": "Get Started",
+      "description": "You don't have any saved applications",
+      "text": "Start your mortgage prequalification application today and find out how much you can afford.",
+      "startButton": "Start New Application",
+      "calculatorButton": "Use Quick Calculator"
+    }
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Oops! Page not found",
+    "link": "Return to Home"
+  },
+  "progress": {
+    "stepOf": "Step {{current}} of {{total}}",
+    "percentComplete": "{{percent}}% Complete",
+    "next": "Next: {{step}}"
+  },
+  "steps": {
+    "personalInfo": "Personal Info",
+    "employment": "Employment",
+    "assets": "Assets",
+    "debts": "Debts",
+    "property": "Property",
+    "review": "Review",
+    "documents": "Documents",
+    "results": "Results"
+  },
+  "accountCreation": {
+    "title": "Let's Get Started",
+    "subtitle": "We'll save your progress so you can return anytime",
+    "email": {
+      "label": "Email Address",
+      "placeholder": "john@example.com",
+      "description": "We'll send a code to verify this email",
+      "error": "Please enter a valid email address"
+    },
+    "phone": {
+      "label": "Phone Number (Optional)",
+      "placeholder": "(555) 123-4567",
+      "description": "For quick contact and updates",
+      "error": "Please enter a valid phone number"
+    },
+    "password": {
+      "label": "Create Password",
+      "placeholder": "Enter a strong password",
+      "confirmLabel": "Confirm Password",
+      "confirmPlaceholder": "Confirm your password",
+      "strength": {
+        "weak": "Weak",
+        "good": "Good",
+        "strong": "Strong"
+      },
+      "requirements": {
+        "length": "• At least 8 characters",
+        "special": "• Include number & special character"
+      },
+      "errors": {
+        "minLength": "Password must be at least 8 characters",
+        "number": "Password must contain at least one number",
+        "special": "Password must contain at least one special character",
+        "mismatch": "Passwords don't match"
+      }
+    },
+    "terms": {
+      "label": "I agree to the",
+      "termsLink": "Terms of Service",
+      "and": "and",
+      "privacyLink": "Privacy Policy",
+      "error": "You must accept the terms to continue"
+    },
+    "alreadyHaveAccount": "Already have an account?",
+    "signIn": "Sign In",
+    "securityNotice": "🔒 Your information is encrypted and never sold",
+    "continueButton": "Continue",
+    "toast": {
+      "sendingCode": "Sending verification code...",
+      "error": "Something went wrong. Please try again."
+    }
+  },
+  "emailVerification": {
+    "title": "Verify Your Email",
+    "subtitle": "We sent a 6-digit code to",
+    "changeEmail": "Change email",
+    "enterCode": "Enter verification code:",
+    "codeExpires": "Code expires in:",
+    "codeExpired": "Code has expired. Please request a new one.",
+    "didntReceive": "Didn't receive it?",
+    "resendButton": "Resend code",
+    "resendIn": "Resend in {{seconds}}s",
+    "verifying": "Verifying...",
+    "tips": {
+      "checkSpam": "• Check your spam folder if you don't see the email",
+      "checkEmail": "• Make sure {{email}} is correct"
+    },
+    "toast": {
+      "success": "Email verified successfully!",
+      "error": "Invalid verification code. Please try again.",
+      "resent": "New verification code sent!",
+      "resentError": "Failed to resend code. Please try again."
+    }
+  },
+  "personalInfo": {
+    "title": "Personal Information",
+    "subtitle": "Let's start with your basic information. All fields are required unless marked optional.",
+    "firstName": {
+      "label": "First Name",
+      "placeholder": "John",
+      "error": "First name must be at least 2 characters"
+    },
+    "lastName": {
+      "label": "Last Name",
+      "placeholder": "Doe",
+      "error": "Last name must be at least 2 characters"
+    },
+    "dateOfBirth": {
+      "label": "Date of Birth",
+      "error": "Date of birth is required"
+    },
+    "ssn": {
+      "label": "Social Security Number (Optional)",
+      "placeholder": "XXX-XX-XXXX",
+      "description": "Providing your SSN allows for a more accurate prequalification",
+      "skipLabel": "Skip for now (limits accuracy)",
+      "warning": "⚠ Without SSN, we can't check your credit. Your estimate will be less accurate."
+    },
+    "phone": {
+      "label": "Phone Number",
+      "placeholder": "(555) 123-4567",
+      "error": "Please enter a valid phone number"
+    },
+    "email": {
+      "label": "Email Address",
+      "placeholder": "john@example.com",
+      "error": "Please enter a valid email address"
+    },
+    "address": {
+      "label": "Street Address",
+      "placeholder": "123 Main Street, Apt 4B",
+      "error": "Address is required"
+    },
+    "city": {
+      "label": "City",
+      "placeholder": "San Francisco",
+      "error": "City is required"
+    },
+    "state": {
+      "label": "State",
+      "placeholder": "CA",
+      "error": "State must be 2 letters (e.g., CA)"
+    },
+    "zipCode": {
+      "label": "ZIP Code",
+      "placeholder": "94102",
+      "error": "ZIP code must be 5 digits"
+    },
+    "continueButton": "Continue to Employment",
+    "toast": {
+      "saved": "Personal information saved!",
+      "progressSaved": "Progress saved! You can resume anytime."
+    }
+  },
+  "employment": {
+    "title": "Employment & Income",
+    "subtitle": "This helps us calculate how much you can borrow",
+    "status": {
+      "label": "Employment Status",
+      "employed": "Employed (W-2)",
+      "selfEmployed": "Self-Employed",
+      "retired": "Retired",
+      "other": "Other"
+    },
+    "employer": {
+      "label": "Employer Name",
+      "placeholder": "ABC Company Inc.",
+      "error": "Employer and job title are required for employed status"
+    },
+    "jobTitle": {
+      "label": "Job Title",
+      "placeholder": "Software Engineer"
+    },
+    "yearsEmployed": {
+      "label": "Years with Employer",
+      "placeholder": "2"
+    },
+    "monthsEmployed": {
+      "label": "Additional Months",
+      "placeholder": "6"
+    },
+    "selfEmployedNotice": {
+      "title": "Self-Employment Notice",
+      "message": "Self-employment may require additional documentation such as tax returns and profit/loss statements."
+    },
+    "monthlyIncome": {
+      "label": "Gross Monthly Income",
+      "labelSelfEmployed": "Average Monthly Net Income",
+      "placeholder": "8500",
+      "description": "Before taxes and deductions",
+      "descriptionSelfEmployed": "After business expenses",
+      "error": "Monthly income is required"
+    },
+    "additionalIncome": {
+      "label": "Do you have additional income?",
+      "no": "No",
+      "yes": "Yes (bonuses, commissions, rental, etc.)",
+      "amount": "Additional Monthly Income",
+      "amountPlaceholder": "1500",
+      "source": "Source",
+      "sourcePlaceholder": "Select income source",
+      "sources": {
+        "bonus": "Bonus/Commission",
+        "rental": "Rental Income",
+        "investment": "Investment Income",
+        "pension": "Pension",
+        "socialSecurity": "Social Security",
+        "other": "Other"
+      }
+    },
+    "totalIncome": {
+      "label": "Total Monthly Income:",
+      "verified": "✓ Income verified: ${{amount}}/month"
+    },
+    "continueButton": "Continue to Assets",
+    "toast": {
+      "saved": "Employment information saved!",
+      "progressSaved": "Progress saved! You can resume anytime."
+    }
+  },
+  "assets": {
+    "title": "Assets & Down Payment",
+    "subtitle": "Show us what funds you have available for your home purchase",
+    "downPayment": {
+      "label": "How much can you put down?",
+      "placeholder": "80000",
+      "description": "Based on estimated home price of ${{price}}",
+      "error": "Down payment must be positive",
+      "quickButtons": {
+        "5percent": "5% (${{amount}})",
+        "10percent": "10% (${{amount}})",
+        "20percent": "20% (${{amount}})"
+      },
+      "pmiWarning": "20% down avoids PMI insurance (~$140/month savings)"
+    },
+    "currentAssets": {
+      "title": "Current Assets",
+      "checking": {
+        "label": "Checking Account(s)",
+        "placeholder": "25000",
+        "error": "Amount must be positive"
+      },
+      "savings": {
+        "label": "Savings Account(s)",
+        "placeholder": "75000",
+        "error": "Amount must be positive"
+      }
+    },
+    "otherAssets": {
+      "title": "Other Assets (Optional)",
+      "retirement": {
+        "label": "Retirement Accounts (401k, IRA)",
+        "placeholder": "50000"
+      },
+      "investments": {
+        "label": "Investments (Stocks, Bonds)",
+        "placeholder": "25000"
+      },
+      "realEstate": {
+        "label": "Other Real Estate",
+        "placeholder": "100000"
+      }
+    },
+    "giftFunds": {
+      "label": "Gift Funds?",
+      "no": "No gift funds",
+      "yes": "Yes, receiving gift funds for down payment",
+      "amount": "Gift Amount",
+      "amountPlaceholder": "10000",
+      "description": "Gift funds must be documented and cannot be a loan"
+    },
+    "summary": {
+      "totalAssets": "Total Available Assets:",
+      "downPayment": "Down Payment ({{percent}}%):",
+      "remainingReserves": "Remaining Reserves:",
+      "reserveStatus": "Reserve Status:",
+      "excellentReserves": "Excellent reserves",
+      "goodReserves": "Good reserves",
+      "lowReserves": "Low reserves",
+      "lowReservesWarning": "Low reserves ({{months}} months). Lenders prefer 6+ months of payments in reserves."
+    },
+    "continueButton": "Continue to Debts",
+    "toast": {
+      "saved": "Assets information saved!",
+      "progressSaved": "Progress saved! You can resume anytime."
+    }
+  },
+  "debts": {
+    "title": "Monthly Debts & Obligations",
+    "subtitle": "Help us calculate your debt-to-income ratio. Only include minimum monthly payments.",
+    "doNotInclude": "Do not include:",
+    "doNotIncludeText": "utilities, groceries, gas, insurance, or other living expenses",
+    "noDebts": {
+      "label": "I have no monthly debts",
+      "description": "Check this if you have no recurring debt payments"
+    },
+    "creditCards": {
+      "label": "Credit Card Minimum Payments",
+      "placeholder": "200",
+      "description": "Total across all cards"
+    },
+    "autoLoans": {
+      "label": "Auto Loan / Lease",
+      "placeholder": "450"
+    },
+    "studentLoans": {
+      "label": "Student Loans",
+      "placeholder": "300"
+    },
+    "personalLoans": {
+      "label": "Personal Loans",
+      "placeholder": "150"
+    },
+    "childSupport": {
+      "label": "Child Support / Alimony",
+      "placeholder": "500"
+    },
+    "otherDebts": {
+      "label": "Other Monthly Obligations",
+      "placeholder": "100",
+      "description": "Timeshares, court-ordered payments, etc."
+    },
+    "rent": {
+      "label": "Do you currently pay rent?",
+      "no": "No",
+      "yes": "Yes",
+      "amount": "Monthly Rent",
+      "amountPlaceholder": "1800",
+      "description": "Rent is not counted in DTI for home purchase"
+    },
+    "summary": {
+      "title": "Debt Summary",
+      "monthlyIncome": "Monthly Income:",
+      "totalDebts": "Total Monthly Debts:",
+      "dtiRatio": "Debt-to-Income Ratio:",
+      "excellent": "Excellent! Your DTI is well below the 36% limit",
+      "good": "Good! Your DTI is within standard limits",
+      "fair": "DTI above standard 36% limit but may qualify for FHA (43% limit)",
+      "high": "DTI exceeds most lender limits",
+      "payoffScenario": {
+        "title": "Debt Payoff Scenario",
+        "message": "Paying off ${{amount}}/month in debts would reduce your DTI to {{newDti}}%"
+      }
+    },
+    "continueButton": "Continue to Property",
+    "toast": {
+      "saved": "Debt information saved!",
+      "progressSaved": "Progress saved! You can resume anytime."
+    }
+  },
+  "property": {
+    "title": "Property & Loan Preferences",
+    "subtitle": "Tell us about the home you want to buy",
+    "hasFoundProperty": {
+      "label": "Have you found a property?",
+      "no": "No, I'm still looking",
+      "yes": "Yes, I have an address"
+    },
+    "propertyAddress": {
+      "label": "Property Address",
+      "placeholder": "123 Main St, City, State ZIP",
+      "description": "Start typing to see suggestions"
+    },
+    "desiredHomePrice": {
+      "label": "Desired Home Price",
+      "placeholder": "400000",
+      "error": "Home price must be at least $50,000"
+    },
+    "state": {
+      "label": "State",
+      "placeholder": "Select state",
+      "error": "State is required"
+    },
+    "zipCode": {
+      "label": "ZIP Code",
+      "placeholder": "94102",
+      "error": "ZIP code must be 5 digits"
+    },
+    "propertyType": {
+      "label": "Property Type",
+      "singleFamily": "Single-Family Home",
+      "townhouse": "Townhouse",
+      "condo": "Condominium",
+      "multiUnit": "Multi-Unit (2-4 units)",
+      "multiUnitWarning": "Multi-unit properties may require larger down payments (15-25%)"
+    },
+    "intendedUse": {
+      "label": "Intended Use",
+      "primary": "Primary Residence",
+      "secondHome": "Second Home / Vacation",
+      "investment": "Investment Property",
+      "investmentWarning": "Investment properties require 20-25% down, higher rates, and stricter qualification"
+    },
+    "firstTimeBuyer": {
+      "label": "First-time Homebuyer?",
+      "yes": "Yes",
+      "no": "No",
+      "benefit": "May qualify for special programs and benefits"
+    },
+    "loanPreferences": {
+      "title": "Loan Preferences",
+      "term": {
+        "label": "Loan Term",
+        "30year": "30-year fixed (Lower monthly payment)",
+        "15year": "15-year fixed (Pay off faster, less interest)",
+        "notSure": "Not sure (We'll show options)"
+      },
+      "type": {
+        "label": "Loan Type Preference",
+        "conventional": "Conventional (Standard, 620+ credit)",
+        "fha": "FHA (Lower down payment, 580+ credit)",
+        "va": "VA (Military veterans, 0% down)",
+        "usda": "USDA (Rural properties, 0% down)",
+        "notSure": "Not sure (Show me all options)"
+      }
+    },
+    "continueButton": "Continue to Review",
+    "toast": {
+      "saved": "Property preferences saved!",
+      "progressSaved": "Progress saved! You can resume anytime."
+    }
+  },
+  "review": {
+    "title": "Review Your Information",
+    "subtitle": "Verify details before we generate your prequalification",
+    "sections": {
+      "personalInfo": "Personal Information",
+      "employment": "Employment & Income",
+      "assets": "Assets & Down Payment",
+      "debts": "Monthly Debts"
+    },
+    "fields": {
+      "name": "Name",
+      "dateOfBirth": "Date of Birth",
+      "notProvided": "Not provided",
+      "email": "Email",
+      "phone": "Phone",
+      "address": "Address",
+      "employmentStatus": "Employment Status",
+      "monthlyIncome": "Monthly Income",
+      "employer": "Employer",
+      "additionalIncome": "Additional Income",
+      "downPayment": "Down Payment",
+      "checkingAccounts": "Checking Accounts",
+      "savingsAccounts": "Savings Accounts",
+      "totalAssets": "Total Assets",
+      "totalMonthlyDebts": "Total Monthly Debts",
+      "dtiRatio": "Debt-to-Income Ratio"
+    },
+    "documents": {
+      "title": "Optional: Upload Supporting Documents",
+      "subtitle": "Speeds up full approval later",
+      "dragDrop": "Drag & drop files here",
+      "dropHere": "Drop files here",
+      "orClick": "or click to browse",
+      "browseButton": "Browse Files",
+      "acceptedFormats": "Accepted: PDF, JPG, PNG (Max 10MB each, 20 files max)",
+      "uploadedFiles": "Uploaded Files ({{count}})",
+      "totalSize": "Total size: {{size}}",
+      "suggested": "Suggested documents:",
+      "suggestedList": {
+        "payStubs": "Recent pay stubs (last 30 days)",
+        "bankStatements": "Bank statements (last 2 months)",
+        "taxReturns": "Tax returns (last 2 years)",
+        "id": "ID (driver's license or passport)"
+      },
+      "errors": {
+        "invalidType": "{{fileName}}: Invalid file type. Only PDF, JPG, and PNG are allowed.",
+        "tooLarge": "{{fileName}}: File too large. Maximum size is 10MB.",
+        "maxFiles": "Maximum 20 files allowed."
+      },
+      "toast": {
+        "uploaded": "{{count}} file(s) uploaded successfully",
+        "removed": "File removed"
+      }
+    },
+    "certifications": {
+      "certifyTruth": "I certify that the information provided is true and accurate to the best of my knowledge",
+      "authorizeCreditCheck": "I authorize a soft credit check (won't affect credit score)",
+      "error": "Please accept both certifications to continue"
+    },
+    "submitButton": "Generate My Prequalification",
+    "toast": {
+      "analyzing": "Analyzing your information...",
+      "complete": "Prequalification complete!",
+      "completeWithDocs": "Prequalification complete! {{count}} document(s) uploaded."
+    }
+  },
+  "results": {
+    "congratulations": "🎉 Congratulations, {{name}}!",
+    "subtitle": "You're Prequalified for a Mortgage",
+    "prequalificationAmount": {
+      "title": "Your Prequalification Amount",
+      "subtitle": "Based on your income, assets, and debts",
+      "maxLoanAmount": "Maximum Loan Amount",
+      "estimatedPayment": "Estimated Monthly Payment",
+      "paymentNote": "(Principal, Interest, Taxes, Insurance)",
+      "estimatedHomePrice": "Estimated Home Price",
+      "withDownPayment": "With ${{amount}} down",
+      "interestRate": "Interest Rate (Estimated)",
+      "term": "30-year fixed",
+      "downPayment": "Down Payment",
+      "downPaymentPercent": "{{percent}}% of home price"
+    },
+    "actions": {
+      "downloadLetter": "Get Prequalification Letter",
+      "emailResults": "Email Results to Me",
+      "downloadPdf": "Download PDF"
+    },
+    "affordability": {
+      "title": "Affordability Breakdown",
+      "subtitle": "Your financial summary",
+      "monthlyIncome": "Monthly Gross Income",
+      "totalDebts": "Total Monthly Debts",
+      "housingPayment": "Estimated Housing Payment",
+      "frontEndDti": "Front-End DTI (Housing):",
+      "backEndDti": "Back-End DTI (Total):",
+      "qualifies": "✓ Your DTI qualifies you for most loan programs",
+      "fhaQualifies": "⚠ DTI above standard 36% limit but may qualify for FHA (43% limit)",
+      "tooHigh": "⚠ DTI exceeds most lender limits. Consider paying down debts or increasing income."
+    },
+    "loanComparison": {
+      "title": "Compare Loan Options",
+      "subtitle": "Different loan programs for your situation",
+      "headers": {
+        "loanType": "Loan Type",
+        "loanAmount": "Loan Amount",
+        "interestRate": "Interest Rate",
+        "monthlyPayment": "Monthly Payment",
+        "totalInterest": "Total Interest"
+      },
+      "types": {
+        "30yearFixed": "30-Year Fixed",
+        "15yearFixed": "15-Year Fixed",
+        "fha30year": "FHA 30-Year"
+      }
+    },
+    "nextSteps": {
+      "title": "Next Steps",
+      "subtitle": "Continue your home buying journey",
+      "savePrequalification": "Save Your Prequalification",
+      "chatWithAdvisor": "Chat with an Advisor",
+      "scheduleCall": "Schedule a Call"
+    },
+    "toast": {
+      "downloaded": "Prequalification letter downloaded!",
+      "emailed": "Results sent to {{email}}"
+    }
+  },
+  "calculator": {
+    "title": "Quick Affordability Calculator",
+    "subtitle": "Get an instant estimate of what you can afford",
+    "noLoginRequired": "No login or personal information required",
+    "form": {
+      "monthlyIncome": {
+        "label": "Gross Monthly Income",
+        "placeholder": "8500",
+        "description": "Before taxes and deductions"
+      },
+      "monthlyDebts": {
+        "label": "Total Monthly Debts",
+        "placeholder": "1200",
+        "description": "Credit cards, car loans, student loans, etc."
+      },
+      "desiredHomePrice": {
+        "label": "Desired Home Price",
+        "placeholder": "400000"
+      },
+      "downPayment": {
+        "label": "Down Payment Amount",
+        "placeholder": "80000"
+      }
+    },
+    "results": {
+      "title": "Your Affordability Estimate",
+      "dti": {
+        "label": "Debt-to-Income Ratio",
+        "excellent": "Excellent! Well below the 36% limit",
+        "good": "Good! Within standard limits",
+        "fair": "Fair - May qualify for FHA (43% limit)",
+        "high": "Too High - Consider reducing debts or increasing income"
+      },
+      "maxHomePrice": "Maximum Home Price You Can Afford",
+      "estimatedPayment": "Estimated Monthly Payment",
+      "paymentBreakdown": {
+        "principal": "Principal & Interest",
+        "taxes": "Property Taxes (est.)",
+        "insurance": "Homeowners Insurance (est.)",
+        "pmi": "PMI (if less than 20% down)",
+        "total": "Total Monthly Payment"
+      },
+      "downPaymentPercent": "Down Payment ({{percent}}%)",
+      "loanAmount": "Loan Amount",
+      "interestRate": "Estimated Interest Rate",
+      "loanTerm": "30-year fixed"
+    },
+    "warnings": {
+      "highDti": "Your DTI of {{dti}}% exceeds most lender limits (36-43%). Consider:",
+      "suggestions": {
+        "payOffDebt": "Pay off ${{amount}}/month in debts to reach 36% DTI",
+        "increaseIncome": "Increase monthly income by ${{amount}}",
+        "lowerHomePrice": "Consider a home price of ${{price}} or less"
+      }
+    },
+    "tips": {
+      "title": "Tips to Improve Your Affordability",
+      "payOffDebt": "Pay down high-interest debt",
+      "increaseDownPayment": "Save for a larger down payment (20%+ avoids PMI)",
+      "improveCredit": "Improve credit score for better rates",
+      "reduceExpenses": "Reduce monthly obligations"
+    },
+    "cta": {
+      "startApplication": "Ready to Get Pre-Qualified?",
+      "startButton": "Start Full Application",
+      "learnMore": "Learn about the full prequalification process"
+    },
+    "disclaimer": "This is an estimate only. Actual loan terms depend on credit score, employment history, and lender requirements."
+  },
+  "states": {
+    "AL": "Alabama",
+    "AK": "Alaska",
+    "AZ": "Arizona",
+    "AR": "Arkansas",
+    "CA": "California",
+    "CO": "Colorado",
+    "CT": "Connecticut",
+    "DE": "Delaware",
+    "FL": "Florida",
+    "GA": "Georgia",
+    "HI": "Hawaii",
+    "ID": "Idaho",
+    "IL": "Illinois",
+    "IN": "Indiana",
+    "IA": "Iowa",
+    "KS": "Kansas",
+    "KY": "Kentucky",
+    "LA": "Louisiana",
+    "ME": "Maine",
+    "MD": "Maryland",
+    "MA": "Massachusetts",
+    "MI": "Michigan",
+    "MN": "Minnesota",
+    "MS": "Mississippi",
+    "MO": "Missouri",
+    "MT": "Montana",
+    "NE": "Nebraska",
+    "NV": "Nevada",
+    "NH": "New Hampshire",
+    "NJ": "New Jersey",
+    "NM": "New Mexico",
+    "NY": "New York",
+    "NC": "North Carolina",
+    "ND": "North Dakota",
+    "OH": "Ohio",
+    "OK": "Oklahoma",
+    "OR": "Oregon",
+    "PA": "Pennsylvania",
+    "RI": "Rhode Island",
+    "SC": "South Carolina",
+    "SD": "South Dakota",
+    "TN": "Tennessee",
+    "TX": "Texas",
+    "UT": "Utah",
+    "VT": "Vermont",
+    "VA": "Virginia",
+    "WA": "Washington",
+    "WV": "West Virginia",
+    "WI": "Wisconsin",
+    "WY": "Wyoming"
+  }
+}
