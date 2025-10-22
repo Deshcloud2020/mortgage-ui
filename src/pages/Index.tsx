@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Calculator, Home, Shield, TrendingUp } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { Home, Calculator, Shield, TrendingUp } from "lucide-react";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -39,13 +39,13 @@ const Index = () => {
             <span className="block text-primary">Dream Home</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Know exactly how much you can afford in minutes. No credit impact, no obligations, 
+            Know exactly how much you can afford in minutes. No credit impact, no obligations,
             and completely secure.
           </p>
 
           {/* CTA Cards */}
           <div className="grid md:grid-cols-2 gap-6 mt-12">
-            <Card className="border-2 hover:border-primary transition-colors cursor-pointer" onClick={() => navigate("/application/personal-info")}>
+            <Card className="border-2 hover:border-primary transition-colors cursor-pointer" onClick={() => navigate("/application/account-creation")}>
               <CardHeader>
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
                   <Shield className="h-6 w-6 text-primary" />
