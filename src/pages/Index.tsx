@@ -1,10 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calculator, Home, Shield, TrendingUp } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 const Index = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-secondary">
@@ -14,17 +16,17 @@ const Index = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Home className="h-8 w-8 text-primary" />
-              <span className="text-2xl font-bold text-primary">uSign</span>
+              <span className="text-2xl font-bold text-primary">{t('brand.name')}</span>
             </div>
             <nav className="hidden md:flex items-center gap-6">
               <a href="#how-it-works" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                How It Works
+                {t('nav.howItWorks')}
               </a>
               <a href="#benefits" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                Benefits
+                {t('nav.benefits')}
               </a>
               <Button variant="outline" size="sm" onClick={() => navigate("/dashboard")}>
-                Dashboard
+                {t('header.dashboard')}
               </Button>
             </nav>
           </div>
@@ -35,12 +37,11 @@ const Index = () => {
       <section className="container mx-auto px-4 py-16 md:py-24">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-            Get Pre-Qualified for Your
-            <span className="block text-primary">Dream Home</span>
+            {t('home.hero.title')}
+            <span className="block text-primary">{t('home.hero.titleHighlight')}</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Know exactly how much you can afford in minutes. No credit impact, no obligations,
-            and completely secure.
+            {t('home.hero.subtitle')}
           </p>
 
           {/* CTA Cards */}
@@ -50,16 +51,16 @@ const Index = () => {
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
                   <Shield className="h-6 w-6 text-primary" />
                 </div>
-                <CardTitle>Full Prequalification</CardTitle>
+                <CardTitle>{t('home.cta.fullPrequalification.title')}</CardTitle>
                 <CardDescription>
-                  Get an accurate loan estimate based on your complete financial profile
+                  {t('home.cta.fullPrequalification.description')}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <Button className="w-full" size="lg">
-                  Start Application
+                  {t('home.cta.fullPrequalification.button')}
                 </Button>
-                <p className="text-xs text-muted-foreground mt-2">Takes 5-7 minutes</p>
+                <p className="text-xs text-muted-foreground mt-2">{t('home.cta.fullPrequalification.duration')}</p>
               </CardContent>
             </Card>
 
@@ -68,16 +69,16 @@ const Index = () => {
                 <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
                   <Calculator className="h-6 w-6 text-accent" />
                 </div>
-                <CardTitle>Quick Calculator</CardTitle>
+                <CardTitle>{t('home.cta.quickCalculator.title')}</CardTitle>
                 <CardDescription>
-                  Get a rough estimate of your buying power with basic information
+                  {t('home.cta.quickCalculator.description')}
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <Button className="w-full" variant="outline" size="lg">
-                  Quick Estimate
+                  {t('home.cta.quickCalculator.button')}
                 </Button>
-                <p className="text-xs text-muted-foreground mt-2">Takes 1 minute</p>
+                <p className="text-xs text-muted-foreground mt-2">{t('home.cta.quickCalculator.duration')}</p>
               </CardContent>
             </Card>
           </div>
@@ -87,33 +88,33 @@ const Index = () => {
       {/* Benefits Section */}
       <section id="benefits" className="bg-card py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Why Choose uSign?</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">{t('home.benefits.title')}</h2>
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <div className="text-center space-y-4">
               <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
                 <Shield className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold">Secure & Private</h3>
+              <h3 className="text-xl font-semibold">{t('home.benefits.secure.title')}</h3>
               <p className="text-muted-foreground">
-                Bank-level encryption protects your information. Your data is never shared without permission.
+                {t('home.benefits.secure.description')}
               </p>
             </div>
             <div className="text-center space-y-4">
               <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto">
                 <TrendingUp className="h-8 w-8 text-accent" />
               </div>
-              <h3 className="text-xl font-semibold">No Credit Impact</h3>
+              <h3 className="text-xl font-semibold">{t('home.benefits.noCreditImpact.title')}</h3>
               <p className="text-muted-foreground">
-                Soft credit checks won't affect your score. Shop confidently without worry.
+                {t('home.benefits.noCreditImpact.description')}
               </p>
             </div>
             <div className="text-center space-y-4">
               <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
                 <Calculator className="h-8 w-8 text-primary" />
               </div>
-              <h3 className="text-xl font-semibold">Instant Results</h3>
+              <h3 className="text-xl font-semibold">{t('home.benefits.instantResults.title')}</h3>
               <p className="text-muted-foreground">
-                Get your prequalification letter immediately. No waiting, no surprises.
+                {t('home.benefits.instantResults.description')}
               </p>
             </div>
           </div>
@@ -122,16 +123,16 @@ const Index = () => {
 
       {/* How It Works */}
       <section id="how-it-works" className="container mx-auto px-4 py-16">
-        <h2 className="text-3xl font-bold text-center mb-12">How It Works</h2>
+        <h2 className="text-3xl font-bold text-center mb-12">{t('home.howItWorks.title')}</h2>
         <div className="max-w-3xl mx-auto space-y-8">
           <div className="flex gap-4">
             <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold">
               1
             </div>
             <div>
-              <h3 className="text-lg font-semibold mb-2">Share Your Information</h3>
+              <h3 className="text-lg font-semibold mb-2">{t('home.howItWorks.step1.title')}</h3>
               <p className="text-muted-foreground">
-                Tell us about your income, assets, and monthly debts. We'll guide you through each step.
+                {t('home.howItWorks.step1.description')}
               </p>
             </div>
           </div>
@@ -140,9 +141,9 @@ const Index = () => {
               2
             </div>
             <div>
-              <h3 className="text-lg font-semibold mb-2">We Calculate Your Options</h3>
+              <h3 className="text-lg font-semibold mb-2">{t('home.howItWorks.step2.title')}</h3>
               <p className="text-muted-foreground">
-                Our system analyzes your profile and determines your maximum loan amount and monthly payment.
+                {t('home.howItWorks.step2.description')}
               </p>
             </div>
           </div>
@@ -151,9 +152,9 @@ const Index = () => {
               3
             </div>
             <div>
-              <h3 className="text-lg font-semibold mb-2">Get Your Letter</h3>
+              <h3 className="text-lg font-semibold mb-2">{t('home.howItWorks.step3.title')}</h3>
               <p className="text-muted-foreground">
-                Receive your prequalification letter instantly. Use it to make offers with confidence.
+                {t('home.howItWorks.step3.description')}
               </p>
             </div>
           </div>
@@ -165,17 +166,17 @@ const Index = () => {
         <div className="container mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-muted-foreground">
-              © 2025 uSign. All rights reserved.
+              {t('footer.copyright')}
             </p>
             <div className="flex gap-6">
               <a href="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                Privacy Policy
+                {t('footer.privacyPolicy')}
               </a>
               <a href="/terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                Terms of Service
+                {t('footer.termsOfService')}
               </a>
               <a href="/compliance" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                Compliance
+                {t('footer.compliance')}
               </a>
             </div>
           </div>
