@@ -16,6 +16,7 @@ import Review from "./pages/application/Review";
 import Dashboard from "./pages/Dashboard";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import Calculator from './pages/Calculator';
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/calculator" element={<Calculator />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/application/account-creation" element={<AccountCreation />} />
             <Route path="/application/email-verification" element={<EmailVerification />} />
