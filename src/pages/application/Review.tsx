@@ -4,10 +4,16 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useApplication } from "@/contexts/ApplicationContext";
-import { ArrowLeft, Edit, Home, Upload } from "lucide-react";
-import { useState } from "react";
+import { ArrowLeft, Edit, FileText, Home, Image as ImageIcon, Upload, X } from "lucide-react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+
+interface UploadedFile {
+  file: File;
+  id: string;
+  preview?: string;
+}
 
 const Review = () => {
   const navigate = useNavigate();
@@ -15,6 +21,9 @@ const Review = () => {
   const [certifyTruth, setCertifyTruth] = useState(false);
   const [authorizeCreditCheck, setAuthorizeCreditCheck] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);
+  const [isDragging, setIsDragging] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = async () => {
     if (!certifyTruth || !authorizeCreditCheck) {
@@ -25,12 +34,107 @@ const Review = () => {
     setIsSubmitting(true);
     toast.loading("Analyzing your information...");
 
-    // Simulate API call
+    // Simulate API call with file upload
     setTimeout(() => {
       toast.dismiss();
-      toast.success("Prequalification complete!");
+      if (uploadedFiles.length > 0) {
+        toast.success(`Prequalification complete! ${uploadedFiles.length} document(s) uploaded.`);
+      } else {
+        toast.success("Prequalification complete!");
+      }
       navigate("/application/results");
     }, 2000);
+  };
+
+  const handleFileSelect = (files: FileList | null) => {
+    if (!files) return;
+
+    const validFiles: UploadedFile[] = [];
+    const maxSize = 10 * 1024 * 1024; // 10MB
+    const allowedTypes = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png'];
+
+    Array.from(files).forEach((file) => {
+      // Validate file type
+      if (!allowedTypes.includes(file.type)) {
+        toast.error(`${file.name}: Invalid file type. Only PDF, JPG, and PNG are allowed.`);
+        return;
+      }
+
+      // Validate file size
+      if (file.size > maxSize) {
+        toast.error(`${file.name}: File too large. Maximum size is 10MB.`);
+        return;
+      }
+
+      // Check total files limit
+      if (uploadedFiles.length + validFiles.length >= 20) {
+        toast.error("Maximum 20 files allowed.");
+        return;
+      }
+
+      const fileId = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+
+      // Create preview for images
+      if (file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          validFiles.push({
+            file,
+            id: fileId,
+            preview: e.target?.result as string,
+          });
+
+          if (validFiles.length === Array.from(files).filter(f =>
+            allowedTypes.includes(f.type) && f.size <= maxSize
+          ).length) {
+            setUploadedFiles(prev => [...prev, ...validFiles]);
+            toast.success(`${validFiles.length} file(s) uploaded successfully`);
+          }
+        };
+        reader.readAsDataURL(file);
+      } else {
+        validFiles.push({
+          file,
+          id: fileId,
+        });
+      }
+    });
+
+    // Add non-image files immediately
+    const nonImageFiles = validFiles.filter(f => !f.file.type.startsWith('image/'));
+    if (nonImageFiles.length > 0) {
+      setUploadedFiles(prev => [...prev, ...nonImageFiles]);
+      toast.success(`${nonImageFiles.length} file(s) uploaded successfully`);
+    }
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(false);
+    handleFileSelect(e.dataTransfer.files);
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(false);
+  };
+
+  const handleRemoveFile = (fileId: string) => {
+    setUploadedFiles(prev => prev.filter(f => f.id !== fileId));
+    toast.success("File removed");
+  };
+
+  const formatFileSize = (bytes: number) => {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
   };
 
   const dti = calculateDTI();
@@ -251,15 +355,85 @@ const Review = () => {
               <p className="text-sm text-muted-foreground mb-4">
                 Speeds up full approval later
               </p>
-              <div className="border-2 border-dashed rounded-lg p-8 text-center hover:border-primary transition-colors cursor-pointer">
-                <Upload className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
-                <p className="text-sm font-medium mb-2">Drag & drop files here</p>
+
+              <input
+                ref={fileInputRef}
+                type="file"
+                multiple
+                accept=".pdf,.jpg,.jpeg,.png"
+                onChange={(e) => handleFileSelect(e.target.files)}
+                className="hidden"
+              />
+
+              <div
+                onDrop={handleDrop}
+                onDragOver={handleDragOver}
+                onDragLeave={handleDragLeave}
+                onClick={() => fileInputRef.current?.click()}
+                className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors cursor-pointer ${isDragging
+                  ? 'border-primary bg-primary/5'
+                  : 'border-muted-foreground/25 hover:border-primary'
+                  }`}
+              >
+                <Upload className={`h-12 w-12 mx-auto mb-4 ${isDragging ? 'text-primary' : 'text-muted-foreground'}`} />
+                <p className="text-sm font-medium mb-2">
+                  {isDragging ? 'Drop files here' : 'Drag & drop files here'}
+                </p>
                 <p className="text-xs text-muted-foreground mb-4">or click to browse</p>
-                <Button variant="outline" size="sm">Browse Files</Button>
+                <Button variant="outline" size="sm" type="button" onClick={(e) => {
+                  e.stopPropagation();
+                  fileInputRef.current?.click();
+                }}>
+                  Browse Files
+                </Button>
                 <p className="text-xs text-muted-foreground mt-4">
-                  Accepted: PDF, JPG, PNG (Max 10MB each)
+                  Accepted: PDF, JPG, PNG (Max 10MB each, 20 files max)
                 </p>
               </div>
+
+              {uploadedFiles.length > 0 && (
+                <div className="mt-4 space-y-2">
+                  <p className="text-sm font-medium">
+                    Uploaded Files ({uploadedFiles.length})
+                  </p>
+                  <div className="space-y-2">
+                    {uploadedFiles.map((uploadedFile) => (
+                      <div
+                        key={uploadedFile.id}
+                        className="flex items-center justify-between p-3 border rounded-lg bg-muted/50"
+                      >
+                        <div className="flex items-center gap-3 flex-1 min-w-0">
+                          {uploadedFile.file.type === 'application/pdf' ? (
+                            <FileText className="h-8 w-8 text-red-500 flex-shrink-0" />
+                          ) : (
+                            <ImageIcon className="h-8 w-8 text-blue-500 flex-shrink-0" />
+                          )}
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-medium truncate">
+                              {uploadedFile.file.name}
+                            </p>
+                            <p className="text-xs text-muted-foreground">
+                              {formatFileSize(uploadedFile.file.size)}
+                            </p>
+                          </div>
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleRemoveFile(uploadedFile.id)}
+                          className="flex-shrink-0"
+                        >
+                          <X className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-xs text-muted-foreground">
+                    Total size: {formatFileSize(uploadedFiles.reduce((sum, f) => sum + f.file.size, 0))}
+                  </p>
+                </div>
+              )}
+
               <div className="mt-4 space-y-2 text-sm text-muted-foreground">
                 <p>Suggested documents:</p>
                 <ul className="list-disc list-inside space-y-1 ml-2">
