@@ -1,3 +1,4 @@
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { Button } from "@/components/ui/button";
 import { Home } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -18,7 +19,7 @@ export const Header = () => {
             <Home className="h-8 w-8 text-primary" />
             <span className="text-2xl font-bold text-primary">{t('brand.name')}</span>
           </div>
-          <nav className="flex items-center gap-4">
+          <nav className="flex items-center gap-2">
             <Button
               variant="outline"
               size="sm"
@@ -26,6 +27,7 @@ export const Header = () => {
             >
               {t('header.dashboard')}
             </Button>
+            <LanguageSwitcher />
           </nav>
         </div>
       </div>
