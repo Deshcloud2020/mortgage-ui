@@ -2,23 +2,45 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ApplicationProvider } from "./contexts/ApplicationContext";
-import AccountCreation from "./pages/application/AccountCreation";
-import Assets from "./pages/application/Assets";
-import Debts from "./pages/application/Debts";
-import EmailVerification from "./pages/application/EmailVerification";
-import Employment from "./pages/application/Employment";
-import PersonalInfo from "./pages/application/PersonalInfo";
-import Property from "./pages/application/Property";
-import Results from "./pages/application/Results";
-import Review from "./pages/application/Review";
-import Dashboard from "./pages/Dashboard";
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
-import Calculator from './pages/Calculator';
 
-const queryClient = new QueryClient();
+
+const Index = lazy(() => import("./pages/Index"));
+const Calculator = lazy(() => import("./pages/Calculator"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+
+
+const AccountCreation = lazy(() => import("./pages/application/AccountCreation"));
+const EmailVerification = lazy(() => import("./pages/application/EmailVerification"));
+const PersonalInfo = lazy(() => import("./pages/application/PersonalInfo"));
+const Employment = lazy(() => import("./pages/application/Employment"));
+const Assets = lazy(() => import("./pages/application/Assets"));
+const Debts = lazy(() => import("./pages/application/Debts"));
+const Property = lazy(() => import("./pages/application/Property"));
+const Review = lazy(() => import("./pages/application/Review"));
+const Results = lazy(() => import("./pages/application/Results"));
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
+
+
+const PageLoader = () => (
+  <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-background to-secondary">
+    <div className="text-center space-y-4">
+      <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto" />
+      <p className="text-muted-foreground">Loading...</p>
+    </div>
+  </div>
+);
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -27,21 +49,23 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/calculator" element={<Calculator />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/application/account-creation" element={<AccountCreation />} />
-            <Route path="/application/email-verification" element={<EmailVerification />} />
-            <Route path="/application/personal-info" element={<PersonalInfo />} />
-            <Route path="/application/employment" element={<Employment />} />
-            <Route path="/application/assets" element={<Assets />} />
-            <Route path="/application/debts" element={<Debts />} />
-            <Route path="/application/property" element={<Property />} />
-            <Route path="/application/review" element={<Review />} />
-            <Route path="/application/results" element={<Results />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/calculator" element={<Calculator />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/application/account-creation" element={<AccountCreation />} />
+              <Route path="/application/email-verification" element={<EmailVerification />} />
+              <Route path="/application/personal-info" element={<PersonalInfo />} />
+              <Route path="/application/employment" element={<Employment />} />
+              <Route path="/application/assets" element={<Assets />} />
+              <Route path="/application/debts" element={<Debts />} />
+              <Route path="/application/property" element={<Property />} />
+              <Route path="/application/review" element={<Review />} />
+              <Route path="/application/results" element={<Results />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
         </BrowserRouter>
       </ApplicationProvider>
     </TooltipProvider>
