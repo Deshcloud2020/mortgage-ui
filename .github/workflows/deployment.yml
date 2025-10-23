@@ -20,9 +20,9 @@ jobs:
       - name: Docker Login
         uses: azure/docker-login@v1
         with:
-          login-server: 
-          username: 
-          password: 
+          login-server: ${{ secrets.ACR_SERVER }}
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
 
       - name: Build and push image
         uses: docker/build-push-action@v5
@@ -30,27 +30,6 @@ jobs:
           context: .
           push: true
           tags: |
-            /usign-mortgage:${{ steps.set_tag.outputs.IMAGE_TAG }}
-            /usign-mortgage:latest
+            ${{ secrets.ACR_SERVER }}/usign-mortgage:${{ steps.set_tag.outputs.IMAGE_TAG }}
+            ${{ secrets.ACR_SERVER }}/usign-mortgage:latest
           file: Dockerfile
-
-      - name: Checkout manifest repo
-        uses: actions/checkout@v4
-        with:
-          repository: r-shafi/dtcrm-infrastructure
-          token: 
-          path: manifests
-
-      - name: Update manifest with new image tag
-        run: |
-          cd manifests
-          sed -i "s|/usign-mortgage:.*|/usign-mortgage:${{ steps.set_tag.outputs.IMAGE_TAG }}|g" Mortgage/deployment.yaml
-
-      - name: Commit and push manifest changes
-        run: |
-          cd manifests
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add Mortgage/deployment.yaml
-          git commit -m "Update Mortgage image to ${{ steps.set_tag.outputs.IMAGE_TAG }}"
-          git push
