@@ -1,15 +1,39 @@
+import { AuthModal } from '@/components/AuthModal';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { isAuthenticated as checkAuth } from "@/lib/auth";
 import { Calculator, Shield, TrendingUp } from "lucide-react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 const Index = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const [showAuthModal, setShowAuthModal] = useState(false);
+
+  const handleFullPrequalificationClick = () => {
+    if (checkAuth()) {
+      // User is authenticated, proceed to email verification
+      navigate("/application/email-verification");
+    } else {
+      // User is not authenticated, show auth modal
+      setShowAuthModal(true);
+    }
+  };
+
+  const handleAuthSuccess = () => {
+    // After successful authentication, navigate to email verification
+    navigate("/application/email-verification");
+  };
 
   return (
     <>
+      <AuthModal
+        open={showAuthModal}
+        onOpenChange={setShowAuthModal}
+        onAuthSuccess={handleAuthSuccess}
+      />
 
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-16 md:py-24">
@@ -24,7 +48,7 @@ const Index = () => {
 
           {/* CTA Cards */}
           <div className="grid md:grid-cols-2 gap-6 mt-12">
-            <Card className="border-2 hover:border-primary transition-colors cursor-pointer" onClick={() => navigate("/application/account-creation")}>
+            <Card className="border-2 hover:border-primary transition-colors cursor-pointer" onClick={handleFullPrequalificationClick}>
               <CardHeader>
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
                   <Shield className="h-6 w-6 text-primary" />

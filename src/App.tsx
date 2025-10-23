@@ -14,7 +14,6 @@ const Dashboard = lazy(() => import("./pages/Dashboard"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 
-const AccountCreation = lazy(() => import("./pages/application/AccountCreation"));
 const EmailVerification = lazy(() => import("./pages/application/EmailVerification"));
 const PersonalInfo = lazy(() => import("./pages/application/PersonalInfo"));
 const Employment = lazy(() => import("./pages/application/Employment"));
@@ -56,7 +55,6 @@ const App = () => (
                 <Route path="/" element={<Index />} />
                 <Route path="/calculator" element={<Calculator />} />
                 <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/application/account-creation" element={<AccountCreation />} />
                 <Route path="/application/email-verification" element={<EmailVerification />} />
                 <Route path="/application/personal-info" element={<PersonalInfo />} />
                 <Route path="/application/employment" element={<Employment />} />
