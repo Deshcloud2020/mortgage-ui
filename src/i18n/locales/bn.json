@@ -131,6 +131,36 @@
     "documents": "নথিপত্র",
     "results": "ফলাফল"
   },
+  "auth": {
+    "modal": {
+      "title": "স্বাগতম",
+      "subtitle": "আপনার অ্যাকাউন্টে সাইন ইন করুন বা নতুন অ্যাকাউন্ট তৈরি করুন",
+      "loginTab": "সাইন ইন",
+      "registerTab": "নিবন্ধন",
+      "loginButton": "সাইন ইন",
+      "registerButton": "চালিয়ে যান",
+      "loginSuccess": "সফলভাবে লগ ইন হয়েছে!",
+      "loginError": "লগইন ব্যর্থ হয়েছে। আবার চেষ্টা করুন।",
+      "registerSuccess": "অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে!",
+      "registerError": "নিবন্ধন ব্যর্থ হয়েছে। আবার চেষ্টা করুন।"
+    },
+    "login": {
+      "emailLabel": "ইমেল",
+      "emailPlaceholder": "আপনার.ইমেল@উদাহরণ.com",
+      "passwordLabel": "পাসওয়ার্ড",
+      "passwordPlaceholder": "আপনার পাসওয়ার্ড লিখুন"
+    },
+    "validation": {
+      "emailInvalid": "একটি সঠিক ইমেল ঠিকানা দিন",
+      "passwordRequired": "পাসওয়ার্ড প্রয়োজন",
+      "phoneInvalid": "একটি সঠিক ফোন নম্বর দিন",
+      "passwordMinLength": "পাসওয়ার্ড কমপক্ষে ৮ অক্ষরের হতে হবে",
+      "passwordNumber": "পাসওয়ার্ডে কমপক্ষে একটি সংখ্যা থাকতে হবে",
+      "passwordSpecial": "পাসওয়ার্ডে কমপক্ষে একটি বিশেষ অক্ষর থাকতে হবে",
+      "passwordMismatch": "পাসওয়ার্ড মিলছে না",
+      "termsRequired": "চালিয়ে যেতে আপনাকে শর্তাবলী গ্রহণ করতে হবে"
+    }
+  },
   "accountCreation": {
     "title": "চলুন শুরু করা যাক",
     "subtitle": "আমরা আপনার অগ্রগতি সেভ করে রাখব যাতে আপনি যেকোনো সময় ফিরে আসতে পারেন",

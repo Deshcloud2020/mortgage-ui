@@ -131,6 +131,36 @@
     "documents": "Documents",
     "results": "Résultats"
   },
+  "auth": {
+    "modal": {
+      "title": "Bienvenue",
+      "subtitle": "Connectez-vous à votre compte ou créez-en un nouveau pour continuer",
+      "loginTab": "Se Connecter",
+      "registerTab": "S'inscrire",
+      "loginButton": "Se Connecter",
+      "registerButton": "Continuer",
+      "loginSuccess": "Connexion réussie!",
+      "loginError": "Échec de la connexion. Veuillez réessayer.",
+      "registerSuccess": "Compte créé avec succès!",
+      "registerError": "Échec de l'inscription. Veuillez réessayer."
+    },
+    "login": {
+      "emailLabel": "E-mail",
+      "emailPlaceholder": "votre.email@exemple.com",
+      "passwordLabel": "Mot de Passe",
+      "passwordPlaceholder": "Entrez votre mot de passe"
+    },
+    "validation": {
+      "emailInvalid": "Veuillez entrer une adresse e-mail valide",
+      "passwordRequired": "Le mot de passe est requis",
+      "phoneInvalid": "Veuillez entrer un numéro de téléphone valide",
+      "passwordMinLength": "Le mot de passe doit contenir au moins 8 caractères",
+      "passwordNumber": "Le mot de passe doit contenir au moins un chiffre",
+      "passwordSpecial": "Le mot de passe doit contenir au moins un caractère spécial",
+      "passwordMismatch": "Les mots de passe ne correspondent pas",
+      "termsRequired": "Vous devez accepter les conditions pour continuer"
+    }
+  },
   "accountCreation": {
     "title": "Commençons",
     "subtitle": "Nous enregistrerons votre progression afin que vous puissiez revenir à tout moment",

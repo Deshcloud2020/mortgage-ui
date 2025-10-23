@@ -131,6 +131,36 @@
     "documents": "Documents",
     "results": "Results"
   },
+  "auth": {
+    "modal": {
+      "title": "Welcome",
+      "subtitle": "Sign in to your account or create a new one to continue",
+      "loginTab": "Sign In",
+      "registerTab": "Register",
+      "loginButton": "Sign In",
+      "registerButton": "Continue",
+      "loginSuccess": "Successfully logged in!",
+      "loginError": "Login failed. Please try again.",
+      "registerSuccess": "Account created successfully!",
+      "registerError": "Registration failed. Please try again."
+    },
+    "login": {
+      "emailLabel": "Email",
+      "emailPlaceholder": "your.email@example.com",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "Enter your password"
+    },
+    "validation": {
+      "emailInvalid": "Please enter a valid email address",
+      "passwordRequired": "Password is required",
+      "phoneInvalid": "Please enter a valid phone number",
+      "passwordMinLength": "Password must be at least 8 characters",
+      "passwordNumber": "Password must contain at least one number",
+      "passwordSpecial": "Password must contain at least one special character",
+      "passwordMismatch": "Passwords don't match",
+      "termsRequired": "You must accept the terms to continue"
+    }
+  },
   "accountCreation": {
     "title": "Let's Get Started",
     "subtitle": "We'll save your progress so you can return anytime",
