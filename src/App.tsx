@@ -1,3 +1,4 @@
+import { Layout } from "@/components/Layout";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -49,23 +50,25 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <Suspense fallback={<PageLoader />}>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/calculator" element={<Calculator />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/application/account-creation" element={<AccountCreation />} />
-              <Route path="/application/email-verification" element={<EmailVerification />} />
-              <Route path="/application/personal-info" element={<PersonalInfo />} />
-              <Route path="/application/employment" element={<Employment />} />
-              <Route path="/application/assets" element={<Assets />} />
-              <Route path="/application/debts" element={<Debts />} />
-              <Route path="/application/property" element={<Property />} />
-              <Route path="/application/review" element={<Review />} />
-              <Route path="/application/results" element={<Results />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Suspense>
+          <Layout>
+            <Suspense fallback={<PageLoader />}>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/calculator" element={<Calculator />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/application/account-creation" element={<AccountCreation />} />
+                <Route path="/application/email-verification" element={<EmailVerification />} />
+                <Route path="/application/personal-info" element={<PersonalInfo />} />
+                <Route path="/application/employment" element={<Employment />} />
+                <Route path="/application/assets" element={<Assets />} />
+                <Route path="/application/debts" element={<Debts />} />
+                <Route path="/application/property" element={<Property />} />
+                <Route path="/application/review" element={<Review />} />
+                <Route path="/application/results" element={<Results />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
+          </Layout>
         </BrowserRouter>
       </ApplicationProvider>
     </TooltipProvider>

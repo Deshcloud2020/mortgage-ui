@@ -125,133 +125,105 @@ const EmailVerification = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-secondary">
-      {/* Header */}
-      <header className="border-b bg-card/50 backdrop-blur">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => navigate("/application/account-creation")}
-                className="flex items-center gap-2"
-              >
-                <ArrowLeft className="h-4 w-4" />
-                {t('common.back')}
-              </Button>
-              <div className="flex items-center gap-2">
-                <Home className="h-6 w-6 text-primary" />
-                <span className="text-xl font-bold text-primary">{t('brand.name')}</span>
-              </div>
-            </div>
-            <div className="flex items-center gap-4">
-              <Button variant="ghost" size="sm">{t('common.help')}</Button>
-              <Button variant="ghost" size="sm" onClick={() => navigate("/")}>{t('common.exit')}</Button>
-            </div>
-          </div>
+    <div className="container max-w-2xl mx-auto px-4 py-8">
+      {/* Progress */}
+      <div className="mb-8">
+        <div className="flex items-center justify-between text-sm mb-2">
+          <span className="text-muted-foreground">{t('progress.stepOf', { current: 1, total: 7 })}</span>
+          <span className="text-muted-foreground">{t('progress.percentComplete', { percent: 14 })}</span>
         </div>
-      </header>
-
-      <div className="container max-w-2xl mx-auto px-4 py-8">
-        {/* Progress */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between text-sm mb-2">
-            <span className="text-muted-foreground">{t('progress.stepOf', { current: 1, total: 7 })}</span>
-            <span className="text-muted-foreground">{t('progress.percentComplete', { percent: 14 })}</span>
-          </div>
-          <div className="flex gap-1">
-            <div className="h-2 flex-1 bg-primary rounded-full" />
-            {Array.from({ length: 6 }).map((_, i) => (
-              <div key={i} className="h-2 flex-1 bg-muted rounded-full" />
-            ))}
-          </div>
+        <div className="flex gap-1">
+          <div className="h-2 flex-1 bg-primary rounded-full" />
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div key={i} className="h-2 flex-1 bg-muted rounded-full" />
+          ))}
         </div>
+      </div>
 
-        <Card>
-          <CardHeader className="text-center">
-            <CardTitle className="text-2xl">{t('emailVerification.title')}</CardTitle>
-            <CardDescription>
-              {t('emailVerification.subtitle')}{" "}
-              <span className="font-medium text-foreground">{email}</span>
-            </CardDescription>
-            <Button
-              variant="link"
-              className="p-0 h-auto text-sm"
-              onClick={handleChangeEmail}
-            >
-              {t('emailVerification.changeEmail')}
-            </Button>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="space-y-4">
-              <div className="text-center">
-                <label className="text-sm font-medium">{t('emailVerification.enterCode')}</label>
-              </div>
-
-              <div className="flex justify-center gap-2">
-                {code.map((digit, index) => (
-                  <Input
-                    key={index}
-                    ref={(el) => (inputRefs.current[index] = el)}
-                    type="text"
-                    inputMode="numeric"
-                    maxLength={1}
-                    value={digit}
-                    onChange={(e) => handleInputChange(index, e.target.value)}
-                    onKeyDown={(e) => handleKeyDown(index, e)}
-                    onPaste={handlePaste}
-                    className="w-12 h-12 text-center text-lg font-semibold"
-                    disabled={isVerifying}
-                  />
-                ))}
-              </div>
-
-              {timeLeft > 0 ? (
-                <div className="text-center text-sm text-muted-foreground">
-                  {t('emailVerification.codeExpires')} <span className="font-medium">{formatTime(timeLeft)}</span>
-                </div>
-              ) : (
-                <div className="text-center text-sm text-destructive">
-                  {t('emailVerification.codeExpired')}
-                </div>
-              )}
+      <Card>
+        <CardHeader className="text-center">
+          <CardTitle className="text-2xl">{t('emailVerification.title')}</CardTitle>
+          <CardDescription>
+            {t('emailVerification.subtitle')}{" "}
+            <span className="font-medium text-foreground">{email}</span>
+          </CardDescription>
+          <Button
+            variant="link"
+            className="p-0 h-auto text-sm"
+            onClick={handleChangeEmail}
+          >
+            {t('emailVerification.changeEmail')}
+          </Button>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <div className="space-y-4">
+            <div className="text-center">
+              <label className="text-sm font-medium">{t('emailVerification.enterCode')}</label>
             </div>
 
-            <div className="text-center space-y-2">
-              <p className="text-sm text-muted-foreground">{t('emailVerification.didntReceive')}</p>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={handleResend}
-                disabled={!canResend || timeLeft === 0}
-                className="flex items-center gap-2"
-              >
-                <RotateCcw className="h-4 w-4" />
-                {canResend ? t('emailVerification.resendButton') : t('emailVerification.resendIn', { seconds: resendCooldown })}
-              </Button>
+            <div className="flex justify-center gap-2">
+              {code.map((digit, index) => (
+                <Input
+                  key={index}
+                  ref={(el) => (inputRefs.current[index] = el)}
+                  type="text"
+                  inputMode="numeric"
+                  maxLength={1}
+                  value={digit}
+                  onChange={(e) => handleInputChange(index, e.target.value)}
+                  onKeyDown={(e) => handleKeyDown(index, e)}
+                  onPaste={handlePaste}
+                  className="w-12 h-12 text-center text-lg font-semibold"
+                  disabled={isVerifying}
+                />
+              ))}
             </div>
 
-            {isVerifying && (
-              <div className="text-center">
-                <div className="inline-flex items-center gap-2 text-sm text-muted-foreground">
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary"></div>
-                  {t('emailVerification.verifying')}
-                </div>
+            {timeLeft > 0 ? (
+              <div className="text-center text-sm text-muted-foreground">
+                {t('emailVerification.codeExpires')} <span className="font-medium">{formatTime(timeLeft)}</span>
+              </div>
+            ) : (
+              <div className="text-center text-sm text-destructive">
+                {t('emailVerification.codeExpired')}
               </div>
             )}
-          </CardContent>
-        </Card>
-
-        {/* Tips */}
-        <div className="mt-6 text-center">
-          <div className="text-xs text-muted-foreground space-y-1">
-            <p>{t('emailVerification.tips.checkSpam')}</p>
-            <p>{t('emailVerification.tips.checkEmail', { email })}</p>
           </div>
+
+          <div className="text-center space-y-2">
+            <p className="text-sm text-muted-foreground">{t('emailVerification.didntReceive')}</p>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleResend}
+              disabled={!canResend || timeLeft === 0}
+              className="flex items-center gap-2"
+            >
+              <RotateCcw className="h-4 w-4" />
+              {canResend ? t('emailVerification.resendButton') : t('emailVerification.resendIn', { seconds: resendCooldown })}
+            </Button>
+          </div>
+
+          {isVerifying && (
+            <div className="text-center">
+              <div className="inline-flex items-center gap-2 text-sm text-muted-foreground">
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary"></div>
+                {t('emailVerification.verifying')}
+              </div>
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Tips */}
+      <div className="mt-6 text-center">
+        <div className="text-xs text-muted-foreground space-y-1">
+          <p>{t('emailVerification.tips.checkSpam')}</p>
+          <p>{t('emailVerification.tips.checkEmail', { email })}</p>
         </div>
       </div>
     </div>
+    </div >
   );
 };
 

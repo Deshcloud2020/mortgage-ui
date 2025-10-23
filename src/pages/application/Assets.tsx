@@ -129,58 +129,100 @@ const Assets = () => {
   const reserveStatus = getReserveStatus();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-secondary">
-      {/* Header */}
-      <header className="border-b bg-card/50 backdrop-blur">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => navigate("/application/employment")}
-                className="flex items-center gap-2"
-              >
-                <ArrowLeft className="h-4 w-4" />
-                {t('common.back')}
-              </Button>
-              <div className="flex items-center gap-2">
-                <Home className="h-6 w-6 text-primary" />
-                <span className="text-xl font-bold text-primary">{t('brand.name')}</span>
+    <div className="container max-w-3xl mx-auto px-4 py-8">
+      <ApplicationProgress currentStep={3} totalSteps={7} />
+
+      <Card className="mt-6">
+        <CardHeader>
+          <CardTitle>{t('assets.title')}</CardTitle>
+          <CardDescription>
+            {t('assets.subtitle')}
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              {/* Down Payment Section */}
+              <div className="space-y-4">
+                <FormField
+                  control={form.control}
+                  name="downPayment"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t('assets.downPayment.label')} *</FormLabel>
+                      <FormControl>
+                        <div className="relative">
+                          <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">
+                            $
+                          </span>
+                          <Input
+                            type="number"
+                            placeholder={t('assets.downPayment.placeholder')}
+                            className="pl-8"
+                            {...field}
+                            onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
+                          />
+                        </div>
+                      </FormControl>
+                      <FormDescription>
+                        {t('assets.downPayment.description', { price: estimatedHomePrice.toLocaleString() })}
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <div className="flex gap-2 flex-wrap">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setQuickDownPayment(5)}
+                  >
+                    {t('assets.downPayment.quickButtons.5percent', { amount: (estimatedHomePrice * 0.05).toLocaleString() })}
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setQuickDownPayment(10)}
+                  >
+                    {t('assets.downPayment.quickButtons.10percent', { amount: (estimatedHomePrice * 0.10).toLocaleString() })}
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setQuickDownPayment(20)}
+                  >
+                    {t('assets.downPayment.quickButtons.20percent', { amount: (estimatedHomePrice * 0.20).toLocaleString() })}
+                  </Button>
+                </div>
+
+                {pmiRequired && (
+                  <div className="bg-warning/10 border border-warning/20 rounded-md p-3">
+                    <div className="flex items-start gap-2">
+                      <Info className="h-5 w-5 text-warning mt-0.5" />
+                      <div>
+                        <p className="text-sm text-warning-foreground">
+                          {t('assets.downPayment.pmiWarning')}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
-            </div>
-            <div className="flex items-center gap-4">
-              <Button variant="outline" size="sm" onClick={handleSaveAndExit}>
-                <Save className="h-4 w-4 mr-2" />
-                {t('common.saveAndExit')}
-              </Button>
-              <Button variant="ghost" size="sm">{t('common.help')}</Button>
-            </div>
-          </div>
-        </div>
-      </header>
 
-      <div className="container max-w-3xl mx-auto px-4 py-8">
-        <ApplicationProgress currentStep={3} totalSteps={7} />
+              <div className="border-t pt-6">
+                <h3 className="text-lg font-semibold mb-4">{t('assets.currentAssets.title')}</h3>
 
-        <Card className="mt-6">
-          <CardHeader>
-            <CardTitle>{t('assets.title')}</CardTitle>
-            <CardDescription>
-              {t('assets.subtitle')}
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                {/* Down Payment Section */}
-                <div className="space-y-4">
+                <div className="grid md:grid-cols-2 gap-4">
                   <FormField
                     control={form.control}
-                    name="downPayment"
+                    name="checkingAccounts"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>{t('assets.downPayment.label')} *</FormLabel>
+                        <FormLabel>{t('assets.currentAssets.checking.label')} *</FormLabel>
                         <FormControl>
                           <div className="relative">
                             <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">
@@ -188,375 +230,302 @@ const Assets = () => {
                             </span>
                             <Input
                               type="number"
-                              placeholder={t('assets.downPayment.placeholder')}
+                              placeholder={t('assets.currentAssets.checking.placeholder')}
                               className="pl-8"
                               {...field}
                               onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
                             />
                           </div>
                         </FormControl>
-                        <FormDescription>
-                          {t('assets.downPayment.description', { price: estimatedHomePrice.toLocaleString() })}
-                        </FormDescription>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
 
-                  <div className="flex gap-2 flex-wrap">
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={() => setQuickDownPayment(5)}
-                    >
-                      {t('assets.downPayment.quickButtons.5percent', { amount: (estimatedHomePrice * 0.05).toLocaleString() })}
-                    </Button>
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={() => setQuickDownPayment(10)}
-                    >
-                      {t('assets.downPayment.quickButtons.10percent', { amount: (estimatedHomePrice * 0.10).toLocaleString() })}
-                    </Button>
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={() => setQuickDownPayment(20)}
-                    >
-                      {t('assets.downPayment.quickButtons.20percent', { amount: (estimatedHomePrice * 0.20).toLocaleString() })}
-                    </Button>
+                  <FormField
+                    control={form.control}
+                    name="savingsAccounts"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>{t('assets.currentAssets.savings.label')} *</FormLabel>
+                        <FormControl>
+                          <div className="relative">
+                            <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">
+                              $
+                            </span>
+                            <Input
+                              type="number"
+                              placeholder={t('assets.currentAssets.savings.placeholder')}
+                              className="pl-8"
+                              {...field}
+                              onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
+                            />
+                          </div>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              </div>
+
+              {/* Optional Assets */}
+              <div className="space-y-4">
+                <h4 className="font-medium">{t('assets.otherAssets.title')}</h4>
+
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-2">
+                    <FormField
+                      control={form.control}
+                      name="hasRetirement"
+                      render={({ field }) => (
+                        <FormItem className="flex flex-row items-center space-x-2 space-y-0">
+                          <FormControl>
+                            <Checkbox
+                              checked={field.value}
+                              onCheckedChange={field.onChange}
+                            />
+                          </FormControl>
+                          <FormLabel className="cursor-pointer">
+                            {t('assets.otherAssets.retirement.label')}
+                          </FormLabel>
+                        </FormItem>
+                      )}
+                    />
+                    {form.watch("hasRetirement") && (
+                      <FormField
+                        control={form.control}
+                        name="retirementAccounts"
+                        render={({ field }) => (
+                          <FormItem className="flex-1">
+                            <FormControl>
+                              <div className="relative">
+                                <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">
+                                  $
+                                </span>
+                                <Input
+                                  type="number"
+                                  placeholder={t('assets.otherAssets.retirement.placeholder')}
+                                  className="pl-8"
+                                  {...field}
+                                  onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
+                                />
+                              </div>
+                            </FormControl>
+                          </FormItem>
+                        )}
+                      />
+                    )}
                   </div>
 
-                  {pmiRequired && (
-                    <div className="bg-warning/10 border border-warning/20 rounded-md p-3">
+                  <div className="flex items-center space-x-2">
+                    <FormField
+                      control={form.control}
+                      name="hasInvestments"
+                      render={({ field }) => (
+                        <FormItem className="flex flex-row items-center space-x-2 space-y-0">
+                          <FormControl>
+                            <Checkbox
+                              checked={field.value}
+                              onCheckedChange={field.onChange}
+                            />
+                          </FormControl>
+                          <FormLabel className="cursor-pointer">
+                            {t('assets.otherAssets.investments.label')}
+                          </FormLabel>
+                        </FormItem>
+                      )}
+                    />
+                    {form.watch("hasInvestments") && (
+                      <FormField
+                        control={form.control}
+                        name="investments"
+                        render={({ field }) => (
+                          <FormItem className="flex-1">
+                            <FormControl>
+                              <div className="relative">
+                                <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">
+                                  $
+                                </span>
+                                <Input
+                                  type="number"
+                                  placeholder={t('assets.otherAssets.investments.placeholder')}
+                                  className="pl-8"
+                                  {...field}
+                                  onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
+                                />
+                              </div>
+                            </FormControl>
+                          </FormItem>
+                        )}
+                      />
+                    )}
+                  </div>
+
+                  <div className="flex items-center space-x-2">
+                    <FormField
+                      control={form.control}
+                      name="hasRealEstate"
+                      render={({ field }) => (
+                        <FormItem className="flex flex-row items-center space-x-2 space-y-0">
+                          <FormControl>
+                            <Checkbox
+                              checked={field.value}
+                              onCheckedChange={field.onChange}
+                            />
+                          </FormControl>
+                          <FormLabel className="cursor-pointer">
+                            {t('assets.otherAssets.realEstate.label')}
+                          </FormLabel>
+                        </FormItem>
+                      )}
+                    />
+                    {form.watch("hasRealEstate") && (
+                      <FormField
+                        control={form.control}
+                        name="otherRealEstate"
+                        render={({ field }) => (
+                          <FormItem className="flex-1">
+                            <FormControl>
+                              <div className="relative">
+                                <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">
+                                  $
+                                </span>
+                                <Input
+                                  type="number"
+                                  placeholder={t('assets.otherAssets.realEstate.placeholder')}
+                                  className="pl-8"
+                                  {...field}
+                                  onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
+                                />
+                              </div>
+                            </FormControl>
+                          </FormItem>
+                        )}
+                      />
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Gift Funds */}
+              <FormField
+                control={form.control}
+                name="hasGiftFunds"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('assets.giftFunds.label')}</FormLabel>
+                    <FormControl>
+                      <RadioGroup
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                        className="flex gap-6"
+                      >
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="no" id="no-gift" />
+                          <label htmlFor="no-gift" className="cursor-pointer">{t('assets.giftFunds.no')}</label>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <RadioGroupItem value="yes" id="yes-gift" />
+                          <label htmlFor="yes-gift" className="cursor-pointer">
+                            {t('assets.giftFunds.yes')}
+                          </label>
+                        </div>
+                      </RadioGroup>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {form.watch("hasGiftFunds") === "yes" && (
+                <FormField
+                  control={form.control}
+                  name="giftAmount"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t('assets.giftFunds.amount')}</FormLabel>
+                      <FormControl>
+                        <div className="relative">
+                          <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">
+                            $
+                          </span>
+                          <Input
+                            type="number"
+                            placeholder={t('assets.giftFunds.amountPlaceholder')}
+                            className="pl-8"
+                            {...field}
+                            onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
+                          />
+                        </div>
+                      </FormControl>
+                      <FormDescription>
+                        {t('assets.giftFunds.description')}
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
+
+              {/* Summary */}
+              {totalAssets > 0 && (
+                <div className="border-t pt-6">
+                  <div className="bg-muted/50 rounded-lg p-4 space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span className="font-medium">{t('assets.summary.totalAssets')}</span>
+                      <span className="text-xl font-bold">${totalAssets.toLocaleString()}</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span>{t('assets.summary.downPayment', { percent: downPaymentPercent.toFixed(1) })}</span>
+                      <span className="font-semibold">${(watchedValues.downPayment || 0).toLocaleString()}</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span>{t('assets.summary.remainingReserves')}</span>
+                      <span className="font-semibold">${remainingReserves.toLocaleString()}</span>
+                    </div>
+                    <div className={`flex justify-between items-center ${reserveStatus.color}`}>
+                      <span>{t('assets.summary.reserveStatus')}</span>
+                      <span className="font-semibold">
+                        {reserveStatus.icon} {reserveStatus.message} ({reserveMonths.toFixed(1)} months)
+                      </span>
+                    </div>
+                  </div>
+
+                  {reserveMonths < 3 && (
+                    <div className="bg-destructive/10 border border-destructive/20 rounded-md p-3 mt-4">
                       <div className="flex items-start gap-2">
-                        <Info className="h-5 w-5 text-warning mt-0.5" />
+                        <AlertTriangle className="h-5 w-5 text-destructive mt-0.5" />
                         <div>
-                          <p className="text-sm text-warning-foreground">
-                            {t('assets.downPayment.pmiWarning')}
+                          <p className="text-sm text-destructive-foreground">
+                            {t('assets.summary.lowReservesWarning', { months: reserveMonths.toFixed(1) })}
                           </p>
                         </div>
                       </div>
                     </div>
                   )}
                 </div>
+              )}
 
-                <div className="border-t pt-6">
-                  <h3 className="text-lg font-semibold mb-4">{t('assets.currentAssets.title')}</h3>
-
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <FormField
-                      control={form.control}
-                      name="checkingAccounts"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>{t('assets.currentAssets.checking.label')} *</FormLabel>
-                          <FormControl>
-                            <div className="relative">
-                              <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">
-                                $
-                              </span>
-                              <Input
-                                type="number"
-                                placeholder={t('assets.currentAssets.checking.placeholder')}
-                                className="pl-8"
-                                {...field}
-                                onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
-                              />
-                            </div>
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="savingsAccounts"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>{t('assets.currentAssets.savings.label')} *</FormLabel>
-                          <FormControl>
-                            <div className="relative">
-                              <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">
-                                $
-                              </span>
-                              <Input
-                                type="number"
-                                placeholder={t('assets.currentAssets.savings.placeholder')}
-                                className="pl-8"
-                                {...field}
-                                onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
-                              />
-                            </div>
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-                </div>
-
-                {/* Optional Assets */}
-                <div className="space-y-4">
-                  <h4 className="font-medium">{t('assets.otherAssets.title')}</h4>
-
-                  <div className="space-y-4">
-                    <div className="flex items-center space-x-2">
-                      <FormField
-                        control={form.control}
-                        name="hasRetirement"
-                        render={({ field }) => (
-                          <FormItem className="flex flex-row items-center space-x-2 space-y-0">
-                            <FormControl>
-                              <Checkbox
-                                checked={field.value}
-                                onCheckedChange={field.onChange}
-                              />
-                            </FormControl>
-                            <FormLabel className="cursor-pointer">
-                              {t('assets.otherAssets.retirement.label')}
-                            </FormLabel>
-                          </FormItem>
-                        )}
-                      />
-                      {form.watch("hasRetirement") && (
-                        <FormField
-                          control={form.control}
-                          name="retirementAccounts"
-                          render={({ field }) => (
-                            <FormItem className="flex-1">
-                              <FormControl>
-                                <div className="relative">
-                                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">
-                                    $
-                                  </span>
-                                  <Input
-                                    type="number"
-                                    placeholder={t('assets.otherAssets.retirement.placeholder')}
-                                    className="pl-8"
-                                    {...field}
-                                    onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
-                                  />
-                                </div>
-                              </FormControl>
-                            </FormItem>
-                          )}
-                        />
-                      )}
-                    </div>
-
-                    <div className="flex items-center space-x-2">
-                      <FormField
-                        control={form.control}
-                        name="hasInvestments"
-                        render={({ field }) => (
-                          <FormItem className="flex flex-row items-center space-x-2 space-y-0">
-                            <FormControl>
-                              <Checkbox
-                                checked={field.value}
-                                onCheckedChange={field.onChange}
-                              />
-                            </FormControl>
-                            <FormLabel className="cursor-pointer">
-                              {t('assets.otherAssets.investments.label')}
-                            </FormLabel>
-                          </FormItem>
-                        )}
-                      />
-                      {form.watch("hasInvestments") && (
-                        <FormField
-                          control={form.control}
-                          name="investments"
-                          render={({ field }) => (
-                            <FormItem className="flex-1">
-                              <FormControl>
-                                <div className="relative">
-                                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">
-                                    $
-                                  </span>
-                                  <Input
-                                    type="number"
-                                    placeholder={t('assets.otherAssets.investments.placeholder')}
-                                    className="pl-8"
-                                    {...field}
-                                    onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
-                                  />
-                                </div>
-                              </FormControl>
-                            </FormItem>
-                          )}
-                        />
-                      )}
-                    </div>
-
-                    <div className="flex items-center space-x-2">
-                      <FormField
-                        control={form.control}
-                        name="hasRealEstate"
-                        render={({ field }) => (
-                          <FormItem className="flex flex-row items-center space-x-2 space-y-0">
-                            <FormControl>
-                              <Checkbox
-                                checked={field.value}
-                                onCheckedChange={field.onChange}
-                              />
-                            </FormControl>
-                            <FormLabel className="cursor-pointer">
-                              {t('assets.otherAssets.realEstate.label')}
-                            </FormLabel>
-                          </FormItem>
-                        )}
-                      />
-                      {form.watch("hasRealEstate") && (
-                        <FormField
-                          control={form.control}
-                          name="otherRealEstate"
-                          render={({ field }) => (
-                            <FormItem className="flex-1">
-                              <FormControl>
-                                <div className="relative">
-                                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">
-                                    $
-                                  </span>
-                                  <Input
-                                    type="number"
-                                    placeholder={t('assets.otherAssets.realEstate.placeholder')}
-                                    className="pl-8"
-                                    {...field}
-                                    onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
-                                  />
-                                </div>
-                              </FormControl>
-                            </FormItem>
-                          )}
-                        />
-                      )}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Gift Funds */}
-                <FormField
-                  control={form.control}
-                  name="hasGiftFunds"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>{t('assets.giftFunds.label')}</FormLabel>
-                      <FormControl>
-                        <RadioGroup
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                          className="flex gap-6"
-                        >
-                          <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="no" id="no-gift" />
-                            <label htmlFor="no-gift" className="cursor-pointer">{t('assets.giftFunds.no')}</label>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="yes" id="yes-gift" />
-                            <label htmlFor="yes-gift" className="cursor-pointer">
-                              {t('assets.giftFunds.yes')}
-                            </label>
-                          </div>
-                        </RadioGroup>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                {form.watch("hasGiftFunds") === "yes" && (
-                  <FormField
-                    control={form.control}
-                    name="giftAmount"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>{t('assets.giftFunds.amount')}</FormLabel>
-                        <FormControl>
-                          <div className="relative">
-                            <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">
-                              $
-                            </span>
-                            <Input
-                              type="number"
-                              placeholder={t('assets.giftFunds.amountPlaceholder')}
-                              className="pl-8"
-                              {...field}
-                              onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
-                            />
-                          </div>
-                        </FormControl>
-                        <FormDescription>
-                          {t('assets.giftFunds.description')}
-                        </FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                )}
-
-                {/* Summary */}
-                {totalAssets > 0 && (
-                  <div className="border-t pt-6">
-                    <div className="bg-muted/50 rounded-lg p-4 space-y-3">
-                      <div className="flex justify-between items-center">
-                        <span className="font-medium">{t('assets.summary.totalAssets')}</span>
-                        <span className="text-xl font-bold">${totalAssets.toLocaleString()}</span>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span>{t('assets.summary.downPayment', { percent: downPaymentPercent.toFixed(1) })}</span>
-                        <span className="font-semibold">${(watchedValues.downPayment || 0).toLocaleString()}</span>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <span>{t('assets.summary.remainingReserves')}</span>
-                        <span className="font-semibold">${remainingReserves.toLocaleString()}</span>
-                      </div>
-                      <div className={`flex justify-between items-center ${reserveStatus.color}`}>
-                        <span>{t('assets.summary.reserveStatus')}</span>
-                        <span className="font-semibold">
-                          {reserveStatus.icon} {reserveStatus.message} ({reserveMonths.toFixed(1)} months)
-                        </span>
-                      </div>
-                    </div>
-
-                    {reserveMonths < 3 && (
-                      <div className="bg-destructive/10 border border-destructive/20 rounded-md p-3 mt-4">
-                        <div className="flex items-start gap-2">
-                          <AlertTriangle className="h-5 w-5 text-destructive mt-0.5" />
-                          <div>
-                            <p className="text-sm text-destructive-foreground">
-                              {t('assets.summary.lowReservesWarning', { months: reserveMonths.toFixed(1) })}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                )}
-
-                <div className="flex justify-between pt-6">
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={() => navigate("/application/employment")}
-                  >
-                    <ArrowLeft className="h-4 w-4 mr-2" />
-                    {t('common.back')}
-                  </Button>
-                  <Button type="submit">
-                    {t('assets.continueButton')}
-                  </Button>
-                </div>
-              </form>
-            </Form>
-          </CardContent>
-        </Card>
-      </div>
+              <div className="flex justify-between pt-6">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={() => navigate("/application/employment")}
+                >
+                  <ArrowLeft className="h-4 w-4 mr-2" />
+                  {t('common.back')}
+                </Button>
+                <Button type="submit">
+                  {t('assets.continueButton')}
+                </Button>
+              </div>
+            </form>
+          </Form>
+        </CardContent>
+      </Card>
     </div>
+    </div >
   );
 };
 

@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Calculator, Home, Shield, TrendingUp } from "lucide-react";
+import { Calculator, Shield, TrendingUp } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
@@ -9,29 +9,7 @@ const Index = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-secondary">
-      {/* Header */}
-      <header className="border-b bg-card/50 backdrop-blur">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Home className="h-8 w-8 text-primary" />
-              <span className="text-2xl font-bold text-primary">{t('brand.name')}</span>
-            </div>
-            <nav className="hidden md:flex items-center gap-6">
-              <a href="#how-it-works" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                {t('nav.howItWorks')}
-              </a>
-              <a href="#benefits" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                {t('nav.benefits')}
-              </a>
-              <Button variant="outline" size="sm" onClick={() => navigate("/dashboard")}>
-                {t('header.dashboard')}
-              </Button>
-            </nav>
-          </div>
-        </div>
-      </header>
+    <>
 
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-16 md:py-24">
@@ -161,28 +139,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t bg-card mt-16">
-        <div className="container mx-auto px-4 py-8">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-muted-foreground">
-              {t('footer.copyright')}
-            </p>
-            <div className="flex gap-6">
-              <a href="/privacy" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                {t('footer.privacyPolicy')}
-              </a>
-              <a href="/terms" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                {t('footer.termsOfService')}
-              </a>
-              <a href="/compliance" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                {t('footer.compliance')}
-              </a>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </div>
+    </>
   );
 };
 
