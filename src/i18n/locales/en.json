@@ -14,7 +14,8 @@
     "required": "Required",
     "loading": "Loading",
     "error": "Error",
-    "success": "Success"
+    "success": "Success",
+    "notProvided": "Not provided"
   },
   "brand": {
     "name": "uSign"
@@ -536,32 +537,40 @@
     "title": "Review Your Information",
     "subtitle": "Verify details before we generate your prequalification",
     "sections": {
-      "personalInfo": "Personal Information",
-      "employment": "Employment & Income",
-      "assets": "Assets & Down Payment",
-      "debts": "Monthly Debts"
+      "personalInfo": {
+        "title": "Personal Information",
+        "name": "Name:",
+        "dateOfBirth": "Date of Birth:",
+        "email": "Email:",
+        "phone": "Phone:",
+        "address": "Address:"
+      },
+      "employment": {
+        "title": "Employment & Income",
+        "employmentStatus": "Employment Status",
+        "monthlyIncome": "Monthly Income",
+        "employer": "Employer",
+        "additionalIncome": "Additional Income"
+      },
+      "assets": {
+        "title": "Assets & Down Payment",
+        "downPayment": "Down Payment",
+        "checkingAccounts": "Checking Accounts",
+        "savingsAccounts": "Savings Accounts",
+        "totalAssets": "Total Assets"
+      },
+      "debts": {
+        "title": "Monthly Debts",
+        "totalMonthlyDebts": "Total Monthly Debts",
+        "dtiRatio": "Debt-to-Income Ratio"
+      },
+      "property": {
+        "title": "Property Preferences"
+      }
     },
-    "fields": {
-      "name": "Name",
-      "dateOfBirth": "Date of Birth",
-      "notProvided": "Not provided",
-      "email": "Email",
-      "phone": "Phone",
-      "address": "Address",
-      "employmentStatus": "Employment Status",
-      "monthlyIncome": "Monthly Income",
-      "employer": "Employer",
-      "additionalIncome": "Additional Income",
-      "downPayment": "Down Payment",
-      "checkingAccounts": "Checking Accounts",
-      "savingsAccounts": "Savings Accounts",
-      "totalAssets": "Total Assets",
-      "totalMonthlyDebts": "Total Monthly Debts",
-      "dtiRatio": "Debt-to-Income Ratio"
-    },
-    "documents": {
-      "title": "Optional: Upload Supporting Documents",
-      "subtitle": "Speeds up full approval later",
+    "documentUpload": {
+      "title": "Document Upload (Optional)",
+      "subtitle": "Upload supporting documents to strengthen your application",
       "dragDrop": "Drag & drop files here",
       "dropHere": "Drop files here",
       "orClick": "or click to browse",
@@ -569,94 +578,34 @@
       "acceptedFormats": "Accepted: PDF, JPG, PNG (Max 10MB each, 20 files max)",
       "uploadedFiles": "Uploaded Files ({{count}})",
       "totalSize": "Total size: {{size}}",
-      "suggested": "Suggested documents:",
-      "suggestedList": {
+      "suggestedTitle": "Suggested documents:",
+      "suggested": {
         "payStubs": "Recent pay stubs (last 30 days)",
         "bankStatements": "Bank statements (last 2 months)",
         "taxReturns": "Tax returns (last 2 years)",
         "id": "ID (driver's license or passport)"
-      },
-      "errors": {
-        "invalidType": "{{fileName}}: Invalid file type. Only PDF, JPG, and PNG are allowed.",
-        "tooLarge": "{{fileName}}: File too large. Maximum size is 10MB.",
-        "maxFiles": "Maximum 20 files allowed."
-      },
-      "toast": {
-        "uploaded": "{{count}} file(s) uploaded successfully",
-        "removed": "File removed"
       }
+    },
+    "fileUpload": {
+      "invalidType": "{{fileName}}: Invalid file type. Only PDF, JPG, and PNG are allowed.",
+      "tooLarge": "{{fileName}}: File too large. Maximum size is 10MB.",
+      "maxFiles": "Maximum 20 files allowed.",
+      "success": "{{count}} file(s) uploaded successfully",
+      "removed": "File removed"
     },
     "certifications": {
       "certifyTruth": "I certify that the information provided is true and accurate to the best of my knowledge",
       "authorizeCreditCheck": "I authorize a soft credit check (won't affect credit score)",
-      "error": "Please accept both certifications to continue"
+      "error": "You must accept both certifications to continue"
     },
-    "submitButton": "Generate My Prequalification",
-    "toast": {
-      "analyzing": "Analyzing your information...",
-      "complete": "Prequalification complete!",
-      "completeWithDocs": "Prequalification complete! {{count}} document(s) uploaded."
-    }
-  },
-  "results": {
-    "congratulations": "🎉 Congratulations, {{name}}!",
-    "subtitle": "You're Prequalified for a Mortgage",
-    "prequalificationAmount": {
-      "title": "Your Prequalification Amount",
-      "subtitle": "Based on your income, assets, and debts",
-      "maxLoanAmount": "Maximum Loan Amount",
-      "estimatedPayment": "Estimated Monthly Payment",
-      "paymentNote": "(Principal, Interest, Taxes, Insurance)",
-      "estimatedHomePrice": "Estimated Home Price",
-      "withDownPayment": "With ${{amount}} down",
-      "interestRate": "Interest Rate (Estimated)",
-      "term": "30-year fixed",
-      "downPayment": "Down Payment",
-      "downPaymentPercent": "{{percent}}% of home price"
-    },
-    "actions": {
-      "downloadLetter": "Get Prequalification Letter",
-      "emailResults": "Email Results to Me",
-      "downloadPdf": "Download PDF"
-    },
-    "affordability": {
-      "title": "Affordability Breakdown",
-      "subtitle": "Your financial summary",
-      "monthlyIncome": "Monthly Gross Income",
-      "totalDebts": "Total Monthly Debts",
-      "housingPayment": "Estimated Housing Payment",
-      "frontEndDti": "Front-End DTI (Housing):",
-      "backEndDti": "Back-End DTI (Total):",
-      "qualifies": "✓ Your DTI qualifies you for most loan programs",
-      "fhaQualifies": "⚠ DTI above standard 36% limit but may qualify for FHA (43% limit)",
-      "tooHigh": "⚠ DTI exceeds most lender limits. Consider paying down debts or increasing income."
-    },
-    "loanComparison": {
-      "title": "Compare Loan Options",
-      "subtitle": "Different loan programs for your situation",
-      "headers": {
-        "loanType": "Loan Type",
-        "loanAmount": "Loan Amount",
-        "interestRate": "Interest Rate",
-        "monthlyPayment": "Monthly Payment",
-        "totalInterest": "Total Interest"
-      },
-      "types": {
-        "30yearFixed": "30-Year Fixed",
-        "15yearFixed": "15-Year Fixed",
-        "fha30year": "FHA 30-Year"
-      }
-    },
-    "nextSteps": {
-      "title": "Next Steps",
-      "subtitle": "Continue your home buying journey",
-      "savePrequalification": "Save Your Prequalification",
-      "chatWithAdvisor": "Chat with an Advisor",
-      "scheduleCall": "Schedule a Call"
+    "submitButton": {
+      "submit": "Generate My Prequalification",
+      "submitting": "Submitting..."
     },
     "toast": {
-      "downloaded": "Prequalification letter downloaded!",
-      "emailed": "Results sent to {{email}}"
+      "analyzing": "Analyzing your application...",
+      "submitted": "Prequalification complete! {{count}} document(s) uploaded.",
+      "submittedNoFiles": "Prequalification complete!"
     }
   },
   "calculator": {
@@ -779,5 +728,66 @@
     "WV": "West Virginia",
     "WI": "Wisconsin",
     "WY": "Wyoming"
+  },
+  "results": {
+    "congratulations": "🎉 Congratulations, {{name}}!",
+    "subtitle": "You're Prequalified for a Mortgage",
+    "prequalificationAmount": {
+      "title": "Your Prequalification Amount",
+      "subtitle": "Based on your income, assets, and debts",
+      "maxLoanAmount": "Maximum Loan Amount",
+      "estimatedPayment": "Estimated Monthly Payment",
+      "paymentNote": "(Principal, Interest, Taxes, Insurance)",
+      "estimatedHomePrice": "Estimated Home Price",
+      "withDownPayment": "With ${{amount}} down",
+      "interestRate": "Interest Rate (Estimated)",
+      "term": "30-year fixed",
+      "downPayment": "Down Payment",
+      "downPaymentPercent": "{{percent}}% of home price"
+    },
+    "actions": {
+      "downloadLetter": "Get Prequalification Letter",
+      "emailResults": "Email Results to Me",
+      "downloadPdf": "Download PDF"
+    },
+    "affordability": {
+      "title": "Affordability Breakdown",
+      "subtitle": "Your financial summary",
+      "monthlyIncome": "Monthly Gross Income",
+      "totalDebts": "Total Monthly Debts",
+      "housingPayment": "Estimated Housing Payment",
+      "frontEndDti": "Front-End DTI (Housing):",
+      "backEndDti": "Back-End DTI (Total):",
+      "qualifies": "✓ Your DTI qualifies you for most loan programs",
+      "fhaQualifies": "⚠ DTI above standard 36% limit but may qualify for FHA (43% limit)",
+      "tooHigh": "⚠ DTI exceeds most lender limits. Consider paying down debts or increasing income."
+    },
+    "loanComparison": {
+      "title": "Compare Loan Options",
+      "subtitle": "Different loan programs for your situation",
+      "headers": {
+        "loanType": "Loan Type",
+        "loanAmount": "Loan Amount",
+        "interestRate": "Interest Rate",
+        "monthlyPayment": "Monthly Payment",
+        "totalInterest": "Total Interest"
+      },
+      "types": {
+        "30yearFixed": "30-Year Fixed",
+        "15yearFixed": "15-Year Fixed",
+        "fha30year": "FHA 30-Year"
+      }
+    },
+    "nextSteps": {
+      "title": "Next Steps",
+      "subtitle": "Continue your home buying journey",
+      "savePrequalification": "Save Your Prequalification",
+      "chatWithAdvisor": "Chat with an Advisor",
+      "scheduleCall": "Schedule a Call"
+    },
+    "toast": {
+      "downloaded": "Prequalification letter downloaded!",
+      "emailed": "Results sent to {{email}}"
+    }
   }
 }
