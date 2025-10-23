@@ -1,0 +1,793 @@
+{
+  "common": {
+    "back": "Atrás",
+    "continue": "Continuar",
+    "save": "Guardar",
+    "saveAndExit": "Guardar y Salir",
+    "help": "Ayuda",
+    "exit": "Salir",
+    "cancel": "Cancelar",
+    "submit": "Enviar",
+    "yes": "Sí",
+    "no": "No",
+    "optional": "Opcional",
+    "required": "Requerido",
+    "loading": "Cargando",
+    "error": "Error",
+    "success": "Éxito",
+    "notProvided": "No proporcionado"
+  },
+  "brand": {
+    "name": "uSign"
+  },
+  "header": {
+    "backToHome": "Volver a Inicio",
+    "dashboard": "Panel de Control"
+  },
+  "nav": {
+    "howItWorks": "Cómo Funciona",
+    "benefits": "Beneficios"
+  },
+  "footer": {
+    "copyright": "© 2025 uSign. Todos los derechos reservados.",
+    "privacyPolicy": "Política de Privacidad",
+    "termsOfService": "Términos de Servicio",
+    "compliance": "Cumplimiento"
+  },
+  "home": {
+    "hero": {
+      "title": "Obtén Precalificación para Tu",
+      "titleHighlight": "Casa de Ensueño",
+      "subtitle": "Sabe exactamente cuánto puedes permitirte en minutos. Sin impacto en el crédito, sin obligaciones y completamente seguro."
+    },
+    "cta": {
+      "fullPrequalification": {
+        "title": "Precalificación Completa",
+        "description": "Obtén una estimación precisa del préstamo basada en tu perfil financiero completo",
+        "button": "Iniciar Solicitud",
+        "duration": "Toma 5-7 minutos"
+      },
+      "quickCalculator": {
+        "title": "Calculadora Rápida",
+        "description": "Obtén una estimación aproximada de tu poder de compra con información básica",
+        "button": "Estimación Rápida",
+        "duration": "Toma 1 minuto"
+      }
+    },
+    "benefits": {
+      "title": "¿Por Qué Elegir uSign?",
+      "secure": {
+        "title": "Seguro y Privado",
+        "description": "Encriptación a nivel bancario protege tu información. Tus datos nunca se comparten sin permiso."
+      },
+      "noCreditImpact": {
+        "title": "Sin Impacto en el Crédito",
+        "description": "Revisiones de crédito suaves no afectan tu puntuación. Compra con confianza sin preocupaciones."
+      },
+      "instantResults": {
+        "title": "Resultados Instantáneos",
+        "description": "Obtén tu carta de precalificación inmediatamente. Sin esperas, sin sorpresas."
+      }
+    },
+    "howItWorks": {
+      "title": "Cómo Funciona",
+      "step1": {
+        "title": "Comparte Tu Información",
+        "description": "Cuéntanos sobre tus ingresos, activos y deudas mensuales. Te guiaremos en cada paso."
+      },
+      "step2": {
+        "title": "Calculamos Tus Opciones",
+        "description": "Nuestro sistema analiza tu perfil y determina tu monto máximo de préstamo y pago mensual."
+      },
+      "step3": {
+        "title": "Obtén Tu Carta",
+        "description": "Recibe tu carta de precalificación instantáneamente. Úsala para hacer ofertas con confianza."
+      }
+    }
+  },
+  "dashboard": {
+    "title": "Tu Panel de Control",
+    "applicationInProgress": {
+      "title": "Solicitud en Progreso",
+      "description": "Continúa donde lo dejaste",
+      "applicant": "Solicitante",
+      "lastSaved": "Último guardado",
+      "recently": "Recientemente",
+      "resumeButton": "Reanudar Solicitud",
+      "startOverButton": "Comenzar de Nuevo",
+      "confirmStartOver": "¿Estás seguro de que quieres comenzar de nuevo? Esto eliminará tu progreso actual."
+    },
+    "quickCalculator": {
+      "title": "Calculadora Rápida",
+      "description": "Estima tu poder de compra",
+      "text": "Obtén una estimación rápida de cuánto podrías pedir prestado basado en información básica.",
+      "button": "Abrir Calculadora"
+    },
+    "getStarted": {
+      "title": "Comenzar",
+      "description": "No tienes solicitudes guardadas",
+      "text": "Inicia tu solicitud de precalificación hipotecaria hoy y descubre cuánto puedes permitirte.",
+      "startButton": "Iniciar Nueva Solicitud",
+      "calculatorButton": "Usar Calculadora Rápida"
+    }
+  },
+  "notFound": {
+    "title": "404",
+    "message": "¡Ups! Página no encontrada",
+    "link": "Volver a Inicio"
+  },
+  "progress": {
+    "stepOf": "Paso {{current}} de {{total}}",
+    "percentComplete": "{{percent}}% Completado",
+    "next": "Siguiente: {{step}}"
+  },
+  "steps": {
+    "personalInfo": "Información Personal",
+    "employment": "Empleo",
+    "assets": "Activos",
+    "debts": "Deudas",
+    "property": "Propiedad",
+    "review": "Revisión",
+    "documents": "Documentos",
+    "results": "Resultados"
+  },
+  "accountCreation": {
+    "title": "Comencemos",
+    "subtitle": "Guardaremos tu progreso para que puedas regresar en cualquier momento",
+    "email": {
+      "label": "Dirección de Correo Electrónico",
+      "placeholder": "john@example.com",
+      "description": "Te enviaremos un código para verificar este correo",
+      "error": "Por favor ingresa una dirección de correo válida"
+    },
+    "phone": {
+      "label": "Número de Teléfono (Opcional)",
+      "placeholder": "(555) 123-4567",
+      "description": "Para contacto rápido y actualizaciones",
+      "error": "Por favor ingresa un número de teléfono válido"
+    },
+    "password": {
+      "label": "Crear Contraseña",
+      "placeholder": "Ingresa una contraseña fuerte",
+      "confirmLabel": "Confirmar Contraseña",
+      "confirmPlaceholder": "Confirma tu contraseña",
+      "strength": {
+        "weak": "Débil",
+        "good": "Buena",
+        "strong": "Fuerte"
+      },
+      "requirements": {
+        "length": "• Al menos 8 caracteres",
+        "special": "• Incluir número y carácter especial"
+      },
+      "errors": {
+        "minLength": "La contraseña debe tener al menos 8 caracteres",
+        "number": "La contraseña debe contener al menos un número",
+        "special": "La contraseña debe contener al menos un carácter especial",
+        "mismatch": "Las contraseñas no coinciden"
+      }
+    },
+    "terms": {
+      "label": "Acepto los",
+      "termsLink": "Términos de Servicio",
+      "and": "y",
+      "privacyLink": "Política de Privacidad",
+      "error": "Debes aceptar los términos para continuar"
+    },
+    "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+    "signIn": "Iniciar Sesión",
+    "securityNotice": "🔒 Tu información está encriptada y nunca se vende",
+    "continueButton": "Continuar",
+    "toast": {
+      "sendingCode": "Enviando código de verificación...",
+      "error": "Algo salió mal. Por favor inténtalo de nuevo."
+    }
+  },
+  "emailVerification": {
+    "title": "Verifica Tu Correo Electrónico",
+    "subtitle": "Enviamos un código de 6 dígitos a",
+    "changeEmail": "Cambiar correo",
+    "enterCode": "Ingresa el código de verificación:",
+    "codeExpires": "El código expira en:",
+    "codeExpired": "El código ha expirado. Por favor solicita uno nuevo.",
+    "didntReceive": "¿No lo recibiste?",
+    "resendButton": "Reenviar código",
+    "resendIn": "Reenviar en {{seconds}}s",
+    "verifying": "Verificando...",
+    "tips": {
+      "checkSpam": "• Revisa tu carpeta de spam si no ves el correo",
+      "checkEmail": "• Asegúrate de que {{email}} sea correcto"
+    },
+    "toast": {
+      "success": "¡Correo verificado exitosamente!",
+      "error": "Código de verificación inválido. Por favor inténtalo de nuevo.",
+      "resent": "¡Nuevo código de verificación enviado!",
+      "resentError": "Fallo al reenviar el código. Por favor inténtalo de nuevo."
+    }
+  },
+  "personalInfo": {
+    "title": "Información Personal",
+    "subtitle": "Comencemos con tu información básica. Todos los campos son requeridos a menos que se marque como opcional.",
+    "firstName": {
+      "label": "Nombre",
+      "placeholder": "John",
+      "error": "El nombre debe tener al menos 2 caracteres"
+    },
+    "lastName": {
+      "label": "Apellido",
+      "placeholder": "Doe",
+      "error": "El apellido debe tener al menos 2 caracteres"
+    },
+    "dateOfBirth": {
+      "label": "Fecha de Nacimiento",
+      "error": "La fecha de nacimiento es requerida"
+    },
+    "ssn": {
+      "label": "Número de Seguridad Social (Opcional)",
+      "placeholder": "XXX-XX-XXXX",
+      "description": "Proporcionar tu SSN permite una precalificación más precisa",
+      "skipLabel": "Omitir por ahora (limita la precisión)",
+      "warning": "⚠ Sin SSN, no podemos verificar tu crédito. Tu estimación será menos precisa."
+    },
+    "phone": {
+      "label": "Número de Teléfono",
+      "placeholder": "(555) 123-4567",
+      "error": "Por favor ingresa un número de teléfono válido"
+    },
+    "email": {
+      "label": "Dirección de Correo Electrónico",
+      "placeholder": "john@example.com",
+      "error": "Por favor ingresa una dirección de correo válida"
+    },
+    "address": {
+      "label": "Dirección de la Calle",
+      "placeholder": "123 Main Street, Apt 4B",
+      "error": "La dirección es requerida"
+    },
+    "city": {
+      "label": "Ciudad",
+      "placeholder": "San Francisco",
+      "error": "La ciudad es requerida"
+    },
+    "state": {
+      "label": "Estado",
+      "placeholder": "CA",
+      "error": "El estado debe tener 2 letras (ej., CA)"
+    },
+    "zipCode": {
+      "label": "Código ZIP",
+      "placeholder": "94102",
+      "error": "El código ZIP debe tener 5 dígitos"
+    },
+    "continueButton": "Continuar a Empleo",
+    "toast": {
+      "saved": "¡Información personal guardada!",
+      "progressSaved": "¡Progreso guardado! Puedes reanudar en cualquier momento."
+    }
+  },
+  "employment": {
+    "title": "Empleo e Ingresos",
+    "subtitle": "Esto nos ayuda a calcular cuánto puedes pedir prestado",
+    "status": {
+      "label": "Estado de Empleo",
+      "employed": "Empleado (W-2)",
+      "selfEmployed": "Autoempleado",
+      "retired": "Jubilado",
+      "other": "Otro"
+    },
+    "employer": {
+      "label": "Nombre del Empleador",
+      "placeholder": "ABC Company Inc.",
+      "error": "El empleador y el título del trabajo son requeridos para el estado de empleado"
+    },
+    "jobTitle": {
+      "label": "Título del Trabajo",
+      "placeholder": "Ingeniero de Software"
+    },
+    "yearsEmployed": {
+      "label": "Años con el Empleador",
+      "placeholder": "2"
+    },
+    "monthsEmployed": {
+      "label": "Meses Adicionales",
+      "placeholder": "6"
+    },
+    "selfEmployedNotice": {
+      "title": "Aviso de Autoempleo",
+      "message": "El autoempleo puede requerir documentación adicional como declaraciones de impuestos y estados de ganancias/pérdidas."
+    },
+    "monthlyIncome": {
+      "label": "Ingreso Mensual Bruto",
+      "labelSelfEmployed": "Ingreso Neto Mensual Promedio",
+      "placeholder": "8500",
+      "description": "Antes de impuestos y deducciones",
+      "descriptionSelfEmployed": "Después de gastos comerciales",
+      "error": "El ingreso mensual es requerido"
+    },
+    "additionalIncome": {
+      "label": "¿Tienes ingresos adicionales?",
+      "no": "No",
+      "yes": "Sí (bonos, comisiones, alquiler, etc.)",
+      "amount": "Ingreso Mensual Adicional",
+      "amountPlaceholder": "1500",
+      "source": "Fuente",
+      "sourcePlaceholder": "Selecciona la fuente de ingresos",
+      "sources": {
+        "bonus": "Bono/Comisión",
+        "rental": "Ingreso por Alquiler",
+        "investment": "Ingreso por Inversiones",
+        "pension": "Pensión",
+        "socialSecurity": "Seguridad Social",
+        "other": "Otro"
+      }
+    },
+    "totalIncome": {
+      "label": "Ingreso Mensual Total:",
+      "verified": "✓ Ingreso verificado: ${{amount}}/mes"
+    },
+    "continueButton": "Continuar a Activos",
+    "toast": {
+      "saved": "¡Información de empleo guardada!",
+      "progressSaved": "¡Progreso guardado! Puedes reanudar en cualquier momento."
+    }
+  },
+  "assets": {
+    "title": "Activos y Pago Inicial",
+    "subtitle": "Muéstranos qué fondos tienes disponibles para la compra de tu casa",
+    "downPayment": {
+      "label": "¿Cuánto puedes poner de pago inicial?",
+      "placeholder": "80000",
+      "description": "Basado en el precio estimado de la casa de ${{price}}",
+      "error": "El pago inicial debe ser positivo",
+      "quickButtons": {
+        "5percent": "5% (${{amount}})",
+        "10percent": "10% (${{amount}})",
+        "20percent": "20% (${{amount}})"
+      },
+      "pmiWarning": "20% de pago inicial evita el seguro PMI (~$140/mes de ahorro)"
+    },
+    "currentAssets": {
+      "title": "Activos Actuales",
+      "checking": {
+        "label": "Cuenta(s) de Cheques",
+        "placeholder": "25000",
+        "error": "La cantidad debe ser positiva"
+      },
+      "savings": {
+        "label": "Cuenta(s) de Ahorros",
+        "placeholder": "75000",
+        "error": "La cantidad debe ser positiva"
+      }
+    },
+    "otherAssets": {
+      "title": "Otros Activos (Opcional)",
+      "retirement": {
+        "label": "Cuentas de Jubilación (401k, IRA)",
+        "placeholder": "50000"
+      },
+      "investments": {
+        "label": "Inversiones (Acciones, Bonos)",
+        "placeholder": "25000"
+      },
+      "realEstate": {
+        "label": "Otra Propiedad Inmobiliaria",
+        "placeholder": "100000"
+      }
+    },
+    "giftFunds": {
+      "label": "¿Fondos de Regalo?",
+      "no": "No hay fondos de regalo",
+      "yes": "Sí, recibiendo fondos de regalo para el pago inicial",
+      "amount": "Monto del Regalo",
+      "amountPlaceholder": "10000",
+      "description": "Los fondos de regalo deben ser documentados y no pueden ser un préstamo"
+    },
+    "summary": {
+      "totalAssets": "Activos Disponibles Totales:",
+      "downPayment": "Pago Inicial ({{percent}}%):",
+      "remainingReserves": "Reservas Restantes:",
+      "reserveStatus": "Estado de Reservas:",
+      "excellentReserves": "Reservas excelentes",
+      "goodReserves": "Buenas reservas",
+      "lowReserves": "Reservas bajas",
+      "lowReservesWarning": "Reservas bajas ({{months}} meses). Los prestamistas prefieren 6+ meses de pagos en reservas."
+    },
+    "continueButton": "Continuar a Deudas",
+    "toast": {
+      "saved": "¡Información de activos guardada!",
+      "progressSaved": "¡Progreso guardado! Puedes reanudar en cualquier momento."
+    }
+  },
+  "debts": {
+    "title": "Deudas y Obligaciones Mensuales",
+    "subtitle": "Ayúdanos a calcular tu relación deuda-ingreso. Solo incluye pagos mensuales mínimos.",
+    "doNotInclude": "No incluir:",
+    "doNotIncludeText": "servicios públicos, comestibles, gasolina, seguros u otros gastos de vida",
+    "noDebts": {
+      "label": "No tengo deudas mensuales",
+      "description": "Marca esto si no tienes pagos de deuda recurrentes"
+    },
+    "creditCards": {
+      "label": "Pagos Mínimos de Tarjetas de Crédito",
+      "placeholder": "200",
+      "description": "Total en todas las tarjetas"
+    },
+    "autoLoans": {
+      "label": "Préstamo / Arrendamiento de Auto",
+      "placeholder": "450"
+    },
+    "studentLoans": {
+      "label": "Préstamos Estudiantiles",
+      "placeholder": "300"
+    },
+    "personalLoans": {
+      "label": "Préstamos Personales",
+      "placeholder": "150"
+    },
+    "childSupport": {
+      "label": "Manutención Infantil / Pensión Alimenticia",
+      "placeholder": "500"
+    },
+    "otherDebts": {
+      "label": "Otras Obligaciones Mensuales",
+      "placeholder": "100",
+      "description": "Tiempos compartidos, pagos ordenados por la corte, etc."
+    },
+    "rent": {
+      "label": "¿Pagas renta actualmente?",
+      "no": "No",
+      "yes": "Sí",
+      "amount": "Renta Mensual",
+      "amountPlaceholder": "1800",
+      "description": "La renta no se cuenta en DTI para la compra de casa"
+    },
+    "summary": {
+      "title": "Resumen de Deudas",
+      "monthlyIncome": "Ingreso Mensual:",
+      "totalDebts": "Deudas Mensuales Totales:",
+      "dtiRatio": "Relación Deuda-Ingreso:",
+      "excellent": "¡Excelente! Tu DTI está muy por debajo del límite del 36%",
+      "good": "¡Bueno! Tu DTI está dentro de los límites estándar",
+      "fair": "DTI por encima del límite estándar del 36% pero puede calificar para FHA (límite del 43%)",
+      "high": "DTI excede la mayoría de los límites de prestamistas",
+      "payoffScenario": {
+        "title": "Escenario de Pago de Deudas",
+        "message": "Pagar ${{amount}}/mes en deudas reduciría tu DTI a {{newDti}}%"
+      }
+    },
+    "continueButton": "Continuar a Propiedad",
+    "toast": {
+      "saved": "¡Información de deudas guardada!",
+      "progressSaved": "¡Progreso guardado! Puedes reanudar en cualquier momento."
+    }
+  },
+  "property": {
+    "title": "Preferencias de Propiedad y Préstamo",
+    "subtitle": "Cuéntanos sobre la casa que quieres comprar",
+    "hasFoundProperty": {
+      "label": "¿Has encontrado una propiedad?",
+      "no": "No, todavía estoy buscando",
+      "yes": "Sí, tengo una dirección"
+    },
+    "propertyAddress": {
+      "label": "Dirección de la Propiedad",
+      "placeholder": "123 Main St, City, State ZIP",
+      "description": "Comienza a escribir para ver sugerencias"
+    },
+    "desiredHomePrice": {
+      "label": "Precio Deseado de la Casa",
+      "placeholder": "400000",
+      "error": "El precio de la casa debe ser al menos $50,000"
+    },
+    "state": {
+      "label": "Estado",
+      "placeholder": "Selecciona el estado",
+      "error": "El estado es requerido"
+    },
+    "zipCode": {
+      "label": "Código ZIP",
+      "placeholder": "94102",
+      "error": "El código ZIP debe tener 5 dígitos"
+    },
+    "propertyType": {
+      "label": "Tipo de Propiedad",
+      "singleFamily": "Casa Unifamiliar",
+      "townhouse": "Casa Adosada",
+      "condo": "Condominio",
+      "multiUnit": "Multi-Unidad (2-4 unidades)",
+      "multiUnitWarning": "Las propiedades multi-unidad pueden requerir pagos iniciales más grandes (15-25%)"
+    },
+    "intendedUse": {
+      "label": "Uso Previsto",
+      "primary": "Residencia Principal",
+      "secondHome": "Segunda Casa / Vacaciones",
+      "investment": "Propiedad de Inversión",
+      "investmentWarning": "Las propiedades de inversión requieren 20-25% de pago inicial, tasas más altas y calificación más estricta"
+    },
+    "firstTimeBuyer": {
+      "label": "¿Comprador por Primera Vez?",
+      "yes": "Sí",
+      "no": "No",
+      "benefit": "Puede calificar para programas y beneficios especiales"
+    },
+    "loanPreferences": {
+      "title": "Preferencias de Préstamo",
+      "term": {
+        "label": "Plazo del Préstamo",
+        "30year": "Fijo a 30 años (Pago mensual más bajo)",
+        "15year": "Fijo a 15 años (Paga más rápido, menos intereses)",
+        "notSure": "No estoy seguro (Mostraremos opciones)"
+      },
+      "type": {
+        "label": "Preferencia de Tipo de Préstamo",
+        "conventional": "Convencional (Estándar, crédito 620+)",
+        "fha": "FHA (Pago inicial más bajo, crédito 580+)",
+        "va": "VA (Veteranos militares, 0% de pago inicial)",
+        "usda": "USDA (Propiedades rurales, 0% de pago inicial)",
+        "notSure": "No estoy seguro (Muéstrame todas las opciones)"
+      }
+    },
+    "continueButton": "Continuar a Revisión",
+    "toast": {
+      "saved": "¡Preferencias de propiedad guardadas!",
+      "progressSaved": "¡Progreso guardado! Puedes reanudar en cualquier momento."
+    }
+  },
+  "review": {
+    "title": "Revisa Tu Información",
+    "subtitle": "Verifica los detalles antes de generar tu precalificación",
+    "sections": {
+      "personalInfo": {
+        "title": "Información Personal",
+        "name": "Nombre:",
+        "dateOfBirth": "Fecha de Nacimiento:",
+        "email": "Correo Electrónico:",
+        "phone": "Teléfono:",
+        "address": "Dirección:"
+      },
+      "employment": {
+        "title": "Empleo e Ingresos",
+        "employmentStatus": "Estado de Empleo",
+        "monthlyIncome": "Ingreso Mensual",
+        "employer": "Empleador",
+        "additionalIncome": "Ingresos Adicionales"
+      },
+      "assets": {
+        "title": "Activos y Pago Inicial",
+        "downPayment": "Pago Inicial",
+        "checkingAccounts": "Cuentas de Cheques",
+        "savingsAccounts": "Cuentas de Ahorros",
+        "totalAssets": "Activos Totales"
+      },
+      "debts": {
+        "title": "Deudas Mensuales",
+        "totalMonthlyDebts": "Deudas Mensuales Totales",
+        "dtiRatio": "Relación Deuda-Ingreso"
+      },
+      "property": {
+        "title": "Preferencias de Propiedad"
+      }
+    },
+    "documentUpload": {
+      "title": "Carga de Documentos (Opcional)",
+      "subtitle": "Carga documentos de apoyo para fortalecer tu solicitud",
+      "dragDrop": "Arrastra y suelta archivos aquí",
+      "dropHere": "Suelta archivos aquí",
+      "orClick": "o haz clic para buscar",
+      "browseButton": "Buscar Archivos",
+      "acceptedFormats": "Aceptados: PDF, JPG, PNG (Máx 10MB cada uno, 20 archivos máx)",
+      "uploadedFiles": "Archivos Cargados ({{count}})",
+      "totalSize": "Tamaño total: {{size}}",
+      "suggestedTitle": "Documentos sugeridos:",
+      "suggested": {
+        "payStubs": "Talones de pago recientes (últimos 30 días)",
+        "bankStatements": "Estados de cuenta bancarios (últimos 2 meses)",
+        "taxReturns": "Declaraciones de impuestos (últimos 2 años)",
+        "id": "ID (licencia de conducir o pasaporte)"
+      }
+    },
+    "fileUpload": {
+      "invalidType": "{{fileName}}: Tipo de archivo inválido. Solo se permiten PDF, JPG y PNG.",
+      "tooLarge": "{{fileName}}: Archivo demasiado grande. El tamaño máximo es 10MB.",
+      "maxFiles": "Máximo 20 archivos permitidos.",
+      "success": "{{count}} archivo(s) cargado(s) exitosamente",
+      "removed": "Archivo eliminado"
+    },
+    "certifications": {
+      "certifyTruth": "Certifico que la información proporcionada es verdadera y precisa según mi leal saber y entender",
+      "authorizeCreditCheck": "Autorizo una revisión de crédito suave (no afectará la puntuación de crédito)",
+      "error": "Debes aceptar ambas certificaciones para continuar"
+    },
+    "submitButton": {
+      "submit": "Generar Mi Precalificación",
+      "submitting": "Enviando..."
+    },
+    "toast": {
+      "analyzing": "Analizando tu solicitud...",
+      "submitted": "¡Precalificación completa! {{count}} documento(s) cargado(s).",
+      "submittedNoFiles": "¡Precalificación completa!"
+    }
+  },
+  "calculator": {
+    "title": "Calculadora Rápida de Asequibilidad",
+    "subtitle": "Obtén una estimación instantánea de lo que puedes permitirte",
+    "noLoginRequired": "No se requiere inicio de sesión ni información personal",
+    "form": {
+      "monthlyIncome": {
+        "label": "Ingreso Mensual Bruto",
+        "placeholder": "8500",
+        "description": "Antes de impuestos y deducciones"
+      },
+      "monthlyDebts": {
+        "label": "Deudas Mensuales Totales",
+        "placeholder": "1200",
+        "description": "Tarjetas de crédito, préstamos de auto, préstamos estudiantiles, etc."
+      },
+      "desiredHomePrice": {
+        "label": "Precio Deseado de la Casa",
+        "placeholder": "400000"
+      },
+      "downPayment": {
+        "label": "Monto de Pago Inicial",
+        "placeholder": "80000"
+      }
+    },
+    "results": {
+      "title": "Tu Estimación de Asequibilidad",
+      "dti": {
+        "label": "Relación Deuda-Ingreso",
+        "excellent": "¡Excelente! Muy por debajo del límite del 36%",
+        "good": "¡Bueno! Dentro de los límites estándar",
+        "fair": "Regular - Puede calificar para FHA (límite del 43%)",
+        "high": "Demasiado Alto - Considera reducir deudas o aumentar ingresos"
+      },
+      "maxHomePrice": "Precio Máximo de Casa que Puedes Permitirte",
+      "estimatedPayment": "Pago Mensual Estimado",
+      "paymentBreakdown": {
+        "principal": "Principal e Interés",
+        "taxes": "Impuestos a la Propiedad (est.)",
+        "insurance": "Seguro de Propietarios (est.)",
+        "pmi": "PMI (si menos del 20% de pago inicial)",
+        "total": "Pago Mensual Total"
+      },
+      "downPaymentPercent": "Pago Inicial ({{percent}}%)",
+      "loanAmount": "Monto del Préstamo",
+      "interestRate": "Tasa de Interés Estimada",
+      "loanTerm": "Fijo a 30 años"
+    },
+    "warnings": {
+      "highDti": "Tu DTI de {{dti}}% excede la mayoría de los límites de prestamistas (36-43%). Considera:",
+      "suggestions": {
+        "payOffDebt": "Pagar ${{amount}}/mes en deudas para alcanzar el 36% de DTI",
+        "increaseIncome": "Aumentar el ingreso mensual en ${{amount}}",
+        "lowerHomePrice": "Considera un precio de casa de ${{price}} o menos"
+      }
+    },
+    "tips": {
+      "title": "Consejos para Mejorar Tu Asequibilidad",
+      "payOffDebt": "Paga deudas de alto interés",
+      "increaseDownPayment": "Ahorra para un pago inicial más grande (20%+ evita PMI)",
+      "improveCredit": "Mejora la puntuación de crédito para mejores tasas",
+      "reduceExpenses": "Reduce obligaciones mensuales"
+    },
+    "cta": {
+      "startApplication": "¿Listo para Obtener Precalificación?",
+      "startButton": "Iniciar Solicitud Completa",
+      "learnMore": "Aprende sobre el proceso completo de precalificación"
+    },
+    "disclaimer": "Esto es solo una estimación. Los términos reales del préstamo dependen de la puntuación de crédito, historial de empleo y requisitos del prestamista."
+  },
+  "states": {
+    "AL": "Alabama",
+    "AK": "Alaska",
+    "AZ": "Arizona",
+    "AR": "Arkansas",
+    "CA": "California",
+    "CO": "Colorado",
+    "CT": "Connecticut",
+    "DE": "Delaware",
+    "FL": "Florida",
+    "GA": "Georgia",
+    "HI": "Hawaii",
+    "ID": "Idaho",
+    "IL": "Illinois",
+    "IN": "Indiana",
+    "IA": "Iowa",
+    "KS": "Kansas",
+    "KY": "Kentucky",
+    "LA": "Louisiana",
+    "ME": "Maine",
+    "MD": "Maryland",
+    "MA": "Massachusetts",
+    "MI": "Michigan",
+    "MN": "Minnesota",
+    "MS": "Mississippi",
+    "MO": "Missouri",
+    "MT": "Montana",
+    "NE": "Nebraska",
+    "NV": "Nevada",
+    "NH": "New Hampshire",
+    "NJ": "New Jersey",
+    "NM": "New Mexico",
+    "NY": "New York",
+    "NC": "North Carolina",
+    "ND": "North Dakota",
+    "OH": "Ohio",
+    "OK": "Oklahoma",
+    "OR": "Oregon",
+    "PA": "Pennsylvania",
+    "RI": "Rhode Island",
+    "SC": "South Carolina",
+    "SD": "South Dakota",
+    "TN": "Tennessee",
+    "TX": "Texas",
+    "UT": "Utah",
+    "VT": "Vermont",
+    "VA": "Virginia",
+    "WA": "Washington",
+    "WV": "West Virginia",
+    "WI": "Wisconsin",
+    "WY": "Wyoming"
+  },
+  "results": {
+    "congratulations": "🎉 ¡Felicidades, {{name}}!",
+    "subtitle": "Estás Precalificado para una Hipoteca",
+    "prequalificationAmount": {
+      "title": "Tu Monto de Precalificación",
+      "subtitle": "Basado en tus ingresos, activos y deudas",
+      "maxLoanAmount": "Monto Máximo de Préstamo",
+      "estimatedPayment": "Pago Mensual Estimado",
+      "paymentNote": "(Principal, Interés, Impuestos, Seguro)",
+      "estimatedHomePrice": "Precio Estimado de la Casa",
+      "withDownPayment": "Con ${{amount}} de pago inicial",
+      "interestRate": "Tasa de Interés (Estimada)",
+      "term": "Fijo a 30 años",
+      "downPayment": "Pago Inicial",
+      "downPaymentPercent": "{{percent}}% del precio de la casa"
+    },
+    "actions": {
+      "downloadLetter": "Obtener Carta de Precalificación",
+      "emailResults": "Enviar Resultados por Correo a Mí",
+      "downloadPdf": "Descargar PDF"
+    },
+    "affordability": {
+      "title": "Desglose de Asequibilidad",
+      "subtitle": "Tu resumen financiero",
+      "monthlyIncome": "Ingreso Bruto Mensual",
+      "totalDebts": "Deudas Mensuales Totales",
+      "housingPayment": "Pago Estimado de Vivienda",
+      "frontEndDti": "DTI Front-End (Vivienda):",
+      "backEndDti": "DTI Back-End (Total):",
+      "qualifies": "✓ Tu DTI te califica para la mayoría de los programas de préstamos",
+      "fhaQualifies": "⚠ DTI por encima del límite estándar del 36% pero puede calificar para FHA (límite del 43%)",
+      "tooHigh": "⚠ DTI excede la mayoría de los límites de prestamistas. Considera pagar deudas o aumentar ingresos."
+    },
+    "loanComparison": {
+      "title": "Comparar Opciones de Préstamo",
+      "subtitle": "Diferentes programas de préstamos para tu situación",
+      "headers": {
+        "loanType": "Tipo de Préstamo",
+        "loanAmount": "Monto del Préstamo",
+        "interestRate": "Tasa de Interés",
+        "monthlyPayment": "Pago Mensual",
+        "totalInterest": "Interés Total"
+      },
+      "types": {
+        "30yearFixed": "Fijo a 30 Años",
+        "15yearFixed": "Fijo a 15 Años",
+        "fha30year": "FHA a 30 Años"
+      }
+    },
+    "nextSteps": {
+      "title": "Próximos Pasos",
+      "subtitle": "Continúa tu viaje de compra de casa",
+      "savePrequalification": "Guardar Tu Precalificación",
+      "chatWithAdvisor": "Chatear con un Asesor",
+      "scheduleCall": "Programar una Llamada"
+    },
+    "toast": {
+      "downloaded": "¡Carta de precalificación descargada!",
+      "emailed": "Resultados enviados a {{email}}"
+    }
+  }
+}

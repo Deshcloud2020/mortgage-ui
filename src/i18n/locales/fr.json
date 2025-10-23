@@ -1,0 +1,793 @@
+{
+  "common": {
+    "back": "Retour",
+    "continue": "Continuer",
+    "save": "Enregistrer",
+    "saveAndExit": "Enregistrer et Quitter",
+    "help": "Aide",
+    "exit": "Quitter",
+    "cancel": "Annuler",
+    "submit": "Soumettre",
+    "yes": "Oui",
+    "no": "Non",
+    "optional": "Facultatif",
+    "required": "Obligatoire",
+    "loading": "Chargement",
+    "error": "Erreur",
+    "success": "Succès",
+    "notProvided": "Non fourni"
+  },
+  "brand": {
+    "name": "uSign"
+  },
+  "header": {
+    "backToHome": "Retour à l'accueil",
+    "dashboard": "Tableau de bord"
+  },
+  "nav": {
+    "howItWorks": "Comment ça marche",
+    "benefits": "Avantages"
+  },
+  "footer": {
+    "copyright": "© 2025 uSign. Tous droits réservés.",
+    "privacyPolicy": "Politique de Confidentialité",
+    "termsOfService": "Conditions d'Utilisation",
+    "compliance": "Conformité"
+  },
+  "home": {
+    "hero": {
+      "title": "Obtenez Votre Pré-qualification pour la",
+      "titleHighlight": "Maison de Vos Rêves",
+      "subtitle": "Sachez exactement combien vous pouvez vous permettre en quelques minutes. Sans impact sur le crédit, sans obligation, et entièrement sécurisé."
+    },
+    "cta": {
+      "fullPrequalification": {
+        "title": "Pré-qualification Complète",
+        "description": "Obtenez une estimation de prêt précise basée sur votre profil financier complet",
+        "button": "Commencer la Demande",
+        "duration": "Prend 5 à 7 minutes"
+      },
+      "quickCalculator": {
+        "title": "Calculateur Rapide",
+        "description": "Obtenez une estimation approximative de votre pouvoir d'achat avec des informations de base",
+        "button": "Estimation Rapide",
+        "duration": "Prend 1 minute"
+      }
+    },
+    "benefits": {
+      "title": "Pourquoi Choisir uSign ?",
+      "secure": {
+        "title": "Sécurisé et Privé",
+        "description": "Le chiffrement de niveau bancaire protège vos informations. Vos données ne sont jamais partagées sans permission."
+      },
+      "noCreditImpact": {
+        "title": "Aucun Impact sur le Crédit",
+        "description": "Les vérifications de crédit 'soft' n'affecteront pas votre score. Magasinez en toute confiance et sans souci."
+      },
+      "instantResults": {
+        "title": "Résultats Instantanés",
+        "description": "Recevez votre lettre de pré-qualification immédiatement. Pas d'attente, pas de surprises."
+      }
+    },
+    "howItWorks": {
+      "title": "Comment Ça Marche",
+      "step1": {
+        "title": "Partagez Vos Informations",
+        "description": "Parlez-nous de vos revenus, de vos actifs et de vos dettes mensuelles. Nous vous guiderons à chaque étape."
+      },
+      "step2": {
+        "title": "Nous Calculons Vos Options",
+        "description": "Notre système analyse votre profil et détermine votre montant de prêt maximal et votre paiement mensuel."
+      },
+      "step3": {
+        "title": "Recevez Votre Lettre",
+        "description": "Recevez votre lettre de pré-qualification instantanément. Utilisez-la pour faire des offres en toute confiance."
+      }
+    }
+  },
+  "dashboard": {
+    "title": "Votre Tableau de Bord",
+    "applicationInProgress": {
+      "title": "Demande en Cours",
+      "description": "Reprenez là où vous vous êtes arrêté(e)",
+      "applicant": "Demandeur",
+      "lastSaved": "Dernière sauvegarde",
+      "recently": "Récemment",
+      "resumeButton": "Reprendre la Demande",
+      "startOverButton": "Recommencer",
+      "confirmStartOver": "Êtes-vous sûr(e) de vouloir recommencer ? Cela supprimera votre progression actuelle."
+    },
+    "quickCalculator": {
+      "title": "Calculateur Rapide",
+      "description": "Estimez votre pouvoir d'achat",
+      "text": "Obtenez une estimation rapide du montant que vous pourriez emprunter en vous basant sur des informations de base.",
+      "button": "Ouvrir le Calculateur"
+    },
+    "getStarted": {
+      "title": "Commencer",
+      "description": "Vous n'avez aucune demande enregistrée",
+      "text": "Commencez votre demande de pré-qualification hypothécaire dès aujourd'hui et découvrez combien vous pouvez vous permettre.",
+      "startButton": "Commencer une Nouvelle Demande",
+      "calculatorButton": "Utiliser le Calculateur Rapide"
+    }
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Oups ! Page non trouvée",
+    "link": "Retour à l'Accueil"
+  },
+  "progress": {
+    "stepOf": "Étape {{current}} sur {{total}}",
+    "percentComplete": "{{percent}} % Complété",
+    "next": "Suivant : {{step}}"
+  },
+  "steps": {
+    "personalInfo": "Infos Personnelles",
+    "employment": "Emploi",
+    "assets": "Actifs",
+    "debts": "Dettes",
+    "property": "Propriété",
+    "review": "Révision",
+    "documents": "Documents",
+    "results": "Résultats"
+  },
+  "accountCreation": {
+    "title": "Commençons",
+    "subtitle": "Nous enregistrerons votre progression afin que vous puissiez revenir à tout moment",
+    "email": {
+      "label": "Adresse E-mail",
+      "placeholder": "jean@exemple.com",
+      "description": "Nous enverrons un code pour vérifier cet e-mail",
+      "error": "Veuillez entrer une adresse e-mail valide"
+    },
+    "phone": {
+      "label": "Numéro de Téléphone (Facultatif)",
+      "placeholder": "(555) 123-4567",
+      "description": "Pour un contact et des mises à jour rapides",
+      "error": "Veuillez entrer un numéro de téléphone valide"
+    },
+    "password": {
+      "label": "Créer un Mot de Passe",
+      "placeholder": "Entrez un mot de passe fort",
+      "confirmLabel": "Confirmer le Mot de Passe",
+      "confirmPlaceholder": "Confirmez votre mot de passe",
+      "strength": {
+        "weak": "Faible",
+        "good": "Bon",
+        "strong": "Fort"
+      },
+      "requirements": {
+        "length": "• Au moins 8 caractères",
+        "special": "• Inclure un chiffre et un caractère spécial"
+      },
+      "errors": {
+        "minLength": "Le mot de passe doit contenir au moins 8 caractères",
+        "number": "Le mot de passe doit contenir au moins un chiffre",
+        "special": "Le mot de passe doit contenir au moins un caractère spécial",
+        "mismatch": "Les mots de passe ne correspondent pas"
+      }
+    },
+    "terms": {
+      "label": "J'accepte les",
+      "termsLink": "Conditions d'Utilisation",
+      "and": "et la",
+      "privacyLink": "Politique de Confidentialité",
+      "error": "Vous devez accepter les conditions pour continuer"
+    },
+    "alreadyHaveAccount": "Vous avez déjà un compte ?",
+    "signIn": "Se Connecter",
+    "securityNotice": "🔒 Vos informations sont chiffrées et ne sont jamais vendues",
+    "continueButton": "Continuer",
+    "toast": {
+      "sendingCode": "Envoi du code de vérification...",
+      "error": "Une erreur est survenue. Veuillez réessayer."
+    }
+  },
+  "emailVerification": {
+    "title": "Vérifiez Votre E-mail",
+    "subtitle": "Nous avons envoyé un code à 6 chiffres à",
+    "changeEmail": "Changer d'e-mail",
+    "enterCode": "Entrez le code de vérification :",
+    "codeExpires": "Le code expire dans :",
+    "codeExpired": "Le code a expiré. Veuillez en demander un nouveau.",
+    "didntReceive": "Vous ne l'avez pas reçu ?",
+    "resendButton": "Renvoyer le code",
+    "resendIn": "Renvoyer dans {{seconds}}s",
+    "verifying": "Vérification en cours...",
+    "tips": {
+      "checkSpam": "• Vérifiez votre dossier de courrier indésirable si vous ne voyez pas l'e-mail",
+      "checkEmail": "• Assurez-vous que {{email}} est correct"
+    },
+    "toast": {
+      "success": "E-mail vérifié avec succès !",
+      "error": "Code de vérification invalide. Veuillez réessayer.",
+      "resent": "Nouveau code de vérification envoyé !",
+      "resentError": "Échec du renvoi du code. Veuillez réessayer."
+    }
+  },
+  "personalInfo": {
+    "title": "Informations Personnelles",
+    "subtitle": "Commençons par vos informations de base. Tous les champs sont obligatoires, sauf indication contraire.",
+    "firstName": {
+      "label": "Prénom",
+      "placeholder": "Jean",
+      "error": "Le prénom doit contenir au moins 2 caractères"
+    },
+    "lastName": {
+      "label": "Nom de Famille",
+      "placeholder": "Dupont",
+      "error": "Le nom de famille doit contenir au moins 2 caractères"
+    },
+    "dateOfBirth": {
+      "label": "Date de Naissance",
+      "error": "La date de naissance est obligatoire"
+    },
+    "ssn": {
+      "label": "Numéro de Sécurité Sociale (Facultatif)",
+      "placeholder": "XXX-XX-XXXX",
+      "description": "Fournir votre SSN permet une pré-qualification plus précise",
+      "skipLabel": "Passer pour l'instant (limite la précision)",
+      "warning": "⚠ Sans SSN, nous ne pouvons pas vérifier votre crédit. Votre estimation sera moins précise."
+    },
+    "phone": {
+      "label": "Numéro de Téléphone",
+      "placeholder": "(555) 123-4567",
+      "error": "Veuillez entrer un numéro de téléphone valide"
+    },
+    "email": {
+      "label": "Adresse E-mail",
+      "placeholder": "jean@exemple.com",
+      "error": "Veuillez entrer une adresse e-mail valide"
+    },
+    "address": {
+      "label": "Adresse Postale",
+      "placeholder": "123 Rue Principale, Apt 4B",
+      "error": "L'adresse est obligatoire"
+    },
+    "city": {
+      "label": "Ville",
+      "placeholder": "Paris",
+      "error": "La ville est obligatoire"
+    },
+    "state": {
+      "label": "État/Province",
+      "placeholder": "QC",
+      "error": "L'État/Province doit contenir 2 lettres (ex. : QC)"
+    },
+    "zipCode": {
+      "label": "Code Postal",
+      "placeholder": "75001",
+      "error": "Le code postal doit contenir 5 chiffres"
+    },
+    "continueButton": "Continuer vers l'Emploi",
+    "toast": {
+      "saved": "Informations personnelles enregistrées !",
+      "progressSaved": "Progression enregistrée ! Vous pouvez reprendre à tout moment."
+    }
+  },
+  "employment": {
+    "title": "Emploi et Revenu",
+    "subtitle": "Ceci nous aide à calculer combien vous pouvez emprunter",
+    "status": {
+      "label": "Statut d'Emploi",
+      "employed": "Employé (W-2)",
+      "selfEmployed": "Travailleur Indépendant",
+      "retired": "Retraité",
+      "other": "Autre"
+    },
+    "employer": {
+      "label": "Nom de l'Employeur",
+      "placeholder": "Société ABC Inc.",
+      "error": "L'employeur et le titre du poste sont obligatoires pour le statut d'employé"
+    },
+    "jobTitle": {
+      "label": "Titre du Poste",
+      "placeholder": "Ingénieur Logiciel"
+    },
+    "yearsEmployed": {
+      "label": "Années chez l'Employeur",
+      "placeholder": "2"
+    },
+    "monthsEmployed": {
+      "label": "Mois Additionnels",
+      "placeholder": "6"
+    },
+    "selfEmployedNotice": {
+      "title": "Avis Travailleur Indépendant",
+      "message": "Le travail indépendant peut nécessiter des documents supplémentaires tels que des déclarations de revenus et des états de profits/pertes."
+    },
+    "monthlyIncome": {
+      "label": "Revenu Mensuel Brut",
+      "labelSelfEmployed": "Revenu Mensuel Net Moyen",
+      "placeholder": "8500",
+      "description": "Avant impôts et déductions",
+      "descriptionSelfEmployed": "Après dépenses d'entreprise",
+      "error": "Le revenu mensuel est obligatoire"
+    },
+    "additionalIncome": {
+      "label": "Avez-vous des revenus supplémentaires ?",
+      "no": "Non",
+      "yes": "Oui (primes, commissions, loyers, etc.)",
+      "amount": "Revenu Mensuel Supplémentaire",
+      "amountPlaceholder": "1500",
+      "source": "Source",
+      "sourcePlaceholder": "Sélectionnez la source de revenu",
+      "sources": {
+        "bonus": "Prime/Commission",
+        "rental": "Revenus Locatifs",
+        "investment": "Revenus d'Investissement",
+        "pension": "Pension",
+        "socialSecurity": "Sécurité Sociale",
+        "other": "Autre"
+      }
+    },
+    "totalIncome": {
+      "label": "Revenu Mensuel Total :",
+      "verified": "✓ Revenu vérifié : ${{amount}}/mois"
+    },
+    "continueButton": "Continuer vers les Actifs",
+    "toast": {
+      "saved": "Informations d'emploi enregistrées !",
+      "progressSaved": "Progression enregistrée ! Vous pouvez reprendre à tout moment."
+    }
+  },
+  "assets": {
+    "title": "Actifs et Acompte",
+    "subtitle": "Indiquez-nous les fonds dont vous disposez pour l'achat de votre maison",
+    "downPayment": {
+      "label": "Combien pouvez-vous verser en acompte ?",
+      "placeholder": "80000",
+      "description": "Basé sur un prix estimé de la maison de ${{price}}",
+      "error": "L'acompte doit être positif",
+      "quickButtons": {
+        "5percent": "5 % (${{amount}})",
+        "10percent": "10 % (${{amount}})",
+        "20percent": "20 % (${{amount}})"
+      },
+      "pmiWarning": "Un acompte de 20 % évite l'assurance PMI (économie d'environ 140 $/mois)"
+    },
+    "currentAssets": {
+      "title": "Actifs Actuels",
+      "checking": {
+        "label": "Compte(s) Chèques",
+        "placeholder": "25000",
+        "error": "Le montant doit être positif"
+      },
+      "savings": {
+        "label": "Compte(s) Épargne",
+        "placeholder": "75000",
+        "error": "Le montant doit être positif"
+      }
+    },
+    "otherAssets": {
+      "title": "Autres Actifs (Facultatif)",
+      "retirement": {
+        "label": "Comptes de Retraite (401k, IRA)",
+        "placeholder": "50000"
+      },
+      "investments": {
+        "label": "Investissements (Actions, Obligations)",
+        "placeholder": "25000"
+      },
+      "realEstate": {
+        "label": "Autres Biens Immobiliers",
+        "placeholder": "100000"
+      }
+    },
+    "giftFunds": {
+      "label": "Fonds de Cadeau ?",
+      "no": "Pas de fonds de cadeau",
+      "yes": "Oui, réception de fonds de cadeau pour l'acompte",
+      "amount": "Montant du Cadeau",
+      "amountPlaceholder": "10000",
+      "description": "Les fonds de cadeau doivent être documentés et ne peuvent pas être un prêt"
+    },
+    "summary": {
+      "totalAssets": "Total des Actifs Disponibles :",
+      "downPayment": "Acompte ({{percent}} %) :",
+      "remainingReserves": "Réserves Restantes :",
+      "reserveStatus": "Statut des Réserves :",
+      "excellentReserves": "Excellentes réserves",
+      "goodReserves": "Bonnes réserves",
+      "lowReserves": "Réserves faibles",
+      "lowReservesWarning": "Réserves faibles ({{months}} mois). Les prêteurs préfèrent 6+ mois de paiements en réserve."
+    },
+    "continueButton": "Continuer vers les Dettes",
+    "toast": {
+      "saved": "Informations sur les actifs enregistrées !",
+      "progressSaved": "Progression enregistrée ! Vous pouvez reprendre à tout moment."
+    }
+  },
+  "debts": {
+    "title": "Dettes et Obligations Mensuelles",
+    "subtitle": "Aidez-nous à calculer votre ratio dette/revenu. N'incluez que les paiements mensuels minimums.",
+    "doNotInclude": "N'incluez pas :",
+    "doNotIncludeText": "services publics, épicerie, essence, assurance, ou autres dépenses courantes",
+    "noDebts": {
+      "label": "Je n'ai pas de dettes mensuelles",
+      "description": "Cochez ceci si vous n'avez pas de paiements de dettes récurrents"
+    },
+    "creditCards": {
+      "label": "Paiements Minimums des Cartes de Crédit",
+      "placeholder": "200",
+      "description": "Total pour toutes les cartes"
+    },
+    "autoLoans": {
+      "label": "Prêt / Location Automobile",
+      "placeholder": "450"
+    },
+    "studentLoans": {
+      "label": "Prêts Étudiants",
+      "placeholder": "300"
+    },
+    "personalLoans": {
+      "label": "Prêts Personnels",
+      "placeholder": "150"
+    },
+    "childSupport": {
+      "label": "Pension Alimentaire / Contribution Conjointe",
+      "placeholder": "500"
+    },
+    "otherDebts": {
+      "label": "Autres Obligations Mensuelles",
+      "placeholder": "100",
+      "description": "Temps partagés, paiements ordonnés par le tribunal, etc."
+    },
+    "rent": {
+      "label": "Payez-vous un loyer actuellement ?",
+      "no": "Non",
+      "yes": "Oui",
+      "amount": "Loyer Mensuel",
+      "amountPlaceholder": "1800",
+      "description": "Le loyer n'est pas compté dans le RDI pour l'achat d'une maison"
+    },
+    "summary": {
+      "title": "Résumé des Dettes",
+      "monthlyIncome": "Revenu Mensuel :",
+      "totalDebts": "Total des Dettes Mensuelles :",
+      "dtiRatio": "Ratio Dette/Revenu (RDI) :",
+      "excellent": "Excellent ! Votre RDI est bien inférieur à la limite de 36 %",
+      "good": "Bon ! Votre RDI est dans les limites standard",
+      "fair": "RDI au-dessus de la limite standard de 36 %, mais peut être admissible à la FHA (limite de 43 %)",
+      "high": "Le RDI dépasse la plupart des limites des prêteurs",
+      "payoffScenario": {
+        "title": "Scénario de Remboursement de Dette",
+        "message": "Le remboursement de ${{amount}}/mois de dettes réduirait votre RDI à {{newDti}} %"
+      }
+    },
+    "continueButton": "Continuer vers la Propriété",
+    "toast": {
+      "saved": "Informations sur les dettes enregistrées !",
+      "progressSaved": "Progression enregistrée ! Vous pouvez reprendre à tout moment."
+    }
+  },
+  "property": {
+    "title": "Préférences de Propriété et de Prêt",
+    "subtitle": "Parlez-nous de la maison que vous souhaitez acheter",
+    "hasFoundProperty": {
+      "label": "Avez-vous trouvé une propriété ?",
+      "no": "Non, je cherche toujours",
+      "yes": "Oui, j'ai une adresse"
+    },
+    "propertyAddress": {
+      "label": "Adresse de la Propriété",
+      "placeholder": "123 Rue Principale, Ville, État Code Postal",
+      "description": "Commencez à taper pour voir les suggestions"
+    },
+    "desiredHomePrice": {
+      "label": "Prix de la Maison Souhaité",
+      "placeholder": "400000",
+      "error": "Le prix de la maison doit être d'au moins 50 000 $"
+    },
+    "state": {
+      "label": "État/Province",
+      "placeholder": "Sélectionner l'État/Province",
+      "error": "L'État/Province est obligatoire"
+    },
+    "zipCode": {
+      "label": "Code Postal",
+      "placeholder": "75001",
+      "error": "Le code postal doit contenir 5 chiffres"
+    },
+    "propertyType": {
+      "label": "Type de Propriété",
+      "singleFamily": "Maison Unifamiliale",
+      "townhouse": "Maison en Rangée",
+      "condo": "Condominium",
+      "multiUnit": "Multi-Unités (2-4 unités)",
+      "multiUnitWarning": "Les propriétés multi-unités peuvent nécessiter des acomptes plus importants (15-25 %)"
+    },
+    "intendedUse": {
+      "label": "Utilisation Prévue",
+      "primary": "Résidence Principale",
+      "secondHome": "Résidence Secondaire / Vacances",
+      "investment": "Propriété d'Investissement",
+      "investmentWarning": "Les propriétés d'investissement nécessitent un acompte de 20-25 %, des taux plus élevés et une qualification plus stricte"
+    },
+    "firstTimeBuyer": {
+      "label": "Premier Acheteur de Maison ?",
+      "yes": "Oui",
+      "no": "Non",
+      "benefit": "Pourrait être admissible à des programmes et avantages spéciaux"
+    },
+    "loanPreferences": {
+      "title": "Préférences de Prêt",
+      "term": {
+        "label": "Durée du Prêt",
+        "30year": "30 ans fixe (Paiement mensuel inférieur)",
+        "15year": "15 ans fixe (Remboursement plus rapide, moins d'intérêts)",
+        "notSure": "Pas sûr (Nous vous montrerons les options)"
+      },
+      "type": {
+        "label": "Préférence de Type de Prêt",
+        "conventional": "Conventionnel (Standard, crédit 620+)",
+        "fha": "FHA (Acompte inférieur, crédit 580+)",
+        "va": "VA (Vétérans militaires, 0 % d'acompte)",
+        "usda": "USDA (Propriétés rurales, 0 % d'acompte)",
+        "notSure": "Pas sûr (Montrez-moi toutes les options)"
+      }
+    },
+    "continueButton": "Continuer vers la Révision",
+    "toast": {
+      "saved": "Préférences de propriété enregistrées !",
+      "progressSaved": "Progression enregistrée ! Vous pouvez reprendre à tout moment."
+    }
+  },
+  "review": {
+    "title": "Vérifiez Vos Informations",
+    "subtitle": "Vérifiez les détails avant de générer votre pré-qualification",
+    "sections": {
+      "personalInfo": {
+        "title": "Informations Personnelles",
+        "name": "Nom :",
+        "dateOfBirth": "Date de Naissance :",
+        "email": "E-mail :",
+        "phone": "Téléphone :",
+        "address": "Adresse :"
+      },
+      "employment": {
+        "title": "Emploi et Revenu",
+        "employmentStatus": "Statut d'Emploi",
+        "monthlyIncome": "Revenu Mensuel",
+        "employer": "Employeur",
+        "additionalIncome": "Revenu Supplémentaire"
+      },
+      "assets": {
+        "title": "Actifs et Acompte",
+        "downPayment": "Acompte",
+        "checkingAccounts": "Comptes Chèques",
+        "savingsAccounts": "Comptes Épargne",
+        "totalAssets": "Total des Actifs"
+      },
+      "debts": {
+        "title": "Dettes Mensuelles",
+        "totalMonthlyDebts": "Total des Dettes Mensuelles",
+        "dtiRatio": "Ratio Dette/Revenu"
+      },
+      "property": {
+        "title": "Préférences de Propriété"
+      }
+    },
+    "documentUpload": {
+      "title": "Téléchargement de Documents (Facultatif)",
+      "subtitle": "Téléchargez des documents justificatifs pour renforcer votre demande",
+      "dragDrop": "Glissez et déposez des fichiers ici",
+      "dropHere": "Déposez les fichiers ici",
+      "orClick": "ou cliquez pour parcourir",
+      "browseButton": "Parcourir les Fichiers",
+      "acceptedFormats": "Acceptés : PDF, JPG, PNG (Max 10 Mo chacun, 20 fichiers max)",
+      "uploadedFiles": "Fichiers Téléchargés ({{count}})",
+      "totalSize": "Taille totale : {{size}}",
+      "suggestedTitle": "Documents suggérés :",
+      "suggested": {
+        "payStubs": "Fiches de paie récentes (30 derniers jours)",
+        "bankStatements": "Relevés bancaires (2 derniers mois)",
+        "taxReturns": "Déclarations de revenus (2 dernières années)",
+        "id": "Pièce d'identité (permis de conduire ou passeport)"
+      }
+    },
+    "fileUpload": {
+      "invalidType": "{{fileName}} : Type de fichier invalide. Seuls PDF, JPG et PNG sont autorisés.",
+      "tooLarge": "{{fileName}} : Fichier trop volumineux. La taille maximale est de 10 Mo.",
+      "maxFiles": "Maximum de 20 fichiers autorisés.",
+      "success": "{{count}} fichier(s) téléchargé(s) avec succès",
+      "removed": "Fichier supprimé"
+    },
+    "certifications": {
+      "certifyTruth": "Je certifie que les informations fournies sont vraies et exactes au meilleur de ma connaissance",
+      "authorizeCreditCheck": "J'autorise une vérification de crédit 'soft' (n'affectera pas le score de crédit)",
+      "error": "Vous devez accepter les deux certifications pour continuer"
+    },
+    "submitButton": {
+      "submit": "Générer Ma Pré-qualification",
+      "submitting": "Soumission en cours..."
+    },
+    "toast": {
+      "analyzing": "Analyse de votre demande...",
+      "submitted": "Pré-qualification terminée ! {{count}} document(s) téléchargé(s).",
+      "submittedNoFiles": "Pré-qualification terminée !"
+    }
+  },
+  "calculator": {
+    "title": "Calculateur Rapide d'Abordabilité",
+    "subtitle": "Obtenez une estimation instantanée de ce que vous pouvez vous permettre",
+    "noLoginRequired": "Aucune connexion ou information personnelle requise",
+    "form": {
+      "monthlyIncome": {
+        "label": "Revenu Mensuel Brut",
+        "placeholder": "8500",
+        "description": "Avant impôts et déductions"
+      },
+      "monthlyDebts": {
+        "label": "Total des Dettes Mensuelles",
+        "placeholder": "1200",
+        "description": "Cartes de crédit, prêts auto, prêts étudiants, etc."
+      },
+      "desiredHomePrice": {
+        "label": "Prix de la Maison Souhaité",
+        "placeholder": "400000"
+      },
+      "downPayment": {
+        "label": "Montant de l'Acompte",
+        "placeholder": "80000"
+      }
+    },
+    "results": {
+      "title": "Votre Estimation d'Abordabilité",
+      "dti": {
+        "label": "Ratio Dette/Revenu",
+        "excellent": "Excellent ! Bien en dessous de la limite de 36 %",
+        "good": "Bon ! Dans les limites standard",
+        "fair": "Passable - Peut être admissible à la FHA (limite de 43 %)",
+        "high": "Trop Élevé - Envisagez de réduire les dettes ou d'augmenter les revenus"
+      },
+      "maxHomePrice": "Prix Maximum de la Maison que Vous Pouvez Vous Permettre",
+      "estimatedPayment": "Paiement Mensuel Estimé",
+      "paymentBreakdown": {
+        "principal": "Principal et Intérêts",
+        "taxes": "Taxes Foncières (est.)",
+        "insurance": "Assurance Habitation (est.)",
+        "pmi": "PMI (si moins de 20 % d'acompte)",
+        "total": "Paiement Mensuel Total"
+      },
+      "downPaymentPercent": "Acompte ({{percent}} %)",
+      "loanAmount": "Montant du Prêt",
+      "interestRate": "Taux d'Intérêt Estimé",
+      "loanTerm": "30 ans fixe"
+    },
+    "warnings": {
+      "highDti": "Votre RDI de {{dti}} % dépasse la plupart des limites des prêteurs (36-43 %). Considérez :",
+      "suggestions": {
+        "payOffDebt": "Rembourser ${{amount}}/mois de dettes pour atteindre 36 % de RDI",
+        "increaseIncome": "Augmenter le revenu mensuel de ${{amount}}",
+        "lowerHomePrice": "Envisager un prix de maison de ${{price}} ou moins"
+      }
+    },
+    "tips": {
+      "title": "Conseils pour Améliorer Votre Abordabilité",
+      "payOffDebt": "Rembourser les dettes à intérêt élevé",
+      "increaseDownPayment": "Économiser pour un acompte plus important (20 %+ évite la PMI)",
+      "improveCredit": "Améliorer le pointage de crédit pour de meilleurs taux",
+      "reduceExpenses": "Réduire les obligations mensuelles"
+    },
+    "cta": {
+      "startApplication": "Prêt(e) à Obtenir une Pré-qualification ?",
+      "startButton": "Démarrer la Demande Complète",
+      "learnMore": "En savoir plus sur le processus de pré-qualification complète"
+    },
+    "disclaimer": "Ceci est une estimation seulement. Les conditions de prêt réelles dépendent du pointage de crédit, de l'historique d'emploi et des exigences du prêteur."
+  },
+  "states": {
+    "AL": "Alabama",
+    "AK": "Alaska",
+    "AZ": "Arizona",
+    "AR": "Arkansas",
+    "CA": "Californie",
+    "CO": "Colorado",
+    "CT": "Connecticut",
+    "DE": "Delaware",
+    "FL": "Floride",
+    "GA": "Géorgie",
+    "HI": "Hawaï",
+    "ID": "Idaho",
+    "IL": "Illinois",
+    "IN": "Indiana",
+    "IA": "Iowa",
+    "KS": "Kansas",
+    "KY": "Kentucky",
+    "LA": "Louisiane",
+    "ME": "Maine",
+    "MD": "Maryland",
+    "MA": "Massachusetts",
+    "MI": "Michigan",
+    "MN": "Minnesota",
+    "MS": "Mississippi",
+    "MO": "Missouri",
+    "MT": "Montana",
+    "NE": "Nebraska",
+    "NV": "Nevada",
+    "NH": "New Hampshire",
+    "NJ": "New Jersey",
+    "NM": "Nouveau-Mexique",
+    "NY": "New York",
+    "NC": "Caroline du Nord",
+    "ND": "Dakota du Nord",
+    "OH": "Ohio",
+    "OK": "Oklahoma",
+    "OR": "Oregon",
+    "PA": "Pennsylvanie",
+    "RI": "Rhode Island",
+    "SC": "Caroline du Sud",
+    "SD": "Dakota du Sud",
+    "TN": "Tennessee",
+    "TX": "Texas",
+    "UT": "Utah",
+    "VT": "Vermont",
+    "VA": "Virginie",
+    "WA": "Washington",
+    "WV": "Virginie-Occidentale",
+    "WI": "Wisconsin",
+    "WY": "Wyoming"
+  },
+  "results": {
+    "congratulations": "🎉 Félicitations, {{name}} !",
+    "subtitle": "Vous êtes Pré-qualifié(e) pour un Prêt Hypothécaire",
+    "prequalificationAmount": {
+      "title": "Votre Montant de Pré-qualification",
+      "subtitle": "Basé sur vos revenus, actifs et dettes",
+      "maxLoanAmount": "Montant Maximum du Prêt",
+      "estimatedPayment": "Paiement Mensuel Estimé",
+      "paymentNote": "(Principal, Intérêts, Taxes, Assurance)",
+      "estimatedHomePrice": "Prix Estimé de la Maison",
+      "withDownPayment": "Avec ${{amount}} d'acompte",
+      "interestRate": "Taux d'Intérêt (Estimé)",
+      "term": "30 ans fixe",
+      "downPayment": "Acompte",
+      "downPaymentPercent": "{{percent}} % du prix de la maison"
+    },
+    "actions": {
+      "downloadLetter": "Télécharger la Lettre de Pré-qualification",
+      "emailResults": "M'Envoyer les Résultats par E-mail",
+      "downloadPdf": "Télécharger le PDF"
+    },
+    "affordability": {
+      "title": "Analyse de l'Abordabilité",
+      "subtitle": "Votre résumé financier",
+      "monthlyIncome": "Revenu Mensuel Brut",
+      "totalDebts": "Total des Dettes Mensuelles",
+      "housingPayment": "Paiement de Logement Estimé",
+      "frontEndDti": "RDI Frontal (Logement) :",
+      "backEndDti": "RDI Global (Total) :",
+      "qualifies": "✓ Votre RDI vous qualifie pour la plupart des programmes de prêt",
+      "fhaQualifies": "⚠ RDI au-dessus de la limite standard de 36 %, mais peut être admissible à la FHA (limite de 43 %)",
+      "tooHigh": "⚠ Le RDI dépasse la plupart des limites des prêteurs. Envisagez de rembourser des dettes ou d'augmenter les revenus."
+    },
+    "loanComparison": {
+      "title": "Comparer les Options de Prêt",
+      "subtitle": "Différents programmes de prêt pour votre situation",
+      "headers": {
+        "loanType": "Type de Prêt",
+        "loanAmount": "Montant du Prêt",
+        "interestRate": "Taux d'Intérêt",
+        "monthlyPayment": "Paiement Mensuel",
+        "totalInterest": "Intérêt Total"
+      },
+      "types": {
+        "30yearFixed": "30 ans Fixe",
+        "15yearFixed": "15 ans Fixe",
+        "fha30year": "FHA 30 ans"
+      }
+    },
+    "nextSteps": {
+      "title": "Prochaines Étapes",
+      "subtitle": "Poursuivez votre parcours d'achat de maison",
+      "savePrequalification": "Enregistrer Votre Pré-qualification",
+      "chatWithAdvisor": "Discuter avec un Conseiller",
+      "scheduleCall": "Planifier un Appel"
+    },
+    "toast": {
+      "downloaded": "Lettre de pré-qualification téléchargée !",
+      "emailed": "Résultats envoyés à {{email}}"
+    }
+  }
+}
