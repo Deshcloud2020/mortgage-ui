@@ -11,6 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowLeft, Home, Info, Save } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import * as z from "zod";
@@ -29,6 +30,7 @@ const debtsSchema = z.object({
 
 const Debts = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { applicationData, updateDebts, saveProgress, calculateDTI } = useApplication();
   const [totalDebts, setTotalDebts] = useState(0);
   const [dtiRatio, setDtiRatio] = useState(0);
@@ -79,25 +81,25 @@ const Debts = () => {
       if (ratio <= 28) {
         setDtiStatus({
           color: "text-success",
-          message: "Excellent! Your DTI is well below the 36% limit",
+          message: t('debts.summary.excellent'),
           icon: "✓"
         });
       } else if (ratio <= 36) {
         setDtiStatus({
           color: "text-success",
-          message: "Good! Your DTI is within standard limits",
+          message: t('debts.summary.good'),
           icon: "✓"
         });
       } else if (ratio <= 43) {
         setDtiStatus({
           color: "text-warning",
-          message: "DTI above standard 36% limit but may qualify for FHA (43% limit)",
+          message: t('debts.summary.fair'),
           icon: "⚠"
         });
       } else {
         setDtiStatus({
           color: "text-destructive",
-          message: "DTI exceeds most lender limits",
+          message: t('debts.summary.high'),
           icon: "✗"
         });
       }
@@ -132,7 +134,7 @@ const Debts = () => {
 
     updateDebts(debtsData);
     saveProgress();
-    toast.success("Debt information saved!");
+    toast.success(t('debts.toast.saved'));
     navigate("/application/property");
   };
 
@@ -145,7 +147,7 @@ const Debts = () => {
       otherDebts: values.noMonthlyDebts ? 0 : (values.personalLoans + values.childSupport + values.otherDebts),
     });
     saveProgress();
-    toast.success("Progress saved! You can resume anytime.");
+    toast.success(t('debts.toast.progressSaved'));
     navigate("/dashboard");
   };
 
@@ -181,19 +183,19 @@ const Debts = () => {
                 className="flex items-center gap-2"
               >
                 <ArrowLeft className="h-4 w-4" />
-                Back
+                {t('common.back')}
               </Button>
               <div className="flex items-center gap-2">
                 <Home className="h-6 w-6 text-primary" />
-                <span className="text-xl font-bold text-primary">uSign</span>
+                <span className="text-xl font-bold text-primary">{t('brand.name')}</span>
               </div>
             </div>
             <div className="flex items-center gap-4">
               <Button variant="outline" size="sm" onClick={handleSaveAndExit}>
                 <Save className="h-4 w-4 mr-2" />
-                Save & Exit
+                {t('common.saveAndExit')}
               </Button>
-              <Button variant="ghost" size="sm">Help</Button>
+              <Button variant="ghost" size="sm">{t('common.help')}</Button>
             </div>
           </div>
         </div>
@@ -204,9 +206,9 @@ const Debts = () => {
 
         <Card className="mt-6">
           <CardHeader>
-            <CardTitle>Monthly Debts & Obligations</CardTitle>
+            <CardTitle>{t('debts.title')}</CardTitle>
             <CardDescription>
-              Help us calculate your debt-to-income ratio. Only include minimum monthly payments.
+              {t('debts.subtitle')}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -217,7 +219,7 @@ const Debts = () => {
                     <Info className="h-5 w-5 text-info mt-0.5" />
                     <div>
                       <p className="text-sm text-info-foreground">
-                        <strong>Do not include:</strong> utilities, groceries, gas, insurance, or other living expenses
+                        <strong>{t('debts.doNotInclude')}</strong> {t('debts.doNotIncludeText')}
                       </p>
                     </div>
                   </div>
@@ -240,10 +242,10 @@ const Debts = () => {
                         </FormControl>
                         <div className="space-y-1 leading-none">
                           <FormLabel className="text-base font-medium cursor-pointer">
-                            I have no monthly debts
+                            {t('debts.noDebts.label')}
                           </FormLabel>
                           <FormDescription>
-                            Check this if you have no recurring debt payments
+                            {t('debts.noDebts.description')}
                           </FormDescription>
                         </div>
                       </FormItem>
@@ -259,7 +261,7 @@ const Debts = () => {
                         name="creditCards"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Credit Card Minimum Payments</FormLabel>
+                            <FormLabel>{t('debts.creditCards.label')}</FormLabel>
                             <FormControl>
                               <div className="relative">
                                 <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">
@@ -267,14 +269,14 @@ const Debts = () => {
                                 </span>
                                 <Input
                                   type="number"
-                                  placeholder="200"
+                                  placeholder={t('debts.creditCards.placeholder')}
                                   className="pl-8"
                                   {...field}
                                   onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
                                 />
                               </div>
                             </FormControl>
-                            <FormDescription>Total across all cards</FormDescription>
+                            <FormDescription>{t('debts.creditCards.description')}</FormDescription>
                             <FormMessage />
                           </FormItem>
                         )}
@@ -285,7 +287,7 @@ const Debts = () => {
                         name="autoLoans"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Auto Loan / Lease</FormLabel>
+                            <FormLabel>{t('debts.autoLoans.label')}</FormLabel>
                             <FormControl>
                               <div className="relative">
                                 <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">
@@ -293,7 +295,7 @@ const Debts = () => {
                                 </span>
                                 <Input
                                   type="number"
-                                  placeholder="450"
+                                  placeholder={t('debts.autoLoans.placeholder')}
                                   className="pl-8"
                                   {...field}
                                   onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
@@ -310,7 +312,7 @@ const Debts = () => {
                         name="studentLoans"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Student Loans</FormLabel>
+                            <FormLabel>{t('debts.studentLoans.label')}</FormLabel>
                             <FormControl>
                               <div className="relative">
                                 <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">
@@ -318,7 +320,7 @@ const Debts = () => {
                                 </span>
                                 <Input
                                   type="number"
-                                  placeholder="300"
+                                  placeholder={t('debts.studentLoans.placeholder')}
                                   className="pl-8"
                                   {...field}
                                   onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
@@ -335,7 +337,7 @@ const Debts = () => {
                         name="personalLoans"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Personal Loans</FormLabel>
+                            <FormLabel>{t('debts.personalLoans.label')}</FormLabel>
                             <FormControl>
                               <div className="relative">
                                 <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">
@@ -343,7 +345,7 @@ const Debts = () => {
                                 </span>
                                 <Input
                                   type="number"
-                                  placeholder="150"
+                                  placeholder={t('debts.personalLoans.placeholder')}
                                   className="pl-8"
                                   {...field}
                                   onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
@@ -360,7 +362,7 @@ const Debts = () => {
                         name="childSupport"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Child Support / Alimony</FormLabel>
+                            <FormLabel>{t('debts.childSupport.label')}</FormLabel>
                             <FormControl>
                               <div className="relative">
                                 <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">
@@ -368,7 +370,7 @@ const Debts = () => {
                                 </span>
                                 <Input
                                   type="number"
-                                  placeholder="500"
+                                  placeholder={t('debts.childSupport.placeholder')}
                                   className="pl-8"
                                   {...field}
                                   onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
@@ -385,7 +387,7 @@ const Debts = () => {
                         name="otherDebts"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Other Monthly Obligations</FormLabel>
+                            <FormLabel>{t('debts.otherDebts.label')}</FormLabel>
                             <FormControl>
                               <div className="relative">
                                 <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">
@@ -393,14 +395,14 @@ const Debts = () => {
                                 </span>
                                 <Input
                                   type="number"
-                                  placeholder="100"
+                                  placeholder={t('debts.otherDebts.placeholder')}
                                   className="pl-8"
                                   {...field}
                                   onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
                                 />
                               </div>
                             </FormControl>
-                            <FormDescription>Timeshares, court-ordered payments, etc.</FormDescription>
+                            <FormDescription>{t('debts.otherDebts.description')}</FormDescription>
                             <FormMessage />
                           </FormItem>
                         )}
@@ -412,7 +414,7 @@ const Debts = () => {
                       name="paysRent"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Do you currently pay rent?</FormLabel>
+                          <FormLabel>{t('debts.rent.label')}</FormLabel>
                           <FormControl>
                             <RadioGroup
                               onValueChange={field.onChange}
@@ -421,11 +423,11 @@ const Debts = () => {
                             >
                               <div className="flex items-center space-x-2">
                                 <RadioGroupItem value="no" id="no-rent" />
-                                <label htmlFor="no-rent" className="cursor-pointer">No</label>
+                                <label htmlFor="no-rent" className="cursor-pointer">{t('debts.rent.no')}</label>
                               </div>
                               <div className="flex items-center space-x-2">
                                 <RadioGroupItem value="yes" id="yes-rent" />
-                                <label htmlFor="yes-rent" className="cursor-pointer">Yes</label>
+                                <label htmlFor="yes-rent" className="cursor-pointer">{t('debts.rent.yes')}</label>
                               </div>
                             </RadioGroup>
                           </FormControl>
@@ -440,7 +442,7 @@ const Debts = () => {
                         name="currentRent"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Monthly Rent</FormLabel>
+                            <FormLabel>{t('debts.rent.amount')}</FormLabel>
                             <FormControl>
                               <div className="relative">
                                 <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">
@@ -448,7 +450,7 @@ const Debts = () => {
                                 </span>
                                 <Input
                                   type="number"
-                                  placeholder="1800"
+                                  placeholder={t('debts.rent.amountPlaceholder')}
                                   className="pl-8"
                                   {...field}
                                   onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
@@ -456,7 +458,7 @@ const Debts = () => {
                               </div>
                             </FormControl>
                             <FormDescription>
-                              Rent is not counted in DTI for home purchase
+                              {t('debts.rent.description')}
                             </FormDescription>
                             <FormMessage />
                           </FormItem>
@@ -470,23 +472,23 @@ const Debts = () => {
                 {monthlyIncome > 0 && (
                   <div className="border-t pt-6">
                     <div className="bg-muted/50 rounded-lg p-6 space-y-4">
-                      <h3 className="text-lg font-semibold">Debt Summary</h3>
+                      <h3 className="text-lg font-semibold">{t('debts.summary.title')}</h3>
 
                       <div className="grid md:grid-cols-2 gap-4">
                         <div className="space-y-2">
                           <div className="flex justify-between">
-                            <span>Monthly Income:</span>
+                            <span>{t('debts.summary.monthlyIncome')}</span>
                             <span className="font-semibold">${monthlyIncome.toLocaleString()}</span>
                           </div>
                           <div className="flex justify-between">
-                            <span>Total Monthly Debts:</span>
+                            <span>{t('debts.summary.totalDebts')}</span>
                             <span className="font-semibold">${totalDebts.toLocaleString()}</span>
                           </div>
                         </div>
 
                         <div className="space-y-3">
                           <div className="flex justify-between items-center">
-                            <span className="font-medium">Debt-to-Income Ratio:</span>
+                            <span className="font-medium">{t('debts.summary.dtiRatio')}</span>
                             <span className={`text-xl font-bold ${dtiStatus.color}`}>
                               {dtiRatio.toFixed(1)}% {dtiStatus.icon}
                             </span>
@@ -508,10 +510,10 @@ const Debts = () => {
                       </div>
 
                       <div className={`p-3 rounded-md ${dtiRatio <= 36
-                          ? "bg-success/10 border border-success/20"
-                          : dtiRatio <= 43
-                            ? "bg-warning/10 border border-warning/20"
-                            : "bg-destructive/10 border border-destructive/20"
+                        ? "bg-success/10 border border-success/20"
+                        : dtiRatio <= 43
+                          ? "bg-warning/10 border border-warning/20"
+                          : "bg-destructive/10 border border-destructive/20"
                         }`}>
                         <p className={`text-sm ${dtiStatus.color}`}>
                           {dtiStatus.message}
@@ -524,10 +526,10 @@ const Debts = () => {
                             <Info className="h-5 w-5 text-info mt-0.5" />
                             <div>
                               <p className="text-sm font-medium text-info-foreground">
-                                Debt Payoff Scenario
+                                {t('debts.summary.payoffScenario.title')}
                               </p>
                               <p className="text-sm text-info-foreground mt-1">
-                                Paying off ${payoffScenario.amount}/month in debts would reduce your DTI to {payoffScenario.newDTI}%
+                                {t('debts.summary.payoffScenario.message', { amount: payoffScenario.amount, newDti: payoffScenario.newDTI })}
                               </p>
                             </div>
                           </div>
@@ -544,10 +546,10 @@ const Debts = () => {
                     onClick={() => navigate("/application/assets")}
                   >
                     <ArrowLeft className="h-4 w-4 mr-2" />
-                    Back
+                    {t('common.back')}
                   </Button>
                   <Button type="submit">
-                    Continue to Property
+                    {t('debts.continueButton')}
                   </Button>
                 </div>
               </form>

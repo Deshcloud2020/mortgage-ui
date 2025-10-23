@@ -10,6 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowLeft, Home, Info, Save } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import * as z from "zod";
@@ -36,6 +37,7 @@ const employmentSchema = z.object({
 
 const Employment = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { applicationData, updateEmployment, saveProgress } = useApplication();
   const [totalIncome, setTotalIncome] = useState(0);
 
@@ -83,7 +85,7 @@ const Employment = () => {
 
     updateEmployment(employmentData);
     saveProgress();
-    toast.success("Employment information saved!");
+    toast.success(t('employment.toast.saved'));
     navigate("/application/assets");
   };
 
@@ -98,7 +100,7 @@ const Employment = () => {
       additionalIncome: values.hasAdditionalIncome === "yes" ? values.additionalIncome : 0,
     });
     saveProgress();
-    toast.success("Progress saved! You can resume anytime.");
+    toast.success(t('employment.toast.progressSaved'));
     navigate("/dashboard");
   };
 
@@ -116,19 +118,19 @@ const Employment = () => {
                 className="flex items-center gap-2"
               >
                 <ArrowLeft className="h-4 w-4" />
-                Back
+                {t('common.back')}
               </Button>
               <div className="flex items-center gap-2">
                 <Home className="h-6 w-6 text-primary" />
-                <span className="text-xl font-bold text-primary">uSign</span>
+                <span className="text-xl font-bold text-primary">{t('brand.name')}</span>
               </div>
             </div>
             <div className="flex items-center gap-4">
               <Button variant="outline" size="sm" onClick={handleSaveAndExit}>
                 <Save className="h-4 w-4 mr-2" />
-                Save & Exit
+                {t('common.saveAndExit')}
               </Button>
-              <Button variant="ghost" size="sm">Help</Button>
+              <Button variant="ghost" size="sm">{t('common.help')}</Button>
             </div>
           </div>
         </div>
@@ -139,9 +141,9 @@ const Employment = () => {
 
         <Card className="mt-6">
           <CardHeader>
-            <CardTitle>Employment & Income</CardTitle>
+            <CardTitle>{t('employment.title')}</CardTitle>
             <CardDescription>
-              This helps us calculate how much you can borrow
+              {t('employment.subtitle')}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -152,7 +154,7 @@ const Employment = () => {
                   name="status"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Employment Status *</FormLabel>
+                      <FormLabel>{t('employment.status.label')} *</FormLabel>
                       <FormControl>
                         <RadioGroup
                           onValueChange={field.onChange}
@@ -161,19 +163,19 @@ const Employment = () => {
                         >
                           <div className="flex items-center space-x-2">
                             <RadioGroupItem value="employed" id="employed" />
-                            <label htmlFor="employed" className="cursor-pointer">Employed (W-2)</label>
+                            <label htmlFor="employed" className="cursor-pointer">{t('employment.status.employed')}</label>
                           </div>
                           <div className="flex items-center space-x-2">
                             <RadioGroupItem value="self-employed" id="self-employed" />
-                            <label htmlFor="self-employed" className="cursor-pointer">Self-Employed</label>
+                            <label htmlFor="self-employed" className="cursor-pointer">{t('employment.status.selfEmployed')}</label>
                           </div>
                           <div className="flex items-center space-x-2">
                             <RadioGroupItem value="retired" id="retired" />
-                            <label htmlFor="retired" className="cursor-pointer">Retired</label>
+                            <label htmlFor="retired" className="cursor-pointer">{t('employment.status.retired')}</label>
                           </div>
                           <div className="flex items-center space-x-2">
                             <RadioGroupItem value="other" id="other" />
-                            <label htmlFor="other" className="cursor-pointer">Other</label>
+                            <label htmlFor="other" className="cursor-pointer">{t('employment.status.other')}</label>
                           </div>
                         </RadioGroup>
                       </FormControl>
@@ -190,9 +192,9 @@ const Employment = () => {
                         name="employer"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Employer Name *</FormLabel>
+                            <FormLabel>{t('employment.employer.label')} *</FormLabel>
                             <FormControl>
-                              <Input placeholder="ABC Company Inc." {...field} />
+                              <Input placeholder={t('employment.employer.placeholder')} {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -203,9 +205,9 @@ const Employment = () => {
                         name="jobTitle"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Job Title *</FormLabel>
+                            <FormLabel>{t('employment.jobTitle.label')} *</FormLabel>
                             <FormControl>
-                              <Input placeholder="Software Engineer" {...field} />
+                              <Input placeholder={t('employment.jobTitle.placeholder')} {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -219,11 +221,11 @@ const Employment = () => {
                         name="yearsEmployed"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Years with Employer</FormLabel>
+                            <FormLabel>{t('employment.yearsEmployed.label')}</FormLabel>
                             <FormControl>
                               <Input
                                 type="number"
-                                placeholder="2"
+                                placeholder={t('employment.yearsEmployed.placeholder')}
                                 {...field}
                                 onChange={(e) => field.onChange(parseInt(e.target.value) || 0)}
                               />
@@ -237,11 +239,11 @@ const Employment = () => {
                         name="monthsEmployed"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Additional Months</FormLabel>
+                            <FormLabel>{t('employment.monthsEmployed.label')}</FormLabel>
                             <FormControl>
                               <Input
                                 type="number"
-                                placeholder="6"
+                                placeholder={t('employment.monthsEmployed.placeholder')}
                                 max="11"
                                 {...field}
                                 onChange={(e) => field.onChange(parseInt(e.target.value) || 0)}
@@ -261,10 +263,10 @@ const Employment = () => {
                       <Info className="h-5 w-5 text-warning mt-0.5" />
                       <div>
                         <p className="text-sm font-medium text-warning-foreground">
-                          Self-Employment Notice
+                          {t('employment.selfEmployedNotice.title')}
                         </p>
                         <p className="text-sm text-warning-foreground mt-1">
-                          Self-employment may require additional documentation such as tax returns and profit/loss statements.
+                          {t('employment.selfEmployedNotice.message')}
                         </p>
                       </div>
                     </div>
@@ -278,9 +280,9 @@ const Employment = () => {
                     <FormItem>
                       <FormLabel>
                         {employmentStatus === "self-employed"
-                          ? "Average Monthly Net Income *"
-                          : "Gross Monthly Income *"
-                        }
+                          ? t('employment.monthlyIncome.labelSelfEmployed')
+                          : t('employment.monthlyIncome.label')
+                        } *
                       </FormLabel>
                       <FormControl>
                         <div className="relative">
@@ -289,7 +291,7 @@ const Employment = () => {
                           </span>
                           <Input
                             type="number"
-                            placeholder="8500"
+                            placeholder={t('employment.monthlyIncome.placeholder')}
                             className="pl-8"
                             {...field}
                             onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
@@ -298,8 +300,8 @@ const Employment = () => {
                       </FormControl>
                       <FormDescription>
                         {employmentStatus === "self-employed"
-                          ? "After business expenses"
-                          : "Before taxes and deductions"
+                          ? t('employment.monthlyIncome.descriptionSelfEmployed')
+                          : t('employment.monthlyIncome.description')
                         }
                       </FormDescription>
                       <FormMessage />
@@ -312,7 +314,7 @@ const Employment = () => {
                   name="hasAdditionalIncome"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Do you have additional income?</FormLabel>
+                      <FormLabel>{t('employment.additionalIncome.label')}</FormLabel>
                       <FormControl>
                         <RadioGroup
                           onValueChange={field.onChange}
@@ -321,12 +323,12 @@ const Employment = () => {
                         >
                           <div className="flex items-center space-x-2">
                             <RadioGroupItem value="no" id="no-additional" />
-                            <label htmlFor="no-additional" className="cursor-pointer">No</label>
+                            <label htmlFor="no-additional" className="cursor-pointer">{t('employment.additionalIncome.no')}</label>
                           </div>
                           <div className="flex items-center space-x-2">
                             <RadioGroupItem value="yes" id="yes-additional" />
                             <label htmlFor="yes-additional" className="cursor-pointer">
-                              Yes (bonuses, commissions, rental, etc.)
+                              {t('employment.additionalIncome.yes')}
                             </label>
                           </div>
                         </RadioGroup>
@@ -343,7 +345,7 @@ const Employment = () => {
                       name="additionalIncome"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Additional Monthly Income</FormLabel>
+                          <FormLabel>{t('employment.additionalIncome.amount')}</FormLabel>
                           <FormControl>
                             <div className="relative">
                               <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">
@@ -351,7 +353,7 @@ const Employment = () => {
                               </span>
                               <Input
                                 type="number"
-                                placeholder="1500"
+                                placeholder={t('employment.additionalIncome.amountPlaceholder')}
                                 className="pl-8"
                                 {...field}
                                 onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
@@ -368,20 +370,20 @@ const Employment = () => {
                       name="additionalIncomeSource"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Source</FormLabel>
+                          <FormLabel>{t('employment.additionalIncome.source')}</FormLabel>
                           <Select onValueChange={field.onChange} defaultValue={field.value}>
                             <FormControl>
                               <SelectTrigger>
-                                <SelectValue placeholder="Select income source" />
+                                <SelectValue placeholder={t('employment.additionalIncome.sourcePlaceholder')} />
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent>
-                              <SelectItem value="bonus">Bonus/Commission</SelectItem>
-                              <SelectItem value="rental">Rental Income</SelectItem>
-                              <SelectItem value="investment">Investment Income</SelectItem>
-                              <SelectItem value="pension">Pension</SelectItem>
-                              <SelectItem value="social-security">Social Security</SelectItem>
-                              <SelectItem value="other">Other</SelectItem>
+                              <SelectItem value="bonus">{t('employment.additionalIncome.sources.bonus')}</SelectItem>
+                              <SelectItem value="rental">{t('employment.additionalIncome.sources.rental')}</SelectItem>
+                              <SelectItem value="investment">{t('employment.additionalIncome.sources.investment')}</SelectItem>
+                              <SelectItem value="pension">{t('employment.additionalIncome.sources.pension')}</SelectItem>
+                              <SelectItem value="social-security">{t('employment.additionalIncome.sources.socialSecurity')}</SelectItem>
+                              <SelectItem value="other">{t('employment.additionalIncome.sources.other')}</SelectItem>
                             </SelectContent>
                           </Select>
                           <FormMessage />
@@ -394,14 +396,14 @@ const Employment = () => {
                 {totalIncome > 0 && (
                   <div className="bg-success/10 border border-success/20 rounded-lg p-4">
                     <div className="flex items-center justify-between">
-                      <span className="text-lg font-semibold">Total Monthly Income:</span>
+                      <span className="text-lg font-semibold">{t('employment.totalIncome.label')}</span>
                       <span className="text-2xl font-bold text-success">
                         ${totalIncome.toLocaleString()}
                       </span>
                     </div>
                     {totalIncome > 0 && (
                       <p className="text-sm text-success-foreground mt-2">
-                        ✓ Income verified: ${totalIncome.toLocaleString()}/month
+                        {t('employment.totalIncome.verified', { amount: totalIncome.toLocaleString() })}
                       </p>
                     )}
                   </div>
@@ -414,10 +416,10 @@ const Employment = () => {
                     onClick={() => navigate("/application/personal-info")}
                   >
                     <ArrowLeft className="h-4 w-4 mr-2" />
-                    Back
+                    {t('common.back')}
                   </Button>
                   <Button type="submit">
-                    Continue to Assets
+                    {t('employment.continueButton')}
                   </Button>
                 </div>
               </form>

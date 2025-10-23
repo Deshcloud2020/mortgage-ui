@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowLeft, Eye, EyeOff, Home } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import * as z from "zod";
@@ -28,6 +29,7 @@ const accountSchema = z.object({
 
 const AccountCreation = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [passwordStrength, setPasswordStrength] = useState(0);
@@ -62,7 +64,7 @@ const AccountCreation = () => {
   const onSubmit = async (data: z.infer<typeof accountSchema>) => {
     try {
       // Simulate API call
-      toast.success("Sending verification code...");
+      toast.success(t('accountCreation.toast.sendingCode'));
 
       // Store account data in localStorage for now
       localStorage.setItem('accountData', JSON.stringify({
@@ -73,7 +75,7 @@ const AccountCreation = () => {
       // Navigate to email verification
       navigate("/application/email-verification");
     } catch (error) {
-      toast.error("Something went wrong. Please try again.");
+      toast.error(t('accountCreation.toast.error'));
     }
   };
 
@@ -91,16 +93,16 @@ const AccountCreation = () => {
                 className="flex items-center gap-2"
               >
                 <ArrowLeft className="h-4 w-4" />
-                Back
+                {t('common.back')}
               </Button>
               <div className="flex items-center gap-2">
                 <Home className="h-6 w-6 text-primary" />
-                <span className="text-xl font-bold text-primary">uSign</span>
+                <span className="text-xl font-bold text-primary">{t('brand.name')}</span>
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <Button variant="ghost" size="sm">Help</Button>
-              <Button variant="ghost" size="sm" onClick={() => navigate("/")}>Exit</Button>
+              <Button variant="ghost" size="sm">{t('common.help')}</Button>
+              <Button variant="ghost" size="sm" onClick={() => navigate("/")}>{t('common.exit')}</Button>
             </div>
           </div>
         </div>
@@ -110,8 +112,8 @@ const AccountCreation = () => {
         {/* Progress */}
         <div className="mb-8">
           <div className="flex items-center justify-between text-sm mb-2">
-            <span className="text-muted-foreground">Step 1 of 7</span>
-            <span className="text-muted-foreground">14% Complete</span>
+            <span className="text-muted-foreground">{t('progress.stepOf', { current: 1, total: 7 })}</span>
+            <span className="text-muted-foreground">{t('progress.percentComplete', { percent: 14 })}</span>
           </div>
           <div className="flex gap-1">
             <div className="h-2 flex-1 bg-primary rounded-full" />
@@ -123,9 +125,9 @@ const AccountCreation = () => {
 
         <Card>
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl">Let's Get Started</CardTitle>
+            <CardTitle className="text-2xl">{t('accountCreation.title')}</CardTitle>
             <CardDescription>
-              We'll save your progress so you can return anytime
+              {t('accountCreation.subtitle')}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -136,16 +138,16 @@ const AccountCreation = () => {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email Address *</FormLabel>
+                      <FormLabel>{t('accountCreation.email.label')} *</FormLabel>
                       <FormControl>
                         <Input
                           type="email"
-                          placeholder="john@example.com"
+                          placeholder={t('accountCreation.email.placeholder')}
                           {...field}
                         />
                       </FormControl>
                       <FormDescription>
-                        We'll send a code to verify this email
+                        {t('accountCreation.email.description')}
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
@@ -157,17 +159,17 @@ const AccountCreation = () => {
                   name="phone"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Phone Number (Optional)</FormLabel>
+                      <FormLabel>{t('accountCreation.phone.label')}</FormLabel>
                       <FormControl>
                         <Input
                           type="tel"
-                          placeholder="(555) 123-4567"
+                          placeholder={t('accountCreation.phone.placeholder')}
                           {...field}
                           onChange={(e) => field.onChange(formatPhone(e.target.value))}
                         />
                       </FormControl>
                       <FormDescription>
-                        For quick contact and updates
+                        {t('accountCreation.phone.description')}
                       </FormDescription>
                       <FormMessage />
                     </FormItem>
@@ -179,12 +181,12 @@ const AccountCreation = () => {
                   name="password"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Create Password *</FormLabel>
+                      <FormLabel>{t('accountCreation.password.label')} *</FormLabel>
                       <FormControl>
                         <div className="relative">
                           <Input
                             type={showPassword ? "text" : "password"}
-                            placeholder="Enter a strong password"
+                            placeholder={t('accountCreation.password.placeholder')}
                             {...field}
                             onChange={(e) => {
                               field.onChange(e);
@@ -211,12 +213,12 @@ const AccountCreation = () => {
                           <div className="flex items-center gap-2">
                             <Progress value={passwordStrength} className="flex-1" />
                             <span className="text-sm text-muted-foreground">
-                              {passwordStrength < 50 ? "Weak" : passwordStrength < 75 ? "Good" : "Strong"}
+                              {passwordStrength < 50 ? t('accountCreation.password.strength.weak') : passwordStrength < 75 ? t('accountCreation.password.strength.good') : t('accountCreation.password.strength.strong')}
                             </span>
                           </div>
                           <div className="text-xs text-muted-foreground space-y-1">
-                            <div>• At least 8 characters</div>
-                            <div>• Include number & special character</div>
+                            <div>{t('accountCreation.password.requirements.length')}</div>
+                            <div>{t('accountCreation.password.requirements.special')}</div>
                           </div>
                         </div>
                       )}
@@ -230,12 +232,12 @@ const AccountCreation = () => {
                   name="confirmPassword"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Confirm Password *</FormLabel>
+                      <FormLabel>{t('accountCreation.password.confirmLabel')} *</FormLabel>
                       <FormControl>
                         <div className="relative">
                           <Input
                             type={showConfirmPassword ? "text" : "password"}
-                            placeholder="Confirm your password"
+                            placeholder={t('accountCreation.password.confirmPlaceholder')}
                             {...field}
                           />
                           <Button
@@ -271,13 +273,13 @@ const AccountCreation = () => {
                       </FormControl>
                       <div className="space-y-1 leading-none">
                         <FormLabel className="text-sm">
-                          I agree to the{" "}
+                          {t('accountCreation.terms.label')}{" "}
                           <a href="/terms" className="text-primary hover:underline">
-                            Terms of Service
+                            {t('accountCreation.terms.termsLink')}
                           </a>{" "}
-                          and{" "}
+                          {t('accountCreation.terms.and')}{" "}
                           <a href="/privacy" className="text-primary hover:underline">
-                            Privacy Policy
+                            {t('accountCreation.terms.privacyLink')}
                           </a>
                         </FormLabel>
                         <FormMessage />
@@ -292,16 +294,16 @@ const AccountCreation = () => {
                   size="lg"
                   disabled={!form.formState.isValid}
                 >
-                  Continue
+                  {t('accountCreation.continueButton')}
                 </Button>
               </form>
             </Form>
 
             <div className="mt-6 text-center">
               <p className="text-sm text-muted-foreground">
-                Already have an account?{" "}
+                {t('accountCreation.alreadyHaveAccount')}{" "}
                 <Button variant="link" className="p-0 h-auto">
-                  Sign In
+                  {t('accountCreation.signIn')}
                 </Button>
               </p>
             </div>
@@ -311,7 +313,7 @@ const AccountCreation = () => {
         {/* Security Notice */}
         <div className="mt-6 text-center">
           <p className="text-xs text-muted-foreground flex items-center justify-center gap-1">
-            🔒 Your information is encrypted and never sold
+            {t('accountCreation.securityNotice')}
           </p>
         </div>
       </div>

@@ -3,11 +3,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { ArrowLeft, Home, RotateCcw } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 const EmailVerification = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [code, setCode] = useState(["", "", "", "", "", ""]);
   const [timeLeft, setTimeLeft] = useState(600); // 10 minutes
   const [canResend, setCanResend] = useState(false);
@@ -92,13 +94,13 @@ const EmailVerification = () => {
 
       // For demo purposes, accept any 6-digit code
       if (verificationCode.length === 6) {
-        toast.success("Email verified successfully!");
+        toast.success(t('emailVerification.toast.success'));
         navigate("/application/personal-info");
       } else {
         throw new Error("Invalid code");
       }
     } catch (error) {
-      toast.error("Invalid verification code. Please try again.");
+      toast.error(t('emailVerification.toast.error'));
       setCode(["", "", "", "", "", ""]);
       inputRefs.current[0]?.focus();
     } finally {
@@ -109,12 +111,12 @@ const EmailVerification = () => {
   const handleResend = async () => {
     try {
       // Simulate API call
-      toast.success("New verification code sent!");
+      toast.success(t('emailVerification.toast.resent'));
       setTimeLeft(600);
       setCanResend(false);
       setResendCooldown(30);
     } catch (error) {
-      toast.error("Failed to resend code. Please try again.");
+      toast.error(t('emailVerification.toast.resentError'));
     }
   };
 
@@ -136,16 +138,16 @@ const EmailVerification = () => {
                 className="flex items-center gap-2"
               >
                 <ArrowLeft className="h-4 w-4" />
-                Back
+                {t('common.back')}
               </Button>
               <div className="flex items-center gap-2">
                 <Home className="h-6 w-6 text-primary" />
-                <span className="text-xl font-bold text-primary">uSign</span>
+                <span className="text-xl font-bold text-primary">{t('brand.name')}</span>
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <Button variant="ghost" size="sm">Help</Button>
-              <Button variant="ghost" size="sm" onClick={() => navigate("/")}>Exit</Button>
+              <Button variant="ghost" size="sm">{t('common.help')}</Button>
+              <Button variant="ghost" size="sm" onClick={() => navigate("/")}>{t('common.exit')}</Button>
             </div>
           </div>
         </div>
@@ -155,8 +157,8 @@ const EmailVerification = () => {
         {/* Progress */}
         <div className="mb-8">
           <div className="flex items-center justify-between text-sm mb-2">
-            <span className="text-muted-foreground">Step 1 of 7</span>
-            <span className="text-muted-foreground">14% Complete</span>
+            <span className="text-muted-foreground">{t('progress.stepOf', { current: 1, total: 7 })}</span>
+            <span className="text-muted-foreground">{t('progress.percentComplete', { percent: 14 })}</span>
           </div>
           <div className="flex gap-1">
             <div className="h-2 flex-1 bg-primary rounded-full" />
@@ -168,9 +170,9 @@ const EmailVerification = () => {
 
         <Card>
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl">Verify Your Email</CardTitle>
+            <CardTitle className="text-2xl">{t('emailVerification.title')}</CardTitle>
             <CardDescription>
-              We sent a 6-digit code to{" "}
+              {t('emailVerification.subtitle')}{" "}
               <span className="font-medium text-foreground">{email}</span>
             </CardDescription>
             <Button
@@ -178,13 +180,13 @@ const EmailVerification = () => {
               className="p-0 h-auto text-sm"
               onClick={handleChangeEmail}
             >
-              Change email
+              {t('emailVerification.changeEmail')}
             </Button>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="space-y-4">
               <div className="text-center">
-                <label className="text-sm font-medium">Enter verification code:</label>
+                <label className="text-sm font-medium">{t('emailVerification.enterCode')}</label>
               </div>
 
               <div className="flex justify-center gap-2">
@@ -207,17 +209,17 @@ const EmailVerification = () => {
 
               {timeLeft > 0 ? (
                 <div className="text-center text-sm text-muted-foreground">
-                  Code expires in: <span className="font-medium">{formatTime(timeLeft)}</span>
+                  {t('emailVerification.codeExpires')} <span className="font-medium">{formatTime(timeLeft)}</span>
                 </div>
               ) : (
                 <div className="text-center text-sm text-destructive">
-                  Code has expired. Please request a new one.
+                  {t('emailVerification.codeExpired')}
                 </div>
               )}
             </div>
 
             <div className="text-center space-y-2">
-              <p className="text-sm text-muted-foreground">Didn't receive it?</p>
+              <p className="text-sm text-muted-foreground">{t('emailVerification.didntReceive')}</p>
               <Button
                 variant="outline"
                 size="sm"
@@ -226,7 +228,7 @@ const EmailVerification = () => {
                 className="flex items-center gap-2"
               >
                 <RotateCcw className="h-4 w-4" />
-                {canResend ? "Resend code" : `Resend in ${resendCooldown}s`}
+                {canResend ? t('emailVerification.resendButton') : t('emailVerification.resendIn', { seconds: resendCooldown })}
               </Button>
             </div>
 
@@ -234,7 +236,7 @@ const EmailVerification = () => {
               <div className="text-center">
                 <div className="inline-flex items-center gap-2 text-sm text-muted-foreground">
                   <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary"></div>
-                  Verifying...
+                  {t('emailVerification.verifying')}
                 </div>
               </div>
             )}
@@ -244,8 +246,8 @@ const EmailVerification = () => {
         {/* Tips */}
         <div className="mt-6 text-center">
           <div className="text-xs text-muted-foreground space-y-1">
-            <p>• Check your spam folder if you don't see the email</p>
-            <p>• Make sure {email} is correct</p>
+            <p>{t('emailVerification.tips.checkSpam')}</p>
+            <p>{t('emailVerification.tips.checkEmail', { email })}</p>
           </div>
         </div>
       </div>

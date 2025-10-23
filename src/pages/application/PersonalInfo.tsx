@@ -1,17 +1,18 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
+import { ApplicationProgress } from "@/components/ApplicationProgress";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox";
 import { useApplication } from "@/contexts/ApplicationContext";
-import { ApplicationProgress } from "@/components/ApplicationProgress";
-import { toast } from "sonner";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Save } from "lucide-react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+import * as z from "zod";
 
 const personalInfoSchema = z.object({
   firstName: z.string().min(2, "First name must be at least 2 characters").max(50),
@@ -29,6 +30,7 @@ const personalInfoSchema = z.object({
 
 const PersonalInfo = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { applicationData, updatePersonalInfo, saveProgress } = useApplication();
   const [skipSSN, setSkipSSN] = useState(false);
 
@@ -47,14 +49,14 @@ const PersonalInfo = () => {
   const onSubmit = (data: z.infer<typeof personalInfoSchema>) => {
     updatePersonalInfo(data);
     saveProgress();
-    toast.success("Personal information saved!");
+    toast.success(t('personalInfo.toast.saved'));
     navigate("/application/employment");
   };
 
   const handleSaveAndExit = () => {
     updatePersonalInfo(form.getValues());
     saveProgress();
-    toast.success("Progress saved! You can resume anytime.");
+    toast.success(t('personalInfo.toast.progressSaved'));
     navigate("/dashboard");
   };
 
@@ -65,9 +67,9 @@ const PersonalInfo = () => {
 
         <Card className="mt-6">
           <CardHeader>
-            <CardTitle>Personal Information</CardTitle>
+            <CardTitle>{t('personalInfo.title')}</CardTitle>
             <CardDescription>
-              Let's start with your basic information. All fields are required unless marked optional.
+              {t('personalInfo.subtitle')}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -79,9 +81,9 @@ const PersonalInfo = () => {
                     name="firstName"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>First Name</FormLabel>
+                        <FormLabel>{t('personalInfo.firstName.label')}</FormLabel>
                         <FormControl>
-                          <Input placeholder="John" {...field} />
+                          <Input placeholder={t('personalInfo.firstName.placeholder')} {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -92,9 +94,9 @@ const PersonalInfo = () => {
                     name="lastName"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Last Name</FormLabel>
+                        <FormLabel>{t('personalInfo.lastName.label')}</FormLabel>
                         <FormControl>
-                          <Input placeholder="Doe" {...field} />
+                          <Input placeholder={t('personalInfo.lastName.placeholder')} {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -107,7 +109,7 @@ const PersonalInfo = () => {
                   name="dateOfBirth"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Date of Birth</FormLabel>
+                      <FormLabel>{t('personalInfo.dateOfBirth.label')}</FormLabel>
                       <FormControl>
                         <Input type="date" {...field} max={new Date().toISOString().split('T')[0]} />
                       </FormControl>
@@ -122,36 +124,36 @@ const PersonalInfo = () => {
                     name="ssn"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Social Security Number (Optional)</FormLabel>
+                        <FormLabel>{t('personalInfo.ssn.label')}</FormLabel>
                         <FormControl>
-                          <Input 
-                            type="password" 
-                            placeholder="XXX-XX-XXXX" 
+                          <Input
+                            type="password"
+                            placeholder={t('personalInfo.ssn.placeholder')}
                             disabled={skipSSN}
-                            {...field} 
+                            {...field}
                           />
                         </FormControl>
                         <FormDescription>
-                          Providing your SSN allows for a more accurate prequalification
+                          {t('personalInfo.ssn.description')}
                         </FormDescription>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
                   <div className="flex items-center space-x-2">
-                    <Checkbox 
-                      id="skipSSN" 
+                    <Checkbox
+                      id="skipSSN"
                       checked={skipSSN}
                       onCheckedChange={(checked) => setSkipSSN(checked as boolean)}
                     />
                     <label htmlFor="skipSSN" className="text-sm text-muted-foreground cursor-pointer">
-                      Skip for now (limits accuracy)
+                      {t('personalInfo.ssn.skipLabel')}
                     </label>
                   </div>
                   {skipSSN && (
                     <div className="bg-warning/10 border border-warning/20 rounded-md p-3">
                       <p className="text-sm text-warning-foreground">
-                        ⚠ Without SSN, we can't check your credit. Your estimate will be less accurate.
+                        {t('personalInfo.ssn.warning')}
                       </p>
                     </div>
                   )}
@@ -163,11 +165,11 @@ const PersonalInfo = () => {
                     name="phone"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Phone Number</FormLabel>
+                        <FormLabel>{t('personalInfo.phone.label')}</FormLabel>
                         <FormControl>
-                          <Input 
-                            type="tel" 
-                            placeholder="(555) 123-4567"
+                          <Input
+                            type="tel"
+                            placeholder={t('personalInfo.phone.placeholder')}
                             {...field}
                             onChange={(e) => field.onChange(formatPhone(e.target.value))}
                           />
@@ -181,9 +183,9 @@ const PersonalInfo = () => {
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Email Address</FormLabel>
+                        <FormLabel>{t('personalInfo.email.label')}</FormLabel>
                         <FormControl>
-                          <Input type="email" placeholder="john@example.com" {...field} />
+                          <Input type="email" placeholder={t('personalInfo.email.placeholder')} {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -196,9 +198,9 @@ const PersonalInfo = () => {
                   name="address"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Street Address</FormLabel>
+                      <FormLabel>{t('personalInfo.address.label')}</FormLabel>
                       <FormControl>
-                        <Input placeholder="123 Main Street, Apt 4B" {...field} />
+                        <Input placeholder={t('personalInfo.address.placeholder')} {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -211,9 +213,9 @@ const PersonalInfo = () => {
                     name="city"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>City</FormLabel>
+                        <FormLabel>{t('personalInfo.city.label')}</FormLabel>
                         <FormControl>
-                          <Input placeholder="San Francisco" {...field} />
+                          <Input placeholder={t('personalInfo.city.placeholder')} {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -224,9 +226,9 @@ const PersonalInfo = () => {
                     name="state"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>State</FormLabel>
+                        <FormLabel>{t('personalInfo.state.label')}</FormLabel>
                         <FormControl>
-                          <Input placeholder="CA" maxLength={2} {...field} />
+                          <Input placeholder={t('personalInfo.state.placeholder')} maxLength={2} {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -237,9 +239,9 @@ const PersonalInfo = () => {
                     name="zipCode"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>ZIP Code</FormLabel>
+                        <FormLabel>{t('personalInfo.zipCode.label')}</FormLabel>
                         <FormControl>
-                          <Input placeholder="94102" maxLength={5} {...field} />
+                          <Input placeholder={t('personalInfo.zipCode.placeholder')} maxLength={5} {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -254,10 +256,10 @@ const PersonalInfo = () => {
                     onClick={handleSaveAndExit}
                   >
                     <Save className="h-4 w-4 mr-2" />
-                    Save & Exit
+                    {t('common.saveAndExit')}
                   </Button>
                   <Button type="submit">
-                    Continue to Employment
+                    {t('personalInfo.continueButton')}
                   </Button>
                 </div>
               </form>

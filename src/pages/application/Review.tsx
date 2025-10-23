@@ -6,6 +6,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useApplication } from "@/contexts/ApplicationContext";
 import { ArrowLeft, Edit, FileText, Home, Image as ImageIcon, Upload, X } from "lucide-react";
 import { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
@@ -17,6 +18,7 @@ interface UploadedFile {
 
 const Review = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { applicationData, calculateDTI } = useApplication();
   const [certifyTruth, setCertifyTruth] = useState(false);
   const [authorizeCreditCheck, setAuthorizeCreditCheck] = useState(false);
@@ -27,20 +29,20 @@ const Review = () => {
 
   const handleSubmit = async () => {
     if (!certifyTruth || !authorizeCreditCheck) {
-      toast.error("Please accept both certifications to continue");
+      toast.error(t('review.certifications.error'));
       return;
     }
 
     setIsSubmitting(true);
-    toast.loading("Analyzing your information...");
+    toast.loading(t('review.toast.analyzing'));
 
     // Simulate API call with file upload
     setTimeout(() => {
       toast.dismiss();
       if (uploadedFiles.length > 0) {
-        toast.success(`Prequalification complete! ${uploadedFiles.length} document(s) uploaded.`);
+        toast.success(t('review.toast.submitted', { count: uploadedFiles.length }));
       } else {
-        toast.success("Prequalification complete!");
+        toast.success(t('review.toast.submittedNoFiles'));
       }
       navigate("/application/results");
     }, 2000);
@@ -56,19 +58,19 @@ const Review = () => {
     Array.from(files).forEach((file) => {
       // Validate file type
       if (!allowedTypes.includes(file.type)) {
-        toast.error(`${file.name}: Invalid file type. Only PDF, JPG, and PNG are allowed.`);
+        toast.error(t('review.fileUpload.invalidType', { fileName: file.name }));
         return;
       }
 
       // Validate file size
       if (file.size > maxSize) {
-        toast.error(`${file.name}: File too large. Maximum size is 10MB.`);
+        toast.error(t('review.fileUpload.tooLarge', { fileName: file.name }));
         return;
       }
 
       // Check total files limit
       if (uploadedFiles.length + validFiles.length >= 20) {
-        toast.error("Maximum 20 files allowed.");
+        toast.error(t('review.fileUpload.maxFiles'));
         return;
       }
 
@@ -88,7 +90,7 @@ const Review = () => {
             allowedTypes.includes(f.type) && f.size <= maxSize
           ).length) {
             setUploadedFiles(prev => [...prev, ...validFiles]);
-            toast.success(`${validFiles.length} file(s) uploaded successfully`);
+            toast.success(t('review.fileUpload.success', { count: validFiles.length }));
           }
         };
         reader.readAsDataURL(file);
@@ -104,7 +106,7 @@ const Review = () => {
     const nonImageFiles = validFiles.filter(f => !f.file.type.startsWith('image/'));
     if (nonImageFiles.length > 0) {
       setUploadedFiles(prev => [...prev, ...nonImageFiles]);
-      toast.success(`${nonImageFiles.length} file(s) uploaded successfully`);
+      toast.success(t('review.fileUpload.success', { count: nonImageFiles.length }));
     }
   };
 
@@ -126,7 +128,7 @@ const Review = () => {
 
   const handleRemoveFile = (fileId: string) => {
     setUploadedFiles(prev => prev.filter(f => f.id !== fileId));
-    toast.success("File removed");
+    toast.success(t('review.fileUpload.removed'));
   };
 
   const formatFileSize = (bytes: number) => {
@@ -153,14 +155,14 @@ const Review = () => {
                 className="flex items-center gap-2"
               >
                 <ArrowLeft className="h-4 w-4" />
-                Back
+                {t('common.back')}
               </Button>
               <div className="flex items-center gap-2">
                 <Home className="h-6 w-6 text-primary" />
-                <span className="text-xl font-bold text-primary">uSign</span>
+                <span className="text-xl font-bold text-primary">{t('brand.name')}</span>
               </div>
             </div>
-            <Button variant="ghost" size="sm">Help</Button>
+            <Button variant="ghost" size="sm">{t('common.help')}</Button>
           </div>
         </div>
       </header>
@@ -170,9 +172,9 @@ const Review = () => {
 
         <Card className="mt-6">
           <CardHeader>
-            <CardTitle>Review Your Information</CardTitle>
+            <CardTitle>{t('review.title')}</CardTitle>
             <CardDescription>
-              Verify details before we generate your prequalification
+              {t('review.subtitle')}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
@@ -182,7 +184,7 @@ const Review = () => {
                   <div className="flex items-center justify-between w-full pr-4">
                     <div className="flex items-center gap-2">
                       <span className="text-green-600">✓</span>
-                      <span className="font-semibold">Personal Information</span>
+                      <span className="font-semibold">{t('review.sections.personalInfo.title')}</span>
                     </div>
                     <Button
                       variant="ghost"
@@ -199,23 +201,23 @@ const Review = () => {
                 <AccordionContent>
                   <div className="grid md:grid-cols-2 gap-4 p-4 bg-muted/50 rounded-lg">
                     <div>
-                      <p className="text-sm text-muted-foreground">Name</p>
+                      <p className="text-sm text-muted-foreground">{t('review.sections.personalInfo.name')}</p>
                       <p className="font-medium">{applicationData.personalInfo.firstName} {applicationData.personalInfo.lastName}</p>
                     </div>
                     <div>
-                      <p className="text-sm text-muted-foreground">Date of Birth</p>
-                      <p className="font-medium">{applicationData.personalInfo.dateOfBirth || "Not provided"}</p>
+                      <p className="text-sm text-muted-foreground">{t('review.sections.personalInfo.dateOfBirth')}</p>
+                      <p className="font-medium">{applicationData.personalInfo.dateOfBirth || t('common.notProvided')}</p>
                     </div>
                     <div>
-                      <p className="text-sm text-muted-foreground">Email</p>
+                      <p className="text-sm text-muted-foreground">{t('review.sections.personalInfo.email')}</p>
                       <p className="font-medium">{applicationData.personalInfo.email}</p>
                     </div>
                     <div>
-                      <p className="text-sm text-muted-foreground">Phone</p>
+                      <p className="text-sm text-muted-foreground">{t('review.sections.personalInfo.phone')}</p>
                       <p className="font-medium">{applicationData.personalInfo.phone}</p>
                     </div>
                     <div className="md:col-span-2">
-                      <p className="text-sm text-muted-foreground">Address</p>
+                      <p className="text-sm text-muted-foreground">{t('review.sections.personalInfo.address')}</p>
                       <p className="font-medium">
                         {applicationData.personalInfo.address}, {applicationData.personalInfo.city}, {applicationData.personalInfo.state} {applicationData.personalInfo.zipCode}
                       </p>
@@ -229,7 +231,7 @@ const Review = () => {
                   <div className="flex items-center justify-between w-full pr-4">
                     <div className="flex items-center gap-2">
                       <span className="text-green-600">✓</span>
-                      <span className="font-semibold">Employment & Income</span>
+                      <span className="font-semibold">{t('review.sections.employment.title')}</span>
                     </div>
                     <Button
                       variant="ghost"
@@ -246,22 +248,22 @@ const Review = () => {
                 <AccordionContent>
                   <div className="grid md:grid-cols-2 gap-4 p-4 bg-muted/50 rounded-lg">
                     <div>
-                      <p className="text-sm text-muted-foreground">Employment Status</p>
+                      <p className="text-sm text-muted-foreground">{t('review.sections.employment.employmentStatus')}</p>
                       <p className="font-medium capitalize">{applicationData.employment.status}</p>
                     </div>
                     <div>
-                      <p className="text-sm text-muted-foreground">Monthly Income</p>
+                      <p className="text-sm text-muted-foreground">{t('review.sections.employment.monthlyIncome')}</p>
                       <p className="font-medium">${applicationData.employment.monthlyIncome.toLocaleString()}</p>
                     </div>
                     {applicationData.employment.employer && (
                       <div>
-                        <p className="text-sm text-muted-foreground">Employer</p>
+                        <p className="text-sm text-muted-foreground">{t('review.sections.employment.employer')}</p>
                         <p className="font-medium">{applicationData.employment.employer}</p>
                       </div>
                     )}
                     {applicationData.employment.additionalIncome && applicationData.employment.additionalIncome > 0 && (
                       <div>
-                        <p className="text-sm text-muted-foreground">Additional Income</p>
+                        <p className="text-sm text-muted-foreground">{t('review.sections.employment.additionalIncome')}</p>
                         <p className="font-medium">${applicationData.employment.additionalIncome.toLocaleString()}</p>
                       </div>
                     )}
@@ -274,7 +276,7 @@ const Review = () => {
                   <div className="flex items-center justify-between w-full pr-4">
                     <div className="flex items-center gap-2">
                       <span className="text-green-600">✓</span>
-                      <span className="font-semibold">Assets & Down Payment</span>
+                      <span className="font-semibold">{t('review.sections.assets.title')}</span>
                     </div>
                     <Button
                       variant="ghost"
@@ -291,19 +293,19 @@ const Review = () => {
                 <AccordionContent>
                   <div className="grid md:grid-cols-2 gap-4 p-4 bg-muted/50 rounded-lg">
                     <div>
-                      <p className="text-sm text-muted-foreground">Down Payment</p>
+                      <p className="text-sm text-muted-foreground">{t('review.sections.assets.downPayment')}</p>
                       <p className="font-medium">${applicationData.assets.downPayment.toLocaleString()}</p>
                     </div>
                     <div>
-                      <p className="text-sm text-muted-foreground">Checking Accounts</p>
+                      <p className="text-sm text-muted-foreground">{t('review.sections.assets.checkingAccounts')}</p>
                       <p className="font-medium">${applicationData.assets.checkingAccounts.toLocaleString()}</p>
                     </div>
                     <div>
-                      <p className="text-sm text-muted-foreground">Savings Accounts</p>
+                      <p className="text-sm text-muted-foreground">{t('review.sections.assets.savingsAccounts')}</p>
                       <p className="font-medium">${applicationData.assets.savingsAccounts.toLocaleString()}</p>
                     </div>
                     <div>
-                      <p className="text-sm text-muted-foreground">Total Assets</p>
+                      <p className="text-sm text-muted-foreground">{t('review.sections.assets.totalAssets')}</p>
                       <p className="font-medium">
                         ${(applicationData.assets.checkingAccounts + applicationData.assets.savingsAccounts + applicationData.assets.investments + applicationData.assets.retirement).toLocaleString()}
                       </p>
@@ -317,7 +319,7 @@ const Review = () => {
                   <div className="flex items-center justify-between w-full pr-4">
                     <div className="flex items-center gap-2">
                       <span className="text-green-600">✓</span>
-                      <span className="font-semibold">Monthly Debts</span>
+                      <span className="font-semibold">{t('review.sections.debts.title')}</span>
                     </div>
                     <Button
                       variant="ghost"
@@ -334,13 +336,13 @@ const Review = () => {
                 <AccordionContent>
                   <div className="grid md:grid-cols-2 gap-4 p-4 bg-muted/50 rounded-lg">
                     <div>
-                      <p className="text-sm text-muted-foreground">Total Monthly Debts</p>
+                      <p className="text-sm text-muted-foreground">{t('review.sections.debts.totalMonthlyDebts')}</p>
                       <p className="font-medium">
                         ${(applicationData.debts.creditCards + applicationData.debts.carLoans + applicationData.debts.studentLoans + applicationData.debts.otherDebts).toLocaleString()}
                       </p>
                     </div>
                     <div>
-                      <p className="text-sm text-muted-foreground">Debt-to-Income Ratio</p>
+                      <p className="text-sm text-muted-foreground">{t('review.sections.debts.dtiRatio')}</p>
                       <p className={`font-medium ${dti < 36 ? 'text-green-600' : dti < 43 ? 'text-yellow-600' : 'text-red-600'}`}>
                         {dti.toFixed(1)}%
                       </p>
@@ -351,9 +353,9 @@ const Review = () => {
             </Accordion>
 
             <div className="border-t pt-6">
-              <h3 className="font-semibold mb-4">Optional: Upload Supporting Documents</h3>
+              <h3 className="font-semibold mb-4">{t('review.documentUpload.title')}</h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Speeds up full approval later
+                {t('review.documentUpload.subtitle')}
               </p>
 
               <input
@@ -377,24 +379,24 @@ const Review = () => {
               >
                 <Upload className={`h-12 w-12 mx-auto mb-4 ${isDragging ? 'text-primary' : 'text-muted-foreground'}`} />
                 <p className="text-sm font-medium mb-2">
-                  {isDragging ? 'Drop files here' : 'Drag & drop files here'}
+                  {isDragging ? t('review.documentUpload.dropHere') : t('review.documentUpload.dragDrop')}
                 </p>
-                <p className="text-xs text-muted-foreground mb-4">or click to browse</p>
+                <p className="text-xs text-muted-foreground mb-4">{t('review.documentUpload.orClick')}</p>
                 <Button variant="outline" size="sm" type="button" onClick={(e) => {
                   e.stopPropagation();
                   fileInputRef.current?.click();
                 }}>
-                  Browse Files
+                  {t('review.documentUpload.browseButton')}
                 </Button>
                 <p className="text-xs text-muted-foreground mt-4">
-                  Accepted: PDF, JPG, PNG (Max 10MB each, 20 files max)
+                  {t('review.documentUpload.acceptedFormats')}
                 </p>
               </div>
 
               {uploadedFiles.length > 0 && (
                 <div className="mt-4 space-y-2">
                   <p className="text-sm font-medium">
-                    Uploaded Files ({uploadedFiles.length})
+                    {t('review.documentUpload.uploadedFiles', { count: uploadedFiles.length })}
                   </p>
                   <div className="space-y-2">
                     {uploadedFiles.map((uploadedFile) => (
@@ -429,18 +431,18 @@ const Review = () => {
                     ))}
                   </div>
                   <p className="text-xs text-muted-foreground">
-                    Total size: {formatFileSize(uploadedFiles.reduce((sum, f) => sum + f.file.size, 0))}
+                    {t('review.documentUpload.totalSize', { size: formatFileSize(uploadedFiles.reduce((sum, f) => sum + f.file.size, 0)) })}
                   </p>
                 </div>
               )}
 
               <div className="mt-4 space-y-2 text-sm text-muted-foreground">
-                <p>Suggested documents:</p>
+                <p>{t('review.documentUpload.suggestedTitle')}</p>
                 <ul className="list-disc list-inside space-y-1 ml-2">
-                  <li>Recent pay stubs (last 30 days)</li>
-                  <li>Bank statements (last 2 months)</li>
-                  <li>Tax returns (last 2 years)</li>
-                  <li>ID (driver's license or passport)</li>
+                  <li>{t('review.documentUpload.suggested.payStubs')}</li>
+                  <li>{t('review.documentUpload.suggested.bankStatements')}</li>
+                  <li>{t('review.documentUpload.suggested.taxReturns')}</li>
+                  <li>{t('review.documentUpload.suggested.id')}</li>
                 </ul>
               </div>
             </div>
@@ -453,7 +455,7 @@ const Review = () => {
                   onCheckedChange={(checked) => setCertifyTruth(checked as boolean)}
                 />
                 <label htmlFor="certifyTruth" className="text-sm cursor-pointer">
-                  I certify that the information provided is true and accurate to the best of my knowledge
+                  {t('review.certifications.certifyTruth')}
                 </label>
               </div>
               <div className="flex items-start space-x-3">
@@ -463,7 +465,7 @@ const Review = () => {
                   onCheckedChange={(checked) => setAuthorizeCreditCheck(checked as boolean)}
                 />
                 <label htmlFor="authorizeCreditCheck" className="text-sm cursor-pointer">
-                  I authorize a soft credit check (won't affect credit score)
+                  {t('review.certifications.authorizeCreditCheck')}
                 </label>
               </div>
             </div>
@@ -474,14 +476,14 @@ const Review = () => {
                 onClick={() => navigate("/application/property")}
               >
                 <ArrowLeft className="h-4 w-4 mr-2" />
-                Back
+                {t('common.back')}
               </Button>
               <Button
                 onClick={handleSubmit}
                 disabled={!certifyTruth || !authorizeCreditCheck || isSubmitting}
                 size="lg"
               >
-                Generate My Prequalification
+                {t('review.submitButton.submit')}
               </Button>
             </div>
           </CardContent>

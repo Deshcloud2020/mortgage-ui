@@ -10,6 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { AlertTriangle, ArrowLeft, Home, Info, Save } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import * as z from "zod";
@@ -30,6 +31,7 @@ const assetsSchema = z.object({
 
 const Assets = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { applicationData, updateAssets, saveProgress } = useApplication();
   const [estimatedHomePrice] = useState(400000); // This would come from user preferences or calculations
   const [totalAssets, setTotalAssets] = useState(0);
@@ -100,7 +102,7 @@ const Assets = () => {
 
     updateAssets(assetsData);
     saveProgress();
-    toast.success("Assets information saved!");
+    toast.success(t('assets.toast.saved'));
     navigate("/application/debts");
   };
 
@@ -114,14 +116,14 @@ const Assets = () => {
       retirement: values.hasRetirement ? values.retirementAccounts : 0,
     });
     saveProgress();
-    toast.success("Progress saved! You can resume anytime.");
+    toast.success(t('assets.toast.progressSaved'));
     navigate("/dashboard");
   };
 
   const getReserveStatus = () => {
-    if (reserveMonths >= 6) return { color: "text-success", icon: "✓", message: "Excellent reserves" };
-    if (reserveMonths >= 3) return { color: "text-warning", icon: "⚠", message: "Good reserves" };
-    return { color: "text-destructive", icon: "✗", message: "Low reserves" };
+    if (reserveMonths >= 6) return { color: "text-success", icon: "✓", message: t('assets.summary.excellentReserves') };
+    if (reserveMonths >= 3) return { color: "text-warning", icon: "⚠", message: t('assets.summary.goodReserves') };
+    return { color: "text-destructive", icon: "✗", message: t('assets.summary.lowReserves') };
   };
 
   const reserveStatus = getReserveStatus();
@@ -140,19 +142,19 @@ const Assets = () => {
                 className="flex items-center gap-2"
               >
                 <ArrowLeft className="h-4 w-4" />
-                Back
+                {t('common.back')}
               </Button>
               <div className="flex items-center gap-2">
                 <Home className="h-6 w-6 text-primary" />
-                <span className="text-xl font-bold text-primary">uSign</span>
+                <span className="text-xl font-bold text-primary">{t('brand.name')}</span>
               </div>
             </div>
             <div className="flex items-center gap-4">
               <Button variant="outline" size="sm" onClick={handleSaveAndExit}>
                 <Save className="h-4 w-4 mr-2" />
-                Save & Exit
+                {t('common.saveAndExit')}
               </Button>
-              <Button variant="ghost" size="sm">Help</Button>
+              <Button variant="ghost" size="sm">{t('common.help')}</Button>
             </div>
           </div>
         </div>
@@ -163,9 +165,9 @@ const Assets = () => {
 
         <Card className="mt-6">
           <CardHeader>
-            <CardTitle>Assets & Down Payment</CardTitle>
+            <CardTitle>{t('assets.title')}</CardTitle>
             <CardDescription>
-              Show us what funds you have available for your home purchase
+              {t('assets.subtitle')}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -178,7 +180,7 @@ const Assets = () => {
                     name="downPayment"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>How much can you put down? *</FormLabel>
+                        <FormLabel>{t('assets.downPayment.label')} *</FormLabel>
                         <FormControl>
                           <div className="relative">
                             <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">
@@ -186,7 +188,7 @@ const Assets = () => {
                             </span>
                             <Input
                               type="number"
-                              placeholder="80000"
+                              placeholder={t('assets.downPayment.placeholder')}
                               className="pl-8"
                               {...field}
                               onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
@@ -194,7 +196,7 @@ const Assets = () => {
                           </div>
                         </FormControl>
                         <FormDescription>
-                          Based on estimated home price of ${estimatedHomePrice.toLocaleString()}
+                          {t('assets.downPayment.description', { price: estimatedHomePrice.toLocaleString() })}
                         </FormDescription>
                         <FormMessage />
                       </FormItem>
@@ -208,7 +210,7 @@ const Assets = () => {
                       size="sm"
                       onClick={() => setQuickDownPayment(5)}
                     >
-                      5% (${(estimatedHomePrice * 0.05).toLocaleString()})
+                      {t('assets.downPayment.quickButtons.5percent', { amount: (estimatedHomePrice * 0.05).toLocaleString() })}
                     </Button>
                     <Button
                       type="button"
@@ -216,7 +218,7 @@ const Assets = () => {
                       size="sm"
                       onClick={() => setQuickDownPayment(10)}
                     >
-                      10% (${(estimatedHomePrice * 0.10).toLocaleString()})
+                      {t('assets.downPayment.quickButtons.10percent', { amount: (estimatedHomePrice * 0.10).toLocaleString() })}
                     </Button>
                     <Button
                       type="button"
@@ -224,7 +226,7 @@ const Assets = () => {
                       size="sm"
                       onClick={() => setQuickDownPayment(20)}
                     >
-                      20% (${(estimatedHomePrice * 0.20).toLocaleString()})
+                      {t('assets.downPayment.quickButtons.20percent', { amount: (estimatedHomePrice * 0.20).toLocaleString() })}
                     </Button>
                   </div>
 
@@ -234,7 +236,7 @@ const Assets = () => {
                         <Info className="h-5 w-5 text-warning mt-0.5" />
                         <div>
                           <p className="text-sm text-warning-foreground">
-                            20% down avoids PMI insurance (~$140/month savings)
+                            {t('assets.downPayment.pmiWarning')}
                           </p>
                         </div>
                       </div>
@@ -243,7 +245,7 @@ const Assets = () => {
                 </div>
 
                 <div className="border-t pt-6">
-                  <h3 className="text-lg font-semibold mb-4">Current Assets</h3>
+                  <h3 className="text-lg font-semibold mb-4">{t('assets.currentAssets.title')}</h3>
 
                   <div className="grid md:grid-cols-2 gap-4">
                     <FormField
@@ -251,7 +253,7 @@ const Assets = () => {
                       name="checkingAccounts"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Checking Account(s) *</FormLabel>
+                          <FormLabel>{t('assets.currentAssets.checking.label')} *</FormLabel>
                           <FormControl>
                             <div className="relative">
                               <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">
@@ -259,7 +261,7 @@ const Assets = () => {
                               </span>
                               <Input
                                 type="number"
-                                placeholder="25000"
+                                placeholder={t('assets.currentAssets.checking.placeholder')}
                                 className="pl-8"
                                 {...field}
                                 onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
@@ -276,7 +278,7 @@ const Assets = () => {
                       name="savingsAccounts"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Savings Account(s) *</FormLabel>
+                          <FormLabel>{t('assets.currentAssets.savings.label')} *</FormLabel>
                           <FormControl>
                             <div className="relative">
                               <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">
@@ -284,7 +286,7 @@ const Assets = () => {
                               </span>
                               <Input
                                 type="number"
-                                placeholder="75000"
+                                placeholder={t('assets.currentAssets.savings.placeholder')}
                                 className="pl-8"
                                 {...field}
                                 onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
@@ -300,7 +302,7 @@ const Assets = () => {
 
                 {/* Optional Assets */}
                 <div className="space-y-4">
-                  <h4 className="font-medium">Other Assets (Optional)</h4>
+                  <h4 className="font-medium">{t('assets.otherAssets.title')}</h4>
 
                   <div className="space-y-4">
                     <div className="flex items-center space-x-2">
@@ -316,7 +318,7 @@ const Assets = () => {
                               />
                             </FormControl>
                             <FormLabel className="cursor-pointer">
-                              Retirement Accounts (401k, IRA)
+                              {t('assets.otherAssets.retirement.label')}
                             </FormLabel>
                           </FormItem>
                         )}
@@ -334,7 +336,7 @@ const Assets = () => {
                                   </span>
                                   <Input
                                     type="number"
-                                    placeholder="50000"
+                                    placeholder={t('assets.otherAssets.retirement.placeholder')}
                                     className="pl-8"
                                     {...field}
                                     onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
@@ -360,7 +362,7 @@ const Assets = () => {
                               />
                             </FormControl>
                             <FormLabel className="cursor-pointer">
-                              Investments (Stocks, Bonds)
+                              {t('assets.otherAssets.investments.label')}
                             </FormLabel>
                           </FormItem>
                         )}
@@ -378,7 +380,7 @@ const Assets = () => {
                                   </span>
                                   <Input
                                     type="number"
-                                    placeholder="25000"
+                                    placeholder={t('assets.otherAssets.investments.placeholder')}
                                     className="pl-8"
                                     {...field}
                                     onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
@@ -404,7 +406,7 @@ const Assets = () => {
                               />
                             </FormControl>
                             <FormLabel className="cursor-pointer">
-                              Other Real Estate
+                              {t('assets.otherAssets.realEstate.label')}
                             </FormLabel>
                           </FormItem>
                         )}
@@ -422,7 +424,7 @@ const Assets = () => {
                                   </span>
                                   <Input
                                     type="number"
-                                    placeholder="100000"
+                                    placeholder={t('assets.otherAssets.realEstate.placeholder')}
                                     className="pl-8"
                                     {...field}
                                     onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
@@ -443,7 +445,7 @@ const Assets = () => {
                   name="hasGiftFunds"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Gift Funds?</FormLabel>
+                      <FormLabel>{t('assets.giftFunds.label')}</FormLabel>
                       <FormControl>
                         <RadioGroup
                           onValueChange={field.onChange}
@@ -452,12 +454,12 @@ const Assets = () => {
                         >
                           <div className="flex items-center space-x-2">
                             <RadioGroupItem value="no" id="no-gift" />
-                            <label htmlFor="no-gift" className="cursor-pointer">No gift funds</label>
+                            <label htmlFor="no-gift" className="cursor-pointer">{t('assets.giftFunds.no')}</label>
                           </div>
                           <div className="flex items-center space-x-2">
                             <RadioGroupItem value="yes" id="yes-gift" />
                             <label htmlFor="yes-gift" className="cursor-pointer">
-                              Yes, receiving gift funds for down payment
+                              {t('assets.giftFunds.yes')}
                             </label>
                           </div>
                         </RadioGroup>
@@ -473,7 +475,7 @@ const Assets = () => {
                     name="giftAmount"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Gift Amount</FormLabel>
+                        <FormLabel>{t('assets.giftFunds.amount')}</FormLabel>
                         <FormControl>
                           <div className="relative">
                             <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground">
@@ -481,7 +483,7 @@ const Assets = () => {
                             </span>
                             <Input
                               type="number"
-                              placeholder="10000"
+                              placeholder={t('assets.giftFunds.amountPlaceholder')}
                               className="pl-8"
                               {...field}
                               onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
@@ -489,7 +491,7 @@ const Assets = () => {
                           </div>
                         </FormControl>
                         <FormDescription>
-                          Gift funds must be documented and cannot be a loan
+                          {t('assets.giftFunds.description')}
                         </FormDescription>
                         <FormMessage />
                       </FormItem>
@@ -502,19 +504,19 @@ const Assets = () => {
                   <div className="border-t pt-6">
                     <div className="bg-muted/50 rounded-lg p-4 space-y-3">
                       <div className="flex justify-between items-center">
-                        <span className="font-medium">Total Available Assets:</span>
+                        <span className="font-medium">{t('assets.summary.totalAssets')}</span>
                         <span className="text-xl font-bold">${totalAssets.toLocaleString()}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span>Down Payment ({downPaymentPercent.toFixed(1)}%):</span>
+                        <span>{t('assets.summary.downPayment', { percent: downPaymentPercent.toFixed(1) })}</span>
                         <span className="font-semibold">${(watchedValues.downPayment || 0).toLocaleString()}</span>
                       </div>
                       <div className="flex justify-between items-center">
-                        <span>Remaining Reserves:</span>
+                        <span>{t('assets.summary.remainingReserves')}</span>
                         <span className="font-semibold">${remainingReserves.toLocaleString()}</span>
                       </div>
                       <div className={`flex justify-between items-center ${reserveStatus.color}`}>
-                        <span>Reserve Status:</span>
+                        <span>{t('assets.summary.reserveStatus')}</span>
                         <span className="font-semibold">
                           {reserveStatus.icon} {reserveStatus.message} ({reserveMonths.toFixed(1)} months)
                         </span>
@@ -527,7 +529,7 @@ const Assets = () => {
                           <AlertTriangle className="h-5 w-5 text-destructive mt-0.5" />
                           <div>
                             <p className="text-sm text-destructive-foreground">
-                              Low reserves ({reserveMonths.toFixed(1)} months). Lenders prefer 6+ months of payments in reserves.
+                              {t('assets.summary.lowReservesWarning', { months: reserveMonths.toFixed(1) })}
                             </p>
                           </div>
                         </div>
@@ -543,10 +545,10 @@ const Assets = () => {
                     onClick={() => navigate("/application/employment")}
                   >
                     <ArrowLeft className="h-4 w-4 mr-2" />
-                    Back
+                    {t('common.back')}
                   </Button>
                   <Button type="submit">
-                    Continue to Debts
+                    {t('assets.continueButton')}
                   </Button>
                 </div>
               </form>

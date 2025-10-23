@@ -10,6 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { AlertTriangle, ArrowLeft, Home, Info, Save } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import * as z from "zod";
@@ -82,6 +83,7 @@ const US_STATES = [
 
 const Property = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [homePrice, setHomePrice] = useState(400000);
 
   const form = useForm<z.infer<typeof propertySchema>>({
@@ -106,12 +108,12 @@ const Property = () => {
   const isFirstTimeBuyer = form.watch("isFirstTimeBuyer");
 
   const onSubmit = (data: z.infer<typeof propertySchema>) => {
-    toast.success("Property preferences saved!");
+    toast.success(t('property.toast.saved'));
     navigate("/application/review");
   };
 
   const handleSaveAndExit = () => {
-    toast.success("Progress saved! You can resume anytime.");
+    toast.success(t('property.toast.progressSaved'));
     navigate("/dashboard");
   };
 
@@ -129,19 +131,19 @@ const Property = () => {
                 className="flex items-center gap-2"
               >
                 <ArrowLeft className="h-4 w-4" />
-                Back
+                {t('common.back')}
               </Button>
               <div className="flex items-center gap-2">
                 <Home className="h-6 w-6 text-primary" />
-                <span className="text-xl font-bold text-primary">uSign</span>
+                <span className="text-xl font-bold text-primary">{t('brand.name')}</span>
               </div>
             </div>
             <div className="flex items-center gap-4">
               <Button variant="outline" size="sm" onClick={handleSaveAndExit}>
                 <Save className="h-4 w-4 mr-2" />
-                Save & Exit
+                {t('common.saveAndExit')}
               </Button>
-              <Button variant="ghost" size="sm">Help</Button>
+              <Button variant="ghost" size="sm">{t('common.help')}</Button>
             </div>
           </div>
         </div>
@@ -152,9 +154,9 @@ const Property = () => {
 
         <Card className="mt-6">
           <CardHeader>
-            <CardTitle>Property & Loan Preferences</CardTitle>
+            <CardTitle>{t('property.title')}</CardTitle>
             <CardDescription>
-              Tell us about the home you want to buy
+              {t('property.subtitle')}
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -165,7 +167,7 @@ const Property = () => {
                   name="hasFoundProperty"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Have you found a property?</FormLabel>
+                      <FormLabel>{t('property.hasFoundProperty.label')}</FormLabel>
                       <FormControl>
                         <RadioGroup
                           onValueChange={field.onChange}
@@ -174,11 +176,11 @@ const Property = () => {
                         >
                           <div className="flex items-center space-x-2">
                             <RadioGroupItem value="no" id="no-property" />
-                            <label htmlFor="no-property" className="cursor-pointer">No, I'm still looking</label>
+                            <label htmlFor="no-property" className="cursor-pointer">{t('property.hasFoundProperty.no')}</label>
                           </div>
                           <div className="flex items-center space-x-2">
                             <RadioGroupItem value="yes" id="yes-property" />
-                            <label htmlFor="yes-property" className="cursor-pointer">Yes, I have an address</label>
+                            <label htmlFor="yes-property" className="cursor-pointer">{t('property.hasFoundProperty.yes')}</label>
                           </div>
                         </RadioGroup>
                       </FormControl>
@@ -193,12 +195,12 @@ const Property = () => {
                     name="propertyAddress"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Property Address</FormLabel>
+                        <FormLabel>{t('property.propertyAddress.label')}</FormLabel>
                         <FormControl>
-                          <Input placeholder="123 Main St, City, State ZIP" {...field} />
+                          <Input placeholder={t('property.propertyAddress.placeholder')} {...field} />
                         </FormControl>
                         <FormDescription>
-                          Start typing to see suggestions
+                          {t('property.propertyAddress.description')}
                         </FormDescription>
                         <FormMessage />
                       </FormItem>
@@ -211,7 +213,7 @@ const Property = () => {
                   name="desiredHomePrice"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Desired Home Price *</FormLabel>
+                      <FormLabel>{t('property.desiredHomePrice.label')} *</FormLabel>
                       <FormControl>
                         <div className="space-y-4">
                           <div className="relative">
@@ -220,7 +222,7 @@ const Property = () => {
                             </span>
                             <Input
                               type="number"
-                              placeholder="400000"
+                              placeholder={t('property.desiredHomePrice.placeholder')}
                               className="pl-8"
                               {...field}
                               onChange={(e) => {
@@ -262,11 +264,11 @@ const Property = () => {
                     name="state"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>State *</FormLabel>
+                        <FormLabel>{t('property.state.label')} *</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
                             <SelectTrigger>
-                              <SelectValue placeholder="Select state" />
+                              <SelectValue placeholder={t('property.state.placeholder')} />
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
@@ -287,9 +289,9 @@ const Property = () => {
                     name="zipCode"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>ZIP Code *</FormLabel>
+                        <FormLabel>{t('property.zipCode.label')} *</FormLabel>
                         <FormControl>
-                          <Input placeholder="94102" maxLength={5} {...field} />
+                          <Input placeholder={t('property.zipCode.placeholder')} maxLength={5} {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -302,7 +304,7 @@ const Property = () => {
                   name="propertyType"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Property Type *</FormLabel>
+                      <FormLabel>{t('property.propertyType.label')} *</FormLabel>
                       <FormControl>
                         <RadioGroup
                           onValueChange={field.onChange}
@@ -311,19 +313,19 @@ const Property = () => {
                         >
                           <div className="flex items-center space-x-2">
                             <RadioGroupItem value="single-family" id="single-family" />
-                            <label htmlFor="single-family" className="cursor-pointer">Single-Family Home</label>
+                            <label htmlFor="single-family" className="cursor-pointer">{t('property.propertyType.singleFamily')}</label>
                           </div>
                           <div className="flex items-center space-x-2">
                             <RadioGroupItem value="townhouse" id="townhouse" />
-                            <label htmlFor="townhouse" className="cursor-pointer">Townhouse</label>
+                            <label htmlFor="townhouse" className="cursor-pointer">{t('property.propertyType.townhouse')}</label>
                           </div>
                           <div className="flex items-center space-x-2">
                             <RadioGroupItem value="condo" id="condo" />
-                            <label htmlFor="condo" className="cursor-pointer">Condominium</label>
+                            <label htmlFor="condo" className="cursor-pointer">{t('property.propertyType.condo')}</label>
                           </div>
                           <div className="flex items-center space-x-2">
                             <RadioGroupItem value="multi-unit" id="multi-unit" />
-                            <label htmlFor="multi-unit" className="cursor-pointer">Multi-Unit (2-4 units)</label>
+                            <label htmlFor="multi-unit" className="cursor-pointer">{t('property.propertyType.multiUnit')}</label>
                           </div>
                         </RadioGroup>
                       </FormControl>
@@ -338,7 +340,7 @@ const Property = () => {
                       <AlertTriangle className="h-5 w-5 text-warning mt-0.5" />
                       <div>
                         <p className="text-sm text-warning-foreground">
-                          Multi-unit properties may require larger down payments (15-25%)
+                          {t('property.propertyType.multiUnitWarning')}
                         </p>
                       </div>
                     </div>
@@ -350,7 +352,7 @@ const Property = () => {
                   name="intendedUse"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Intended Use *</FormLabel>
+                      <FormLabel>{t('property.intendedUse.label')} *</FormLabel>
                       <FormControl>
                         <RadioGroup
                           onValueChange={field.onChange}
@@ -359,15 +361,15 @@ const Property = () => {
                         >
                           <div className="flex items-center space-x-2">
                             <RadioGroupItem value="primary" id="primary" />
-                            <label htmlFor="primary" className="cursor-pointer">Primary Residence</label>
+                            <label htmlFor="primary" className="cursor-pointer">{t('property.intendedUse.primary')}</label>
                           </div>
                           <div className="flex items-center space-x-2">
                             <RadioGroupItem value="second-home" id="second-home" />
-                            <label htmlFor="second-home" className="cursor-pointer">Second Home / Vacation</label>
+                            <label htmlFor="second-home" className="cursor-pointer">{t('property.intendedUse.secondHome')}</label>
                           </div>
                           <div className="flex items-center space-x-2">
                             <RadioGroupItem value="investment" id="investment" />
-                            <label htmlFor="investment" className="cursor-pointer">Investment Property</label>
+                            <label htmlFor="investment" className="cursor-pointer">{t('property.intendedUse.investment')}</label>
                           </div>
                         </RadioGroup>
                       </FormControl>
@@ -382,7 +384,7 @@ const Property = () => {
                       <AlertTriangle className="h-5 w-5 text-warning mt-0.5" />
                       <div>
                         <p className="text-sm text-warning-foreground">
-                          Investment properties require 20-25% down, higher rates, and stricter qualification
+                          {t('property.intendedUse.investmentWarning')}
                         </p>
                       </div>
                     </div>
@@ -394,7 +396,7 @@ const Property = () => {
                   name="isFirstTimeBuyer"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>First-time Homebuyer?</FormLabel>
+                      <FormLabel>{t('property.firstTimeBuyer.label')}</FormLabel>
                       <FormControl>
                         <RadioGroup
                           onValueChange={field.onChange}
@@ -403,11 +405,11 @@ const Property = () => {
                         >
                           <div className="flex items-center space-x-2">
                             <RadioGroupItem value="yes" id="yes-first-time" />
-                            <label htmlFor="yes-first-time" className="cursor-pointer">Yes</label>
+                            <label htmlFor="yes-first-time" className="cursor-pointer">{t('property.firstTimeBuyer.yes')}</label>
                           </div>
                           <div className="flex items-center space-x-2">
                             <RadioGroupItem value="no" id="no-first-time" />
-                            <label htmlFor="no-first-time" className="cursor-pointer">No</label>
+                            <label htmlFor="no-first-time" className="cursor-pointer">{t('property.firstTimeBuyer.no')}</label>
                           </div>
                         </RadioGroup>
                       </FormControl>
@@ -422,7 +424,7 @@ const Property = () => {
                       <Info className="h-5 w-5 text-info mt-0.5" />
                       <div>
                         <p className="text-sm text-info-foreground">
-                          May qualify for special programs and benefits
+                          {t('property.firstTimeBuyer.benefit')}
                         </p>
                       </div>
                     </div>
@@ -430,7 +432,7 @@ const Property = () => {
                 )}
 
                 <div className="border-t pt-6">
-                  <h3 className="text-lg font-semibold mb-4">Loan Preferences</h3>
+                  <h3 className="text-lg font-semibold mb-4">{t('property.loanPreferences.title')}</h3>
 
                   <div className="space-y-6">
                     <FormField
@@ -438,7 +440,7 @@ const Property = () => {
                       name="loanTerm"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Loan Term *</FormLabel>
+                          <FormLabel>{t('property.loanPreferences.term.label')} *</FormLabel>
                           <FormControl>
                             <RadioGroup
                               onValueChange={field.onChange}
@@ -448,19 +450,19 @@ const Property = () => {
                               <div className="flex items-center space-x-2">
                                 <RadioGroupItem value="30-year" id="30-year" />
                                 <label htmlFor="30-year" className="cursor-pointer">
-                                  30-year fixed (Lower monthly payment)
+                                  {t('property.loanPreferences.term.30year')}
                                 </label>
                               </div>
                               <div className="flex items-center space-x-2">
                                 <RadioGroupItem value="15-year" id="15-year" />
                                 <label htmlFor="15-year" className="cursor-pointer">
-                                  15-year fixed (Pay off faster, less interest)
+                                  {t('property.loanPreferences.term.15year')}
                                 </label>
                               </div>
                               <div className="flex items-center space-x-2">
                                 <RadioGroupItem value="not-sure" id="not-sure-term" />
                                 <label htmlFor="not-sure-term" className="cursor-pointer">
-                                  Not sure (We'll show options)
+                                  {t('property.loanPreferences.term.notSure')}
                                 </label>
                               </div>
                             </RadioGroup>
@@ -475,7 +477,7 @@ const Property = () => {
                       name="loanType"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Loan Type Preference</FormLabel>
+                          <FormLabel>{t('property.loanPreferences.type.label')}</FormLabel>
                           <FormControl>
                             <RadioGroup
                               onValueChange={field.onChange}
@@ -485,31 +487,31 @@ const Property = () => {
                               <div className="flex items-center space-x-2">
                                 <RadioGroupItem value="conventional" id="conventional" />
                                 <label htmlFor="conventional" className="cursor-pointer">
-                                  Conventional (Standard, 620+ credit)
+                                  {t('property.loanPreferences.type.conventional')}
                                 </label>
                               </div>
                               <div className="flex items-center space-x-2">
                                 <RadioGroupItem value="fha" id="fha" />
                                 <label htmlFor="fha" className="cursor-pointer">
-                                  FHA (Lower down payment, 580+ credit)
+                                  {t('property.loanPreferences.type.fha')}
                                 </label>
                               </div>
                               <div className="flex items-center space-x-2">
                                 <RadioGroupItem value="va" id="va" />
                                 <label htmlFor="va" className="cursor-pointer">
-                                  VA (Military veterans, 0% down)
+                                  {t('property.loanPreferences.type.va')}
                                 </label>
                               </div>
                               <div className="flex items-center space-x-2">
                                 <RadioGroupItem value="usda" id="usda" />
                                 <label htmlFor="usda" className="cursor-pointer">
-                                  USDA (Rural properties, 0% down)
+                                  {t('property.loanPreferences.type.usda')}
                                 </label>
                               </div>
                               <div className="flex items-center space-x-2">
                                 <RadioGroupItem value="not-sure" id="not-sure-type" />
                                 <label htmlFor="not-sure-type" className="cursor-pointer">
-                                  Not sure (Show me all options)
+                                  {t('property.loanPreferences.type.notSure')}
                                 </label>
                               </div>
                             </RadioGroup>
@@ -528,10 +530,10 @@ const Property = () => {
                     onClick={() => navigate("/application/debts")}
                   >
                     <ArrowLeft className="h-4 w-4 mr-2" />
-                    Back
+                    {t('common.back')}
                   </Button>
                   <Button type="submit">
-                    Continue to Review
+                    {t('property.continueButton')}
                   </Button>
                 </div>
               </form>
