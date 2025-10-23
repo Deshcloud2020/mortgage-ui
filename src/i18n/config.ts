@@ -1,15 +1,15 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-
-const loadTranslations = async (lng: string) => {
-  const translations = await import(`./locales/${lng}.json`);
-  return translations.default;
-};
+import enTranslations from './locales/en.json';
 
 i18n
   .use(initReactI18next)
   .init({
-    resources: {},
+    resources: {
+      en: {
+        translation: enTranslations
+      }
+    },
     lng: 'en',
     fallbackLng: 'en',
     interpolation: {
@@ -19,9 +19,5 @@ i18n
       useSuspense: false
     }
   });
-
-loadTranslations('en').then((translations) => {
-  i18n.addResourceBundle('en', 'translation', translations, true, true);
-});
 
 export default i18n;
