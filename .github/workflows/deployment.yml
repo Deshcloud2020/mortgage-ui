@@ -1,0 +1,56 @@
+name: Mortgage CI
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  build:
+    name: 'Build and Push Mortgage to ACR'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set image tag
+        id: set_tag
+        run: echo "IMAGE_TAG=$(echo $GITHUB_SHA | cut -c1-7)" >> $GITHUB_OUTPUT
+
+      - name: Docker Login
+        uses: azure/docker-login@v1
+        with:
+          login-server: 
+          username: 
+          password: 
+
+      - name: Build and push image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: |
+            /usign-mortgage:${{ steps.set_tag.outputs.IMAGE_TAG }}
+            /usign-mortgage:latest
+          file: Dockerfile
+
+      - name: Checkout manifest repo
+        uses: actions/checkout@v4
+        with:
+          repository: r-shafi/dtcrm-infrastructure
+          token: 
+          path: manifests
+
+      - name: Update manifest with new image tag
+        run: |
+          cd manifests
+          sed -i "s|/usign-mortgage:.*|/usign-mortgage:${{ steps.set_tag.outputs.IMAGE_TAG }}|g" Mortgage/deployment.yaml
+
+      - name: Commit and push manifest changes
+        run: |
+          cd manifests
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add Mortgage/deployment.yaml
+          git commit -m "Update Mortgage image to ${{ steps.set_tag.outputs.IMAGE_TAG }}"
+          git push

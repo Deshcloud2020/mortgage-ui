@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: usign-mortgage-deployment
+  labels:
+    app: usign-mortgage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: usign-mortgage
+  template:
+    metadata:
+      labels:
+        app: usign-mortgage
+    spec:
+      containers:
+        - name: usign-mortgage
+          image: dtintentify.azurecr.io/usign-mortgage:latest
+          ports:
+            - containerPort: 80
+          imagePullPolicy: Always
+      imagePullSecrets:
+        - name: azure-token
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: usign-mortgage-service
+spec:
+  type: NodePort
+  selector:
+    app: usign-mortgage
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30083
