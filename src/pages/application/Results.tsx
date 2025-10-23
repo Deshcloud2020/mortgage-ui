@@ -232,7 +232,6 @@ const Results = () => {
         </CardContent>
       </Card>
     </div>
-    </div >
   );
 };
 

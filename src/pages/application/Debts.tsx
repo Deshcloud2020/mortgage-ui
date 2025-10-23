@@ -8,7 +8,7 @@ import { Progress } from "@/components/ui/progress";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useApplication } from "@/contexts/ApplicationContext";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ArrowLeft, Home, Info, Save } from "lucide-react";
+import { ArrowLeft, Info } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -526,7 +526,6 @@ const Debts = () => {
         </CardContent>
       </Card>
     </div>
-    </div >
   );
 };
 

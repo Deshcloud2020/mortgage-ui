@@ -17,7 +17,19 @@ import * as z from "zod";
 const personalInfoSchema = z.object({
   firstName: z.string().min(2, "First name must be at least 2 characters").max(50),
   lastName: z.string().min(2, "Last name must be at least 2 characters").max(50),
-  dateOfBirth: z.string().min(1, "Date of birth is required"),
+  dateOfBirth: z.string().min(1, "Date of birth is required").refine((date) => {
+    const birthDate = new Date(date);
+    const today = new Date();
+    const age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    const dayDiff = today.getDate() - birthDate.getDate();
+
+    // Check if they've had their birthday this year
+    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+      return age - 1 >= 18;
+    }
+    return age >= 18;
+  }, "You must be at least 18 years old"),
   ssn: z.string().optional(),
   skipSSN: z.boolean().optional(),
   phone: z.string().regex(/^\(\d{3}\) \d{3}-\d{4}$/, "Please enter a valid phone number"),
@@ -33,6 +45,13 @@ const PersonalInfo = () => {
   const { t } = useTranslation();
   const { applicationData, updatePersonalInfo, saveProgress } = useApplication();
   const [skipSSN, setSkipSSN] = useState(false);
+
+  // Calculate max date (18 years ago from today)
+  const getMaxDate = () => {
+    const today = new Date();
+    const maxDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+    return maxDate.toISOString().split('T')[0];
+  };
 
   const form = useForm<z.infer<typeof personalInfoSchema>>({
     resolver: zodResolver(personalInfoSchema),
@@ -110,8 +129,11 @@ const PersonalInfo = () => {
                   <FormItem>
                     <FormLabel>{t('personalInfo.dateOfBirth.label')}</FormLabel>
                     <FormControl>
-                      <Input type="date" {...field} max={new Date().toISOString().split('T')[0]} />
+                      <Input type="date" {...field} max={getMaxDate()} />
                     </FormControl>
+                    <FormDescription>
+                      You must be at least 18 years old
+                    </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}

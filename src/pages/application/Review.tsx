@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useApplication } from "@/contexts/ApplicationContext";
-import { ArrowLeft, Edit, FileText, Home, Image as ImageIcon, Upload, X } from "lucide-react";
+import { ArrowLeft, Edit, FileText, Image as ImageIcon, Upload, X } from "lucide-react";
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
@@ -464,7 +464,6 @@ const Review = () => {
         </CardContent>
       </Card>
     </div>
-    </div >
   );
 };
 
